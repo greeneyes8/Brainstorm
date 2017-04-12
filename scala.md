@@ -22,15 +22,15 @@ Structure:
 
 TODO:
 
-- [] Hello world Androidzie
-- [] Same wcięcia
-	- [] Mock main
-	- [] Core
-		- [] Tree
-		- [] Node
-	- [] Parser
-		- [] Zamiana pliku na core
-	- [] Display
-		- [] Wyświetlanie core
+- [ ] Hello world Androidzie
+- [ ] Same wcięcia
+	- [ ] Mock main
+	- [ ] Core
+		- [ ] Tree
+		- [ ] Node
+	- [ ] Parser
+		- [ ] Zamiana pliku na core
+	- [ ] Display
+		- [ ] Wyświetlanie core
 
-- [] Menu
+- [ ] Menu
