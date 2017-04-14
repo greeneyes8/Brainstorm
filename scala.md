@@ -22,7 +22,7 @@ Structure:
 
 TODO:
 
-- [x] Hello world Androidzie (evil)
+- [x] Hello world Androidzie :smiling_imp:
 - [ ] Same wcięcia
 	- [ ] Mock main
 	- [ ] Core
