@@ -22,7 +22,7 @@ Structure:
 
 TODO:
 
-- [ ] Hello world Androidzie
+- [x] Hello world Androidzie (evil)
 - [ ] Same wcięcia
 	- [ ] Mock main
 	- [ ] Core
