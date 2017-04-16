@@ -7,6 +7,7 @@ Extreme programming
 	- Pseudo język
 	- Wyświetlanie
 	- Edycja UI
+	- Android permissions: Obsługa plików na androidzie
 	- RT editing
 	- Unit testów
 	- Scaladoc
