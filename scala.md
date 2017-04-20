@@ -25,13 +25,13 @@ TODO:
 
 - [x] Hello world Androidzie :smiling_imp:
 - [ ] Same wcięcia
-	- [ ] Mock main
 	- [ ] Core
-		- [ ] Tree
+		- [ ] MindMap
 		- [ ] Node
-	- [ ] Parser
-		- [ ] Zamiana pliku na core
-	- [ ] Display
-		- [ ] Wyświetlanie core
-
-- [ ] Menu
+		- [ ] Parser
+	- [ ] Android
+		- [ ] MainActivity
+		- [ ] SettingsActivity
+		- [ ] MapActivity
+		- [ ] MapDrawerFragment
+		- [ ] MapTextFragment
