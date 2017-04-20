@@ -7,6 +7,7 @@ class Node (var text: String, var parent: Option[Node]) {
   def remove(): Try[Unit] = Try(parent.get.children.-=(this))
 }
 
+// To jest głupie TODO:
 object Node {
   def fromText(lines: Iterator[String], parent: Option[Node]): Node = {
     val text = lines.next
