@@ -7,6 +7,12 @@ object Parser {
     val lines = Source.fromFile(filename).getLines
     MindMap.fromText(lines, filename)
   }
-  def parseText() = ""
-  def parseLine() = ""
+  def parseText(text: Seq[String]): Node = {
+    for (line <- text){
+      parseLine(line, None)
+    }
+    new Node("lala", None)
+  }
+  def parseLine(line: String, parent: Option[Node]): Node = 
+    new Node(line, parent)
 }
