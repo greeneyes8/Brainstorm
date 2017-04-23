@@ -21,10 +21,10 @@ import android.widget.ListView
 import android.widget.Toast
 import TypedResource._
 
-class MainActivity extends AppCompatActivity with TypedFindView {
+class MainActivity extends AppCompatActivity with TypedFindView{
     // allows accessing `.value` on TR.resource.constants
     implicit val context = this
-    //var mDrawerToogle
+    var mDrawerToogle : ActionBarDrawerToggle = _
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,6 @@ class MainActivity extends AppCompatActivity with TypedFindView {
         //vh.text.setText(s"Hello world, from ${TR.string.app_name.value}")
         //findView(TR.text).setText("Hello again, world!")
         
-
         val myList = Array("Paris", "New York", "Tokyo", "Berlin", "Copenhagen")
         val myListView = findView(TR.navList)
         val drawerLayout = findView(TR.drawer_layout)
@@ -45,6 +44,11 @@ class MainActivity extends AppCompatActivity with TypedFindView {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true)
         getSupportActionBar().setHomeButtonEnabled(true)
 
+        val fragmentManager = getFragmentManager()
+                    fragmentManager.beginTransaction()
+                                .replace(R.id.flContent, new MainFragment())
+                                .commit()
+
         myListView.setOnItemClickListener(new OnItemClickListener() {
             override def onItemClick(parent: AdapterView[_], view: View, position: Int, id: Long) {
                 Toast.makeText(
@@ -52,6 +56,8 @@ class MainActivity extends AppCompatActivity with TypedFindView {
                 "Time for an upgrade!",
                 Toast.LENGTH_SHORT
                 ).show()
+
+                drawerLayout.closeDrawer(myListView);
 
                 myListView.setItemChecked(position, true)
                 if (position == 0){
@@ -65,7 +71,7 @@ class MainActivity extends AppCompatActivity with TypedFindView {
                 }
 
                 //setTitle(myList(position));
-                //drawerLayout.closeDrawer(myListView);
+                
                 //val fragment = new SettingsFragment();
                 //val args = new Bundle();
                 //args.putInt(SettingsFragment.ARG_PLANET_NUMBER, position);
@@ -81,7 +87,7 @@ class MainActivity extends AppCompatActivity with TypedFindView {
             }
         })
         
-        val mDrawerToogle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToogle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely open state. */
             override def onDrawerOpened(drawerView : View) {
@@ -108,16 +114,16 @@ class MainActivity extends AppCompatActivity with TypedFindView {
 
     }
 
-    //override def onPostCreate(savedInstanceState: Bundle) {
-    //    super.onPostCreate(savedInstanceState)
+    override def onPostCreate(savedInstanceState: Bundle) {
+        super.onPostCreate(savedInstanceState)
         // Sync the toggle state after onRestoreInstanceState has occurred.
-     //   mDrawerToogle.syncState()
-    //}
+        mDrawerToogle.syncState()
+    }
 
-    //override def onConfigurationChanged(newConfig : Configuration) {
-   //     super.onConfigurationChanged(newConfig)
-   //     mDrawerToogle.onConfigurationChanged(newConfig)
-   // }
+    override def onConfigurationChanged(newConfig : Configuration) {
+        super.onConfigurationChanged(newConfig)
+        mDrawerToogle.onConfigurationChanged(newConfig)
+    }
 
      override def onCreateOptionsMenu(menu : Menu) : Boolean = {
         // Inflate the menu; this adds items to the action bar if it is present.
