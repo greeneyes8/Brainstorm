@@ -3,10 +3,11 @@ package brainstorm.core
 import util.Try
 
 class Node (var text: String, var parent: Option[Node]) {
-  val children: collection.mutable.Set[Node] = collection.mutable.Set()
+  val children: collection.mutable.LinkedHashSet[Node] = collection.mutable.LinkedHashSet()
   def remove(): Try[Unit] = Try(parent.get.children.-=(this))
 }
 
+// To jest głupie TODO:
 object Node {
   def fromText(lines: Iterator[String], parent: Option[Node]): Node = {
     val text = lines.next
