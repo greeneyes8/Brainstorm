@@ -34,7 +34,7 @@ class MainActivity extends AppCompatActivity with TypedFindView{
         //vh.text.setText(s"Hello world, from ${TR.string.app_name.value}")
         //findView(TR.text).setText("Hello again, world!")
         
-        val myList = Array("Paris", "New York", "Tokyo", "Berlin", "Copenhagen")
+        val myList = Array("Add Map From File", "Add Map in RealTime", "General Settings", "Berlin", "Copenhagen")
         val myListView = findView(TR.navList)
         val drawerLayout = findView(TR.drawer_layout)
 
@@ -60,15 +60,13 @@ class MainActivity extends AppCompatActivity with TypedFindView{
                 drawerLayout.closeDrawer(myListView);
 
                 myListView.setItemChecked(position, true)
-                if (position == 0){
-                    val fragment = new SettingsFragment()
-                    val fragmentManager = getFragmentManager()
+
+                var fragment = getFragmentClass(myList, position)
+
+                val fragmentManager = getFragmentManager()
                     fragmentManager.beginTransaction()
-                                .replace(R.id.flContent, fragment)
+                                .replace(R.id.flContent, fragment.newInstance())
                                 .commit()
-                } else {
-                  setTitle(myList(position));
-                }
 
                 //setTitle(myList(position));
                 
@@ -107,12 +105,13 @@ class MainActivity extends AppCompatActivity with TypedFindView{
         mDrawerToogle.setDrawerIndicatorEnabled(true)
         drawerLayout.setDrawerListener(mDrawerToogle)
 
-        //vh.image.getDrawable match {
-        //  case a: Animatable => a.start()
-        //  case _ => // not animatable
-        //}
-
     }
+
+    def getFragmentClass(myList : Array[_], position: Int) =  myList(position) match {
+                  case "General Settings" => classOf[SettingsFragment]
+                  case "Add Map From File" => classOf[MainFragment]
+                  case _ => classOf[MainFragment]
+                }
 
     override def onPostCreate(savedInstanceState: Bundle) {
         super.onPostCreate(savedInstanceState)
