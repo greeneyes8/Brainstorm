@@ -22,14 +22,13 @@ import android.widget.Toast
 import TypedResource._
 
 class MainActivity extends AppCompatActivity with TypedFindView{
-    // allows accessing `.value` on TR.resource.constants
     implicit val context = this
     var mDrawerToogle: ActionBarDrawerToggle = _
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
-        // type ascription is required due to SCL-10491
+
         //val vh: TypedViewHolder.main = TypedViewHolder.setContentView(this, TR.layout.main)
         //vh.text.setText(s"Hello world, from ${TR.string.app_name.value}")
         //findView(TR.text).setText("Hello again, world!")
