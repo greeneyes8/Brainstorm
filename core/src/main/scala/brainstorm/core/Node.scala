@@ -5,6 +5,10 @@ import util.Try
 class Node (var text: String, var parent: Option[Node]) {
   val children: collection.mutable.LinkedHashSet[Node] = collection.mutable.LinkedHashSet()
   def remove(): Try[Unit] = Try(parent.get.children.-=(this))
+  def addChild(chld: Node): Unit = {
+    children += chld
+    chld.parent = Some(this)
+  }
 }
 
 // To jest głupie TODO:
