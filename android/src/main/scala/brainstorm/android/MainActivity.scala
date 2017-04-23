@@ -24,7 +24,7 @@ import TypedResource._
 class MainActivity extends AppCompatActivity with TypedFindView{
     // allows accessing `.value` on TR.resource.constants
     implicit val context = this
-    var mDrawerToogle : ActionBarDrawerToggle = _
+    var mDrawerToogle: ActionBarDrawerToggle = _
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         super.onCreate(savedInstanceState)
