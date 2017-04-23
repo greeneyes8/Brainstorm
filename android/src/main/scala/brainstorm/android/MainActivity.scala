@@ -22,6 +22,7 @@ import android.widget.Toast
 import TypedResource._
 
 class MainActivity extends AppCompatActivity with TypedFindView{
+
     implicit val context = this
     var mDrawerToogle: ActionBarDrawerToggle = _
 
