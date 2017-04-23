@@ -13,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.view.LayoutInflater 
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
@@ -34,7 +36,7 @@ class MainActivity extends AppCompatActivity with TypedFindView{
         //vh.text.setText(s"Hello world, from ${TR.string.app_name.value}")
         //findView(TR.text).setText("Hello again, world!")
         
-        val myList = Array("Add Map From File", "Add Map in RealTime", "General Settings", "Berlin", "Copenhagen")
+        val myList = Array("Add Map From File", "Add Map in RealTime", "General Settings")
         val myListView = findView(TR.navList)
         val drawerLayout = findView(TR.drawer_layout)
 
@@ -43,6 +45,10 @@ class MainActivity extends AppCompatActivity with TypedFindView{
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true)
         getSupportActionBar().setHomeButtonEnabled(true)
+
+        val inflater : LayoutInflater = getLayoutInflater();
+        val mTop : ViewGroup = inflater.inflate(R.layout.header_listview_menu, myListView, false).asInstanceOf[ViewGroup];
+        myListView.addHeaderView(mTop, null, false);
 
         val fragmentManager = getFragmentManager()
                     fragmentManager.beginTransaction()
