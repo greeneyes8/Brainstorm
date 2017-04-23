@@ -21,7 +21,7 @@ import android.widget.ListView
 import android.widget.Toast
 import TypedResource._
 
-class MainActivity extends AppCompatActivity with TypedFindView{
+class MainActivity extends AppCompatActivity with TypedFindView {
     // allows accessing `.value` on TR.resource.constants
     implicit val context = this
     var mDrawerToogle: ActionBarDrawerToggle = _
