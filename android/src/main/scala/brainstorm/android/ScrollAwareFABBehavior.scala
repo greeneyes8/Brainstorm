@@ -23,9 +23,9 @@ class ScrollAwareFABBehavior(context: Context, attributeSet: AttributeSet)
       super.onNestedScroll(coordinatorLayout, button, view, 
         dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed)
       if (dyConsumed > 0 && button.getVisibility == View.VISIBLE) {
-        button.hide
+      //  button.hide
       } else if (dyConsumed < 0 && button.getVisibility != View.VISIBLE) {
-        button.show
+       // button.show // Doesnt truly work
       }
   }
 
