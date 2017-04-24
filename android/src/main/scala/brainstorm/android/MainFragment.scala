@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.Toast
 
 class MainFragment extends Fragment with NewMindMapDialogListener {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
