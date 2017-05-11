@@ -29,5 +29,7 @@ class SettingsFragment extends PreferenceFragment {
     override def onViewCreated(view : View, savedInstanceState : Bundle) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+
+        
     }
 }

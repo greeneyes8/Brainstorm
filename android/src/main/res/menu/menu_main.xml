@@ -6,8 +6,8 @@
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
-    <item android:id="@+id/authors"
-          android:title="@string/authors"
+    <item android:id="@+id/action_authors"
+          android:title="@string/action_authors"
           android:orderInCategory="100"
           app:showAsAction="never"/>
 </menu>

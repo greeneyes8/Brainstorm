@@ -21,13 +21,13 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.ListView
 import android.widget.Toast
+import android.content.Intent
 import TypedResource._
 
 class MainActivity extends AppCompatActivity with TypedFindView {
-    // allows accessing `.value` on TR.resource.constants
     implicit val context = this
-    var mDrawerToogle: ActionBarDrawerToggle = _
-    var myArray : Array[String] = Array("Add Map From File", "Add Map in RealTime", "General Settings")
+    var mDrawerToggle: ActionBarDrawerToggle = _
+    var myArray : Array[String] = Array("List of available maps", "Add Map From File", "Add Map in RealTime", "General Settings")
     var myListView : ListView = _ 
     var drawerLayout : DrawerLayout = _ 
     var mActivityTitle : String = _
@@ -58,12 +58,12 @@ class MainActivity extends AppCompatActivity with TypedFindView {
     }
 
     private def setupDrawer() {
-        mDrawerToogle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely open state. */
             override def onDrawerOpened(drawerView : View) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                getSupportActionBar().setTitle("Menu");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
@@ -75,87 +75,74 @@ class MainActivity extends AppCompatActivity with TypedFindView {
             }
         };
 
-        mDrawerToogle.setDrawerIndicatorEnabled(true)
-        drawerLayout.setDrawerListener(mDrawerToogle)
+        mDrawerToggle.setDrawerIndicatorEnabled(true)
+        drawerLayout.setDrawerListener(mDrawerToggle)
     }
 
     private def addDrawerItems() {
         val adapter = new ArrayAdapter[String](context, android.R.layout.simple_list_item_1, myArray)
         myListView.setAdapter(adapter)
+        myListView.setItemChecked(1, true)
 
         myListView.setOnItemClickListener(new OnItemClickListener() {
             override def onItemClick(parent: AdapterView[_], view: View, position: Int, id: Long) {
-                Toast.makeText(
-                getApplicationContext(),
-                "Time for an upgrade!",
-                Toast.LENGTH_SHORT
-                ).show()
-
                 drawerLayout.closeDrawer(myListView);
 
                 myListView.setItemChecked(position, true)
 
-                var fragment = getFragmentClass(myArray, position)
+                var fragment = getFragmentClass(position)
 
                 val fragmentManager = getFragmentManager()
                     fragmentManager.beginTransaction()
                                 .replace(R.id.flContent, fragment.newInstance())
                                 .commit()
-
-                //setTitle(myArray(position));
-                
-                //val fragment = new SettingsFragment();
-                //val args = new Bundle();
-                //args.putInt(SettingsFragment.ARG_PLANET_NUMBER, position);
-                //fragment.setArguments(args);
-
-                // Insert the fragment by replacing any existing fragment
-                //val fragmentManager = getFragmentManager();
-               // fragmentManager.beginTransaction()
-                //                .replace(R.id.mainfragment, fragment.asInstanceOf[Fragment])
-                //                .commit();
-
-
             }
         })
     }
 
-    def getFragmentClass(myArray : Array[_], position: Int) =  myArray(position) match {
+    //position starts from 1 and myArray form 0 
+    def getFragmentClass(position: Int) =  myArray(position-1) match {
+        case "List of available maps" => classOf[MainFragment]
         case "General Settings" => classOf[SettingsFragment]
         case "Add Map From File" => classOf[MainFragment]
-        case _ => classOf[MainFragment]
+        case _ => {
+            setTitle(position.toString())
+            classOf[SettingsFragment]
+            }
     }
 
     override def onPostCreate(savedInstanceState: Bundle) {
         super.onPostCreate(savedInstanceState)
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToogle.syncState()
+        //Sync the Toggle and the title faster after the change
+        mDrawerToggle.syncState()
     }
 
     override def onConfigurationChanged(newConfig : Configuration) {
         super.onConfigurationChanged(newConfig)
-        mDrawerToogle.onConfigurationChanged(newConfig)
+        mDrawerToggle.onConfigurationChanged(newConfig)
     }
 
      override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //Adds items to the ActionBar
         getMenuInflater().inflate(R.menu.menu_main, menu)
         return true
     }
 
     override def onOptionsItemSelected(item : MenuItem) : Boolean = {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         val id : Int = item.getItemId()
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            setTitle("Settings")
+            return true
+        } else if (id == R.id.action_authors) {
+            setTitle("Authors")
+            val intent : Intent = new Intent(context, classOf[AuthorsActivity])
+            startActivity(intent)
             return true
         }
 
         // Activate the navigation drawer toggle
-        if (mDrawerToogle.onOptionsItemSelected(item)) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
 
