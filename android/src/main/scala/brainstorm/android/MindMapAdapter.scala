@@ -3,6 +3,7 @@ package brainstorm.android
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
+import android.app.Fragment 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,7 @@ import android.widget.TextView
 import android.view.LayoutInflater
 import android.widget.Toast
 
-class MindMapAdapter (root: File) extends RecyclerView.Adapter[ViewHolder] {
-
+class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter[ViewHolder] {
   var files: Array[File] = root.listFiles
 
   override def onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = {
@@ -28,12 +28,14 @@ class MindMapAdapter (root: File) extends RecyclerView.Adapter[ViewHolder] {
     holder.moddate.setText(format.format(date))
     holder.v.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) = {
-        Toast.makeText(v.getContext, file.getName ++ " clicked", 0).show
+        val wasClicked : String = " " ++ context.getResources().getString(R.string.wasClicked)
+        Toast.makeText(v.getContext, file.getName ++ wasClicked, 0).show
       }
     })
     holder.clickable.setOnLongClickListener(new View.OnLongClickListener() {
       override def onLongClick(v: View): Boolean = {
-        Toast.makeText(v.getContext, file.getName ++ " deleted", 0).show
+        val wasDeleted : String = " " ++ context.getResources().getString(R.string.wasDeleted)
+        Toast.makeText(v.getContext, file.getName ++ wasDeleted, 0).show
         val result = file.delete
         invalidate
         result

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brainstorm</string>
+    <string name="drawer_open">Otwórz Navigation Drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_about">O aplikacji</string>
+    <string name="action_AddMapinRealTime">Utwórz mapę myśli w RT</string>
+    <string name="action_AvailableMindMaps">Dostępne mapy myśli</string>
+    <string name="action_GeneralSettings">Ogólne ustawienia</string>
+
+    <!-- Settings Fragment-->
+    <string name="pref_summary_delete_limit">Coś</string>
+    <string name="pref_key_storage_settings">Ustawienia</string>
+    <string name="pref_title_auto_delete">End</string>
+    <string name="pref_title_sms_delete">SMS</string>
+    <string name="pref_title_mms_delete">MMS</string>
+    <string name="pref_sms_storage_title">Schowek</string>
+    <string name="pref_summary_auto_delete">Auto</string>
+
+    <!-- Authors Activity-->
+    <string name="authors">Autorzy:</string>
+
+    <!-- FloatingButton/Creating MindMap-->
+    <string name="MindMapName">Nazwa nowej mapy myśli</string>
+    <string name="createMM">Utwórz nową mapę myśli</string>
+    <string name="confirm">Potwierdź</string>
+    <string name="wasClicked"> zostało kliknięte</string>
+    <string name="wasDeleted"> zostało usunięte</string>
+    
+</resources>

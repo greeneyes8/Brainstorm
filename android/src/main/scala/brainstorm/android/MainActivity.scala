@@ -26,7 +26,7 @@ import TypedResource._
 class MainActivity extends AppCompatActivity with TypedFindView {
     implicit val context = this
     var mDrawerToggle: ActionBarDrawerToggle = _
-    var myArray : Array[String] = Array("List of available maps", "Add Map in RealTime", "General Settings")
+    var myArray : Array[String] = _
     var myListView : ListView = _ 
     var drawerLayout : DrawerLayout = _ 
     var mActivityTitle : String = _
@@ -79,6 +79,9 @@ class MainActivity extends AppCompatActivity with TypedFindView {
     }
 
     private def addDrawerItems() {
+        myArray = Array(context.getResources().getString(R.string.action_AvailableMindMaps), 
+                        context.getResources().getString(R.string.action_AddMapinRealTime), 
+                        context.getResources().getString(R.string.action_GeneralSettings))
         val adapter = new ArrayAdapter[String](context, android.R.layout.simple_list_item_1, myArray)
         myListView.setAdapter(adapter)
         myListView.setItemChecked(1, true)
@@ -101,17 +104,17 @@ class MainActivity extends AppCompatActivity with TypedFindView {
     }
 
     //position starts from 1 and myArray form 0 
-    def getFragmentClass(position: Int) =  myArray(position-1) match {
-        case "List of available maps" => {
-            setTitle("Available Mind Maps")
+    def getFragmentClass(position: Int) =  position-1 match {
+        case 0 => {
+            setTitle(R.string.action_AvailableMindMaps)
             classOf[MainFragment]
         }
-        case "General Settings" => {
-            setTitle("General Settings")
+        case 2 => {
+            setTitle(R.string.action_GeneralSettings)
             classOf[SettingsFragment]
         }
-        case "Add Map in RealTime" => {
-            setTitle("Add Map in RealTime")
+        case 1 => {
+            setTitle(R.string.action_AddMapinRealTime)
             classOf[MainFragment]
         }
         case _ => {
@@ -141,7 +144,7 @@ class MainActivity extends AppCompatActivity with TypedFindView {
         val id : Int = item.getItemId()
 
         if (id == R.id.action_settings) {
-            setTitle("Settings")
+            setTitle(R.string.action_settings)
             mDrawerToggle.syncState()
             val fragmentManager = getFragmentManager()
                 fragmentManager.beginTransaction()
@@ -149,7 +152,7 @@ class MainActivity extends AppCompatActivity with TypedFindView {
                                .commit()
             return true
         } else if (id == R.id.action_about) {
-            setTitle("About")
+            setTitle(R.string.action_about)
             mDrawerToggle.syncState()
             val fragmentManager = getFragmentManager()
                 fragmentManager.beginTransaction()

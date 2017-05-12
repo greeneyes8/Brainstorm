@@ -13,7 +13,7 @@
 		android:layout_height="wrap_content">
 		<EditText
 			android:id="@+id/name"
-			android:hint="MindMap name"
+			android:hint="@string/MindMapName"
 			android:inputType="text"
 			android:singleLine="true"
 			android:layout_width="match_parent"

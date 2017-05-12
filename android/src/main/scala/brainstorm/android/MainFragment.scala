@@ -19,7 +19,7 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation. 
     lazy val mapsRootFile: File = new File(getActivity.getFilesDir, "maps/")
-    lazy val mmListAdapter: MindMapAdapter = new MindMapAdapter(mapsRootFile)
+    lazy val mmListAdapter: MindMapAdapter = new MindMapAdapter(mapsRootFile, MainFragment.this)
 
     override def onPositive(name: String): Unit = {
       val fw: FileWriter = new FileWriter(new File(mapsRootFile, name))
