@@ -1,3 +1,6 @@
+#UWAGA: od teraz trzeba dodawać każdy string do strings.xml, do obydwu folderów tzw. values i values-b+pl
+
+
 # Mind map
 
 Extreme programming
