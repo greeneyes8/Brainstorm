@@ -11,6 +11,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.app.ActionBarActivity
+import android.support.v7.app.ActionBarDrawerToggle
 import android.widget.Toast
 
 class MainFragment extends Fragment with NewMindMapDialogListener {
