@@ -93,18 +93,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
                 myListView.setItemChecked(position, true)
 
-                var fragment = getFragmentClass(position)
-
-                //if (fragment.getClass() != classOf[MapActivity]){
-                    val fragmentManager = getFragmentManager()
-                        fragmentManager.beginTransaction()
-                                       .replace(R.id.flContent, fragment.newInstance())
-                                       .commit()
-                //}
-                //else {
-                 //   val intent : Intent = new Intent(getActivity, classOf[MapActivity])
-                 //   startActivity(intent)
-                //}
+                getFragmentClass(position)
 
             }
         })
@@ -114,19 +103,29 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     def getFragmentClass(position: Int) =  position-1 match {
         case 0 => {
             setTitle(R.string.action_AvailableMindMaps)
-            classOf[MainFragment]
+            val fragmentManager = getFragmentManager()
+            fragmentManager.beginTransaction()
+                           .replace(R.id.flContent, new MainFragment())
+                           .commit()
         }
         case 2 => {
             setTitle(R.string.action_GeneralSettings)
-            classOf[SettingsFragment]
+            val fragmentManager = getFragmentManager()
+            fragmentManager.beginTransaction()
+                           .replace(R.id.flContent, new SettingsFragment())
+                           .commit()
         }
         case 1 => {
             setTitle(R.string.action_AddMapinRealTime)
-            classOf[MainFragment]
+            val intent : Intent = new Intent(this, classOf[MapActivity])
+            startActivity(intent)
         }
         case _ => {
             setTitle(position.toString())
-            classOf[SettingsFragment]
+            val fragmentManager = getFragmentManager()
+            fragmentManager.beginTransaction()
+                           .replace(R.id.flContent, new SettingsFragment())
+                           .commit()
             }
     }
 
