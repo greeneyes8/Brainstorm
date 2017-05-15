@@ -27,5 +27,8 @@
     <string name="confirm">Potwierdź</string>
     <string name="wasClicked"> zostało kliknięte</string>
     <string name="wasDeleted"> zostało usunięte</string>
+
+    <!-- MaptextFragment-->
+    <string name="realTimeMapBegin">Tu wpisz swoją mapę myśli</string>
     
 </resources>

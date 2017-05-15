@@ -23,8 +23,11 @@
 
     <!-- FloatingButton/Creating MindMap-->
     <string name="MindMapName">New mind map name</string>
-    <string name="createMM">Create new mind map</string>
+    <string name="createMM">Create a new mind map</string>
     <string name="confirm">Confirm</string>
     <string name="wasClicked"> was clicked</string>
     <string name="wasDeleted"> was deleted</string>
+
+    <!-- MapTextFragment-->
+    <string name="realTimeMapBegin">Write your mind map here</string>
 </resources>
