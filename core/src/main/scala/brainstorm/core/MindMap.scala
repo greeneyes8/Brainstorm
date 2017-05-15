@@ -6,7 +6,7 @@ class MindMap private (var name: String, val root: Node) {
 }
 
 object MindMap {
-  def fromText(text: Seq[String], name: String) = {
+  def fromText(text: Iterator[String], name: String) = {
     if (text.hasNext) {
       new MindMap(name, Node.fromText(text, None))
     } else {

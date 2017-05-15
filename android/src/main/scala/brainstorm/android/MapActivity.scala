@@ -10,9 +10,7 @@ class MapActivity(val file:File) extends DrawerLayoutActivity with TypedFindView
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.map)
-    getFragmentManager().beginTransaction().replace(
-      R.id.flContent, new MapTextFragment(file)).commit()
+    setFragment(new MapTextFragment(file))
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {

@@ -2,7 +2,7 @@ package brainstorm.core
 
 import util.Try
 
-class Node (var text: String, var parent: Option[Node], private var line: String) {
+class Node (var text: String, var parent: Option[Node]) {
   val children: collection.mutable.LinkedHashSet[Node] = collection.mutable.LinkedHashSet()
   def remove(): Try[Unit] = Try(parent.get.children.-=(this))
   def addChild(chld: Node): Unit = {
@@ -10,12 +10,11 @@ class Node (var text: String, var parent: Option[Node], private var line: String
     chld.parent = Some(this)
   }
   def getText(): Seq[String] = {
-
-
+    val seq: Seq[Node] = children.toSeq
+    seq.flatMap((x) => x.getText) :+ text 
   }
 }
 
-// To jest głupie TODO:
 object Node {
   def fromText(lines: Iterator[String], parent: Option[Node]): Node = {
     val text = lines.next
