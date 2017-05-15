@@ -17,18 +17,4 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
         setFragment(new MainFragment())
         
     }
-
-    override def onPostCreate(savedInstanceState: Bundle) {
-        super.onPostCreate(savedInstanceState)
-    }
-
-    override def onConfigurationChanged(newConfig : Configuration) {
-        super.onConfigurationChanged(newConfig)
-    }
-
-     override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-        //Adds items to the ActionBar
-        getMenuInflater().inflate(R.menu.menu_main, menu)
-        return true
-    }
 }
