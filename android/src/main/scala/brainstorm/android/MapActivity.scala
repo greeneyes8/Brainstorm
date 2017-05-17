@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.content.res.Configuration
 import java.io.File
 
-class MapActivity(val file:File) extends DrawerLayoutActivity with TypedFindView {
+class MapActivity extends DrawerLayoutActivity with TypedFindView {
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
-    setFragment(new MapTextFragment(file))
+    setFragment(new MapTextFragment)
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {
