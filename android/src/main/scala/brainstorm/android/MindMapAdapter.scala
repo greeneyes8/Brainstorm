@@ -28,7 +28,10 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
     holder.moddate.setText(format.format(date))
     holder.v.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) = {
-        val wasClicked : String = " " ++ context.getResources().getString(R.string.wasClicked)
+        val wasClicked: String = " " ++ context.getResources().getString(R.string.wasClicked)
+        val intent = new Intent(context, new MapActivity(file))
+        context.startActivity(intent)
+        
         Toast.makeText(v.getContext, file.getName ++ wasClicked, 0).show
       }
     })
