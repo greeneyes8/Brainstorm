@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import android.app.Fragment 
 import android.support.v7.widget.RecyclerView
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -29,9 +30,14 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
     holder.v.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) = {
         val wasClicked: String = " " ++ context.getResources().getString(R.string.wasClicked)
-        //val intent = new Intent(context, new MapActivity(file))
-        //context.startActivity(intent)
+<<<<<<< HEAD
+        val intent = new Intent(context, new MapActivity(file))
+        context.startActivity(intent)
         
+=======
+        val intent = new Intent(context.getActivity, classOf[MapActivity]).putExtra("file", file.toURI())
+        context.startActivity(intent)
+>>>>>>> 98d068cbd82105e7997614fe7784e9fad583419b
         Toast.makeText(v.getContext, file.getName ++ wasClicked, 0).show
       }
     })

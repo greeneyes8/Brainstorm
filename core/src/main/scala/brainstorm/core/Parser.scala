@@ -1,11 +1,12 @@
 package brainstorm.core
 
 import io.Source
+import java.net.URI
 
 object Parser {
-  def parseFile(filename: String): MindMap = {
+  def parseFile(filename: URI): MindMap = {
     val lines = Source.fromFile(filename).getLines
-    new MindMap(filename)
+    new MindMap(filename.toString)
   }
   def parseText(text: Seq[String], parent: Option[Node]): Node = {
     var root:Node = parseLine(text(0), parent)

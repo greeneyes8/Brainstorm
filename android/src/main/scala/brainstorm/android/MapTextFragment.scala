@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 
-class MapTextFragment extends Fragment {
+class MapTextFragment(var text: Seq[String]) extends Fragment {
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
       // Defines the xml file for the fragment
