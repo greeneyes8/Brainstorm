@@ -1,16 +1,18 @@
 package brainstorm.core
 
-class MindMap private (var name: String, val root: Node) {
-  def this(name: String) = this(name, new Node(name, None))
-  def getText() = root.getText
-}
-
-object MindMap {
-  def fromText(text: Iterator[String], name: String) = {
-    if (text.hasNext) {
-      new MindMap(name, Node.fromText(text, None))
-    } else {
-      new MindMap(name)
-    }
+class MindMap (var name: String, var root: Option[Node]) {
+  def this(name: String) = this(name, None)
+  def getText(): Seq[String] = {
+    root.map((x) => x.getText).getOrElse(Seq())
   }
 }
+
+//object MindMap {
+//  def fromText(text: Iterator[String], name: String) = {
+//    if (text.hasNext) {
+//      new MindMap(name, Node.fromText(text, None))
+//    } else {
+//      new MindMap(name)
+//    }
+//  }
+//}

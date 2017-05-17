@@ -5,14 +5,23 @@ import io.Source
 object Parser {
   def parseFile(filename: String): MindMap = {
     val lines = Source.fromFile(filename).getLines
-    MindMap.fromText(lines, filename)
+    new MindMap(filename)
   }
-  def parseText(text: Seq[String]): Node = {
-    for (line <- text){
-      parseLine(line, None)
+  def parseText(text: Seq[String], parent: Option[Node]): Node = {
+    var root:Node = parseLine(text(0), parent)
+    var considered = text.tail
+    if (!considered.isEmpty) {
+      val indentation = considered.head.prefixLength(y => y == ' ')
+      while (!considered.isEmpty) {
+        val spanned = considered.tail.span((x) => x.prefixLength(y => y == ' ') > indentation)
+        parseText(spanned._1.+:(considered.head), Some(root))
+        considered = spanned._2
+      }
     }
-    new Node("lala", None)
+    root
   }
-  def parseLine(line: String, parent: Option[Node]): Node = 
-    new Node(line, parent)
+  def parseLine(line: String, parent: Option[Node]): Node = {
+    val cutLine = line.dropWhile(x => x == ' ')
+    new Node(cutLine, parent)
+  }
 }
