@@ -30,14 +30,8 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
     holder.v.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) = {
         val wasClicked: String = " " ++ context.getResources().getString(R.string.wasClicked)
-<<<<<<< HEAD
-        val intent = new Intent(context, new MapActivity(file))
-        context.startActivity(intent)
-        
-=======
         val intent = new Intent(context.getActivity, classOf[MapActivity]).putExtra("file", file.toURI())
         context.startActivity(intent)
->>>>>>> 98d068cbd82105e7997614fe7784e9fad583419b
         Toast.makeText(v.getContext, file.getName ++ wasClicked, 0).show
       }
     })
