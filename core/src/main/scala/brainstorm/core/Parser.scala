@@ -5,8 +5,13 @@ import java.net.URI
 
 object Parser {
   def parseFile(filename: URI): MindMap = {
-    val lines = Source.fromFile(filename).getLines
-    new MindMap(filename.toString)
+    val lines = Source.fromFile(filename).getLines.toSeq
+    if (!lines.isEmpty) {
+      val root = parseText(lines, None)
+      new MindMap(filename.toString, Some(root))
+    } else {
+      new MindMap(filename.toString)
+    }
   }
   def parseText(text: Seq[String], parent: Option[Node]): Node = {
     var root:Node = parseLine(text(0), parent)
