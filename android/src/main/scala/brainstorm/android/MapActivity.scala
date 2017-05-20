@@ -8,6 +8,8 @@ import android.content.res.Configuration
 import android.content.Intent
 import java.io.File
 import java.net.URI
+import android.view.Menu
+import android.view.MenuItem
 
 import brainstorm.core.Parser
 import brainstorm.core.MindMap
@@ -26,4 +28,10 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
   override def onPostCreate(savedInstanceState: Bundle) {
       super.onPostCreate(savedInstanceState)
   }
+
+  override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+        //Adds items to the ActionBar
+        getMenuInflater().inflate(R.menu.menu_map, menu)
+        return true
+    }
 }

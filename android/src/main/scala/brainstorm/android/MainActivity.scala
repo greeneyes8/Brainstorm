@@ -17,4 +17,10 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
         setFragment(new MainFragment())
         
     }
+
+    override def onResume() = {
+        super.onResume();
+        this.onCreate(null);
+    }
+
 }
