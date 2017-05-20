@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 
 class MapTextFragment(var text: Seq[String]) extends Fragment {
+  lazy val activity: MapActivity = getActivity().asInstanceOf[MapActivity]
+
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
       // Defines the xml file for the fragment
@@ -16,5 +18,10 @@ class MapTextFragment(var text: Seq[String]) extends Fragment {
 
   override def onViewCreated(view : View, savedInstanceState : Bundle) {
       // Setup any handles to view objects here
+  }
+
+  def notifyMap() = {
+
+
   }
 }
