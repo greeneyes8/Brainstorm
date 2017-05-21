@@ -1,6 +1,14 @@
 package brainstorm.core
 
-class MindMapModel(val mindMap: MindMap) {
+trait MindMapTextChangeListener {
+  def textChange(start: Integer, oldLines: Seq[String], newLines: Seq[String])
+}
+
+trait MindMapChangeListener {
+  def mindMapChange(newMindMap: MindMap)
+}
+
+class MindMapModel(val mindMap: MindMap) extends MindMapTextChangeListener {
   def deleteNode(node: Node) = {
     node.remove
   }
@@ -15,7 +23,7 @@ class MindMapModel(val mindMap: MindMap) {
       case None => mindMap.root = Some(node)
     }
   }
-  def textChange(start: Integer, oldLines: Seq[String], newLines: Seq[String]) = {
+  override def textChange(start: Integer, oldLines: Seq[String], newLines: Seq[String]) = {
     // make change at lowest common ancestor
     // TODO: 1. Proposition
     //    find lowest common ancestor
