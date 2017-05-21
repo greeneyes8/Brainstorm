@@ -51,10 +51,6 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true)
         getSupportActionBar().setHomeButtonEnabled(true)
-
-        val inflater : LayoutInflater = getLayoutInflater();
-        val mTop : ViewGroup = inflater.inflate(R.layout.header_listview_menu, myListView, false).asInstanceOf[ViewGroup];
-        myListView.addHeaderView(mTop, null, false);
     }
 
     private def setupDrawer() {
@@ -99,8 +95,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         })
     }
 
-    //position starts from 1 and myArray form 0 
-    def getFragmentClass(position: Int) =  position-1 match {
+    def getFragmentClass(position: Int) =  position match {
         case 0 => {
             setTitle(R.string.action_AvailableMindMaps)
             val fragmentManager = getFragmentManager()
@@ -149,15 +144,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     override def onOptionsItemSelected(item : MenuItem) : Boolean = {
         val id : Int = item.getItemId()
 
-        if (id == R.id.action_settings) {
-            setTitle(R.string.action_settings)
-            mDrawerToggle.syncState()
-            val fragmentManager = getFragmentManager()
-                fragmentManager.beginTransaction()
-                               .replace(R.id.flContent, new SettingsFragment())
-                               .commit()
-            return true
-        } else if (id == R.id.action_about) {
+        if (id == R.id.action_about) {
             setTitle(R.string.action_about)
             mDrawerToggle.syncState()
             val fragmentManager = getFragmentManager()
