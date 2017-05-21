@@ -82,6 +82,6 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
       }
       case None => {}
     }
-    true
+    return super.onOptionsItemSelected(item)
   }
 }
