@@ -65,7 +65,7 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
   var mindMapModel: AndroidMapModel = _
   var mindMap : MindMap = _
   var fileOpt: Option[File] = None
-  var mapTextFragment: MapTextFragment = _
+  var mapTextFragment: MapFragment = _
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
@@ -79,7 +79,7 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
       .getOrElse(new MindMap("tmp"))
     mindMapModel = new AndroidMapModel(mindMap)
-    mapTextFragment = new MapTextFragment(mindMap.getText)
+    mapTextFragment = new MapFragment(mindMap.getText)
     setFragment(mapTextFragment)
   }
 

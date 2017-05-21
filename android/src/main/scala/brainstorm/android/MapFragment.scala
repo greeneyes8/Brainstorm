@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.text.TextWatcher
 
 class MapFragment(startText: Seq[String]) extends Fragment {
-
+    var mapTextFragment: MapTextFragment = new MapTextFragment(startText)
 
     override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
         savedInstanceState: Bundle): View = {
@@ -19,9 +20,12 @@ class MapFragment(startText: Seq[String]) extends Fragment {
     override def onViewCreated(view : View, savedInstanceState : Bundle) {
         val fragmentManager = getFragmentManager()
         fragmentManager.beginTransaction()
-                       .replace(R.id.mapContent, new MapTextFragment(startText))
+                       .replace(R.id.mapContent, mapTextFragment)
                        .replace(R.id.mapDrawer, new MapDrawerFragment())
                        .commit()
     }
+
+    def addListener(textWatcher: TextWatcher) =
+    mapTextFragment.addListener(textWatcher)
 
 }
