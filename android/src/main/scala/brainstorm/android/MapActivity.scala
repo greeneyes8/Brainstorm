@@ -1,6 +1,8 @@
 package brainstorm.android
 
 import scala.util.Try
+import scala.util.Success
+import scala.util.Failure
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.view.MenuItem
 import android.text.TextWatcher
 import android.text.Editable
 import android.app.FragmentTransaction 
+import android.widget.Toast
 
 import brainstorm.core.Parser
 import brainstorm.core.MindMapModel
@@ -23,23 +26,33 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
   var startLine: Integer = _
   var oldLines: Seq[String] = _
   var newLines: Seq[String] = _
+  var processed: Boolean = true
 
   override def afterTextChanged(s: Editable) = {
-    textChange(startLine, oldLines, newLines)
+    val parseTry = Try(textChange(startLine, oldLines, newLines))
+    parseTry match {
+      case Success(_) => {}
+      case Failure(_) => {
+      }
+    }
+
   }
   override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {
     lazy val string: String = s.toString
-    startLine = string.take(start).count((x) => x == '\n')
+    val startLine2 = string.take(start).count((x) => x == '\n')
     val endLine = string.take(start+count).count((x) => x == '\n')
     lazy val stringSeq: Seq[String] = string.split('\n').toSeq
-    oldLines = stringSeq.slice(startLine, endLine+1)
+    val oldLines2 = stringSeq.slice(startLine, endLine+1)
+    startLine = startLine2
+    oldLines = oldLines2
+
   }
   override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {
     lazy val string: String = s.toString
-    startLine = string.take(start).count((x) => x == '\n')
     val endLine = string.take(start+count).count((x) => x == '\n')
     lazy val stringSeq: Seq[String] = string.split('\n').toSeq
-    newLines = stringSeq.slice(startLine, endLine+1)
+    val newLines2 = stringSeq.slice(startLine, endLine+1)
+    newLines = newLines2
   }
 }
 
@@ -48,6 +61,7 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
   var mindMapModel: AndroidMapModel = _
   var mindMap : MindMap = _
   var fileOpt: Option[File] = None
+  var mapTextFragment: MapTextFragment = _
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
@@ -59,14 +73,14 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     fileOpt = tryFile.toOption
     val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
       .getOrElse(new MindMap("tmp"))
-      mindMapModel = new AndroidMapModel(mindMap)
-      setFragment(new MapTextFragment(mindMap.getText))
-
-    setFragment(new MapFragment(mindMap.getText))    
+    mindMapModel = new AndroidMapModel(mindMap)
+    mapTextFragment = new MapTextFragment(mindMap.getText)
+    setFragment(mapTextFragment)
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {
     super.onPostCreate(savedInstanceState)
+    mapTextFragment.addListener(mindMapModel)
   }
 
   override def onCreateOptionsMenu(menu : Menu) : Boolean = {
@@ -78,7 +92,9 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     fileOpt match {
       case Some(file) => {
         val pw = new PrintWriter(file)
-        mindMapModel.mindMap.getText.foreach((x) => pw.println(x))
+        mindMapModel.mindMap.getText.foreach(pw.println)
+        Toast.makeText(context, file.getName ++ " saved", 0).show
+        pw.close()
       }
       case None => {}
     }
