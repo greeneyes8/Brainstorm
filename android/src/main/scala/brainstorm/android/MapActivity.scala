@@ -37,10 +37,13 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
         processed = true
       }
       case Failure(e) => {
-        processed = false
-        oldLines = mindMap.getText
-        newLines = oldLines.patch(startLine, newLines, newLines.length)
-        startLine = 0
+        if (processed) {
+          processed = false
+          val oldLen = oldLines.length
+          oldLines = mindMap.getText
+          newLines = oldLines.patch(startLine, newLines, oldLen)
+          startLine = 0
+        } 
         Log.wtf("Problem", e)
       }
     }
@@ -56,6 +59,8 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
     if (processed) {
       startLine = startLine2
       oldLines = oldLines2
+    } else {
+      startLine = oldLines2.length
     }
   }
   override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {
@@ -68,7 +73,8 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
       newLines = newLines2
     } else {
       val startLine2 = string.take(start).count((x) => x == '\n')
-      newLines.patch(startLine, newLines2, newLines2.length)
+      newLines = newLines.patch(startLine, newLines2, startLine)
+      startLine = 0
     }
   }
 }

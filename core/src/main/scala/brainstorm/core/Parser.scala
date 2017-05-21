@@ -3,7 +3,13 @@ package brainstorm.core
 import io.Source
 import java.net.URI
 
-case class WrongSyntax(line: Integer, cause: String) extends Exception
+case class WrongSyntax(line: Integer, cause: String) extends Exception {
+  override def toString() = {
+    super.toString() ++ "\n" ++ line.toString ++ " " ++ cause
+
+  }
+
+}
 object Parser {
   def parseFile(filename: URI): MindMap = {
     val lines = Source.fromFile(filename).getLines.toSeq
@@ -20,7 +26,7 @@ object Parser {
       var considered: Seq[String] = text.tail
       val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' ')).zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
       syntaxCheck match {
-        case Some(x) => throw new WrongSyntax(x._1 + 1, "Incorrect indentation")
+        case Some(x) => throw new WrongSyntax(x._2 + 1, "Incorrect indentation\n" ++ text.toString)
         case None => parseText(text, parent)
       }
     } else {
