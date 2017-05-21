@@ -19,9 +19,27 @@ import brainstorm.core.MindMapModel
 import brainstorm.core.MindMap
 
 class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMap) with TextWatcher {
-  override def afterTextChanged(s: Editable) = {}
-  override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {}
-  override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {}
+  var startLine: Integer = _
+  var oldLines: Seq[String] = _
+  var newLines: Seq[String] = _
+
+  override def afterTextChanged(s: Editable) = {
+    textChange(startLine, oldLines, newLines)
+  }
+  override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {
+    lazy val string: String = s.toString
+    startLine = string.take(start).count((x) => x == '\n')
+    val endLine = string.take(start+count).count((x) => x == '\n')
+    lazy val stringSeq: Seq[String] = string.split('\n').toSeq
+    oldLines = stringSeq.slice(startLine, endLine+1)
+  }
+  override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {
+    lazy val string: String = s.toString
+    startLine = string.take(start).count((x) => x == '\n')
+    val endLine = string.take(start+count).count((x) => x == '\n')
+    lazy val stringSeq: Seq[String] = string.split('\n').toSeq
+    newLines = stringSeq.slice(startLine, endLine+1)
+  }
 }
 
 class MapActivity extends DrawerLayoutActivity with TypedFindView {
