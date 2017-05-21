@@ -39,9 +39,11 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
       super.onPostCreate(savedInstanceState)
   }
 
-  override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-        //Adds items to the ActionBar
-        getMenuInflater().inflate(R.menu.menu_map, menu)
-        return true
+  override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+        this.menu = menu
+        menu.findItem(R.id.menu_item_add).setVisible(true)
+        menu.findItem(R.id.action_about).setVisible(false)
+        return super.onPrepareOptionsMenu(menu)
     }
+
 }
