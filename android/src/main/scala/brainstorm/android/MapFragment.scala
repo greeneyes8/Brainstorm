@@ -26,6 +26,6 @@ class MapFragment(startText: Seq[String]) extends Fragment {
     }
 
     def addListener(textWatcher: TextWatcher) =
-    mapTextFragment.addListener(textWatcher)
+        mapTextFragment.addListener(textWatcher)
 
 }
