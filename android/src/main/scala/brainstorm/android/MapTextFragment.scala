@@ -11,6 +11,8 @@ import android.widget.EditText
 
 class MapTextFragment(startText: Seq[String]) extends Fragment {
 
+  var text: EditText = _
+
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
       // Defines the xml file for the fragment
@@ -20,9 +22,13 @@ class MapTextFragment(startText: Seq[String]) extends Fragment {
   override def onViewCreated(view : View, savedInstanceState : Bundle) {
       // Setup any handles to view objects here
       // addTextChangedListener(textWatcher)
-      val text = view.findViewById(R.id.mapEditText).asInstanceOf[EditText]
+      text = view.findViewById(R.id.mapEditText).asInstanceOf[EditText]
       text.setText(startText.foldLeft("")((prev, now) => prev ++ "\n" ++ now))
   }
+
+  def addListener(textWatcher: TextWatcher) =
+    text.addTextChangedListener(textWatcher)
+  
 
 
 }
