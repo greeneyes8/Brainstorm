@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.text.TextWatcher
 
-class MapTextFragment(textWatcher: TextWatcher) extends Fragment {
+class MapTextFragment(startText: Seq[String]) extends Fragment {
 
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
@@ -18,7 +18,7 @@ class MapTextFragment(textWatcher: TextWatcher) extends Fragment {
 
   override def onViewCreated(view : View, savedInstanceState : Bundle) {
       // Setup any handles to view objects here
-      addTextChangedListener(textWatcher)
+      // addTextChangedListener(textWatcher)
   }
 
 

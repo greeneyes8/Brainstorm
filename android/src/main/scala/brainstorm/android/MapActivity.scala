@@ -10,15 +10,17 @@ import java.io.File
 import java.net.URI
 import android.view.Menu
 import android.view.MenuItem
+import android.text.TextWatcher
+import android.text.Editable
 
 import brainstorm.core.Parser
 import brainstorm.core.MindMapModel
 import brainstorm.core.MindMap
 
-class AndroidMapModel(val mindMap: MindMap) extends MindMapModel(mindMap) with TextWatcher {
+class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMap) with TextWatcher {
   override def afterTextChanged(s: Editable) = {}
-  override def beforeTextChanged(s: CharSequence, start: Integer, count: Integer, after: Integer) = {}
-  override def onTextChanged(s: CharSequence, start: Integer, before: Integer, count: Integer) = {}
+  override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {}
+  override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {}
 }
 
 class MapActivity extends DrawerLayoutActivity with TypedFindView {
@@ -32,7 +34,7 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
       .getOrElse(new MindMap("tmp"))
     mindMapModel = new AndroidMapModel(mindMap)
-    setFragment(new MapTextFragment(mindMapModel))
+    setFragment(new MapTextFragment(mindMap.getText))
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {
