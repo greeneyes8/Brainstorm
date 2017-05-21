@@ -33,8 +33,15 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
     Log.d("Args", startLine.toString ++ " " ++ oldLines.zipWithIndex.toString ++ " " ++ newLines.zipWithIndex.toString)
     val parseTry = Try(textChange(startLine, oldLines, newLines))
     parseTry match {
-      case Success(_) => {}
-      case Failure(e) => { Log.wtf("Problem", e)
+      case Success(_) => {
+        processed = true
+      }
+      case Failure(e) => {
+        processed = false
+        oldLines = mindMap.getText
+        newLines = oldLines.patch(startLine, newLines, newLines.length)
+        startLine = 0
+        Log.wtf("Problem", e)
       }
     }
 
@@ -46,9 +53,10 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
     val endLine = string.take(start+count).count((x) => x == '\n')
     lazy val stringSeq: Seq[String] = string.split('\n').toSeq
     val oldLines2 = stringSeq.slice(startLine2, endLine+1)
-    startLine = startLine2
-    oldLines = oldLines2
-
+    if (processed) {
+      startLine = startLine2
+      oldLines = oldLines2
+    }
   }
   override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {
     Log.d("on", s.toString)
@@ -56,7 +64,12 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
     val endLine = string.take(start+count).count((x) => x == '\n')
     lazy val stringSeq: Seq[String] = string.split('\n').toSeq
     val newLines2 = stringSeq.slice(startLine, endLine+1)
-    newLines = newLines2
+    if (processed) {
+      newLines = newLines2
+    } else {
+      val startLine2 = string.take(start).count((x) => x == '\n')
+      newLines.patch(startLine, newLines2, newLines2.length)
+    }
   }
 }
 

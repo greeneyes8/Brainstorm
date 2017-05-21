@@ -26,14 +26,15 @@ class MindMapModel(val mindMap: MindMap) extends MindMapTextChangeListener {
   override def textChange(start: Integer, oldLines: Seq[String], newLines: Seq[String]) = {
     if (start != 0) {
       val highest: Integer = (oldLines ++ newLines).map((s) => s.prefixLength((c) => c == ' ')).max
-      val lcapos: Integer = start - mindMap.getText.take(start).prefixLength((s) => s.prefixLength((c) => c == ' ') >= highest) + 1
+      val lcapos: Integer = start - mindMap.getText.take(start).reverse.prefixLength((s) => s.prefixLength((c) => c == ' ') >= highest)
       val lcaposheight: Integer = mindMap.getText()(lcapos).prefixLength((c) => c == ' ') 
-      val text: Seq[String] = mindMap.getText.drop(lcapos).takeWhile((s) => s.prefixLength((c) => c == ' ') < lcaposheight)
+      val oldText: Seq[String] = mindMap.getText()(lcapos) +: mindMap.getText  .drop(lcapos+1).takeWhile((s) => s.prefixLength((c) => c == ' ') > lcaposheight)
+      val newText: Seq[String] = oldText.patch(start-lcapos, newLines, oldLines.length)
       val node = mindMap.getNodes()(lcapos)
       node.remove
-      Parser.parseText(text, node.parent)
+      Parser.parseTextChecked(newText, node.parent)
     } else {
-      val node = Parser.parseText(newLines, None)
+      val node = Parser.parseTextChecked(newLines, None)
       mindMap.root = Some(node)
     }
 

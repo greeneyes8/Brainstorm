@@ -17,8 +17,8 @@ object Parser {
   def parseTextChecked(text: Seq[String], parent: Option[Node]): Node = {
     if (!text.isEmpty) {
       val rootIndent = text.head.prefixLength((c) => c == ' ')
-      var considered = text.tail
-      val syntaxCheck:Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' ')).zipWithIndex.find(x => x._1 <= rootIndent)
+      var considered: Seq[String] = text.tail
+      val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' ')).zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
       syntaxCheck match {
         case Some(x) => throw new WrongSyntax(x._1 + 1, "Incorrect indentation")
         case None => parseText(text, parent)
