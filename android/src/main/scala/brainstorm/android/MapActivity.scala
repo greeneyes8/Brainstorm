@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.text.TextWatcher
 import android.text.Editable
+import android.app.FragmentTransaction 
 
 import brainstorm.core.Parser
 import brainstorm.core.MindMapModel
@@ -27,10 +28,14 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
 class MapActivity extends DrawerLayoutActivity with TypedFindView {
 
   var mindMapModel: AndroidMapModel = _
+  var mindMap : MindMap = _
   var fileOpt: Option[File] = None
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
+    setContentView(R.layout.map)
+    afterOnCreate(savedInstanceState)
+
     val tryUri: Try[URI] = Try(getIntent.getExtras.get("file").asInstanceOf[URI]) 
     val tryFile: Try[File] = tryUri.flatMap(x => Try(new File(x)))
     fileOpt = tryFile.toOption
@@ -38,6 +43,8 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
       .getOrElse(new MindMap("tmp"))
       mindMapModel = new AndroidMapModel(mindMap)
       setFragment(new MapTextFragment(mindMap.getText))
+
+    setFragment(new MapFragment(mindMap.getText))    
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {

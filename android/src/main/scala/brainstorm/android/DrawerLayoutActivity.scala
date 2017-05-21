@@ -23,6 +23,8 @@ import android.widget.Toast
 import android.content.Intent
 import TypedResource._
 
+import brainstorm.core.MindMap
+
 class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     implicit val context = this
     var mDrawerToggle: ActionBarDrawerToggle = _
@@ -40,8 +42,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main)
-        
+    }
+
+    def afterOnCreate(savedInstanceState: Bundle): Unit = {
         myListView = findView(TR.navList)
         drawerLayout = findView(TR.drawer_layout)
         mActivityTitle = getTitle.toString()
@@ -103,10 +106,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         }
         case 2 => {
             setTitle(R.string.action_GeneralSettings)
-            val fragmentManager = getFragmentManager()
-            fragmentManager.beginTransaction()
-                           .replace(R.id.flContent, new SettingsFragment())
-                           .commit()
+            val intent : Intent = new Intent(this, classOf[MainActivity])
+            intent.putExtra("SETTINGS", "1");
+            startActivity(intent)
         }
         case 1 => {
             setTitle(R.string.action_AddMapinRealTime)
@@ -115,10 +117,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         }
         case _ => {
             setTitle(position.toString())
-            val fragmentManager = getFragmentManager()
-            fragmentManager.beginTransaction()
-                           .replace(R.id.flContent, new SettingsFragment())
-                           .commit()
+            val intent : Intent = new Intent(this, classOf[MainActivity])
+            intent.putExtra("SETTINGS", "1");
+            startActivity(intent)
             }
     }
 

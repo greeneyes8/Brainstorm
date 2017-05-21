@@ -22,12 +22,12 @@ class MapTextFragment(startText: Seq[String]) extends Fragment {
   override def onViewCreated(view : View, savedInstanceState : Bundle) {
       // Setup any handles to view objects here
       // addTextChangedListener(textWatcher)
-      text = view.findViewById(R.id.mapEditText).asInstanceOf[EditText]
-      text.setText(startText.foldLeft("")((prev, now) => prev ++ "\n" ++ now))
+      //text = view.findViewById(R.id.mapEditText).asInstanceOf[EditText]
+      //text.setText(startText.foldLeft("")((prev, now) => prev ++ "\n" ++ now))
   }
 
-  def addListener(textWatcher: TextWatcher) =
-    text.addTextChangedListener(textWatcher)
+  //def addListener(textWatcher: TextWatcher) =
+    //text.addTextChangedListener(textWatcher)
   
 
 

@@ -24,7 +24,7 @@ class SettingsFragment extends PreferenceFragment {
     override def onCreateOptionsMenu(menu : Menu, inflater : MenuInflater) = {
         //Adds items to the ActionBar
         menu.clear()
-        inflater.inflate(R.menu.menu_map, menu)
+        inflater.inflate(R.menu.menu_main, menu)
     }
 
 
