@@ -19,7 +19,6 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
     }
 
     override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
-        this.menu = menu
         menu.findItem(R.id.menu_item_add).setVisible(false)
         menu.findItem(R.id.action_about).setVisible(true)
         return super.onPrepareOptionsMenu(menu)
