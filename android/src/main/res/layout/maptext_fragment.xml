@@ -4,7 +4,7 @@
     android:orientation="vertical" android:gravity="center">
 
     <EditText
-        android:id="@+id/realTimeMap"
+        android:id="@+id/mapEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="@string/realTimeMapBegin"
