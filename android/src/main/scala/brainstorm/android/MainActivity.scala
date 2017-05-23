@@ -17,7 +17,7 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
         afterOnCreate(savedInstanceState)
 
         val extras : Bundle = getIntent().getExtras()
-        if(extras == null) {
+        if(extras != null) {
             setFragment(new MainFragment())
         } else {
             setFragment(new SettingsFragment())
