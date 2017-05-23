@@ -3,7 +3,6 @@ package brainstorm.android
 import scala.util.Try
 import scala.util.Success
 import scala.util.Failure
-import scala.collection.mutable.Publisher
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,70 +13,16 @@ import java.io.PrintWriter
 import java.net.URI
 import android.view.Menu
 import android.view.MenuItem
-import android.text.TextWatcher
-import android.text.Editable
 import android.app.FragmentTransaction 
 import android.widget.Toast
 import android.util.Log
 
 import brainstorm.core.Parser
-import brainstorm.core.MindMapModel
 import brainstorm.core.MindMap
 
-class AndroidTextWatcher extends Publisher[Seq[String]] with TextWatcher {
-  var newLines: Seq[String] = _
-  var processed: Boolean = true
-
-  override def afterTextChanged(s: Editable) = {
-    Log.d("Args", newLines.zipWithIndex.toString)
-    val parseTry = Try(publish(newLines))
-    parseTry match {
-      case Success(_) => {
-        processed = true
-      }
-      case Failure(e) => {
-        if (processed) {
-          processed = false
-        } 
-        Log.wtf("Problem", e)
-      }
-    }
-
-  }
-  override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {
-    Log.d("Before", s.toString)
-   // lazy val string: String = s.toString
-   // val startLine2 = string.take(start).count((x) => x == '\n')
-   // val endLine = string.take(start+count).count((x) => x == '\n')
-   // lazy val stringSeq: Seq[String] = string.split('\n').toSeq
-   // val oldLines2 = stringSeq.slice(startLine2, endLine+1)
-   // if (processed) {
-   //   oldLines = mindMap.getText(" ")
-   // } else {
-   //   startLine = oldLines2.length
-   // }
-  }
-  override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {
-    Log.d("on", s.toString)
-    lazy val string: String = s.toString
-   // val endLine = string.take(start+count).count((x) => x == '\n')
-    lazy val stringSeq: Seq[String] = string.split('\n').toSeq
-    newLines = stringSeq
-   // if (processed) {
-   //   newLines = stringSeq
-   // } else {
-   //   val startLine2 = string.take(start).count((x) => x == '\n')
-   //   newLines = newLines.patch(startLine2, newLines2, startLine)
-   //   startLine = 0
-   // }
-  }
-}
 
 class MapActivity extends DrawerLayoutActivity with TypedFindView {
 
-  var mindMapModel: MindMapModel = _
-  var androidTextWatcher: AndroidTextWatcher = _
-  var mindMap : MindMap = _
   var fileOpt: Option[File] = None
   var mapFragment: MapFragment = _
 
@@ -92,16 +37,12 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     fileOpt = tryFile.toOption
     val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
       .getOrElse(new MindMap("tmp"))
-    mindMapModel = new MindMapModel(mindMap)
-    androidTextWatcher = new AndroidTextWatcher()
-    androidTextWatcher.subscribe(mindMapModel)
-    mapFragment = new MapFragment(mindMap.getText(" "))
+    mapFragment = new MapFragment(mindMap)
     setFragment(mapFragment)
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {
     super.onPostCreate(savedInstanceState)
-    mapFragment.addListener(androidTextWatcher)
   }
 
   override def onCreateOptionsMenu(menu : Menu) : Boolean = {
@@ -113,7 +54,7 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     fileOpt match {
       case Some(file) => {
         val pw = new PrintWriter(file)
-        mindMapModel.mindMap.getText(" ").foreach(pw.println)
+        mapFragment.mindMapModel.mindMap.getText(" ").foreach(pw.println)
         Toast.makeText(context, file.getName ++ " saved", 0).show
         pw.close()
       }

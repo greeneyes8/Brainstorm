@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 
-class MapDrawerFragment() extends Fragment {
+import scala.collection.mutable.Subscriber
+import scala.collection.mutable.Publisher
+
+import brainstorm.core.MindMap
 
 
+class MapDrawerFragment(mindMap: MindMap) extends Fragment with Subscriber[MindMap, Publisher[MindMap]] {
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
       // Defines the xml file for the fragment
@@ -19,4 +23,7 @@ class MapDrawerFragment() extends Fragment {
   override def onViewCreated(view : View, savedInstanceState : Bundle) {
   }
 
+  override def notify(pub: Publisher[MindMap], mindMap: MindMap) {
+    // redraw
+  }
 }
