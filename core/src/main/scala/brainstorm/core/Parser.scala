@@ -6,9 +6,7 @@ import java.net.URI
 case class WrongSyntax(line: Integer, cause: String) extends Exception {
   override def toString() = {
     super.toString() ++ "\n" ++ line.toString ++ " " ++ cause
-
   }
-
 }
 object Parser {
   def parseFile(filename: URI): MindMap = {
@@ -26,11 +24,11 @@ object Parser {
       var considered: Seq[String] = text.tail
       val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' ')).zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
       syntaxCheck match {
-        case Some(x) => throw new WrongSyntax(x._2 + 1, "Incorrect indentation\n" ++ text.toString)
+        case Some(x) => throw new WrongSyntax(x._2 + 1, "Only one root allowed\n" ++ text.toString)
         case None => parseText(text, parent)
       }
     } else {
-      throw new WrongSyntax(0, "WriteSth")
+      throw new WrongSyntax(0, "Write somethin")
     }
   }
 

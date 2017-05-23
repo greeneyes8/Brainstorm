@@ -12,7 +12,7 @@ class MindMapTest extends CommonSpec {
         mm.root shouldBe None
       }
       "return empty text" in {
-        mm.getText shouldBe 'empty
+        mm.getText(" ") shouldBe 'empty
       }
     }
     "non empty" should {
@@ -26,7 +26,7 @@ class MindMapTest extends CommonSpec {
       }
       "return appropriate text" in {
         val expected = Seq("root", "  first child", "    second child", "  third child")
-        mm.getText should contain theSameElementsInOrderAs expected
+        mm.getText("  ") should contain theSameElementsInOrderAs expected
       }
     }
   }

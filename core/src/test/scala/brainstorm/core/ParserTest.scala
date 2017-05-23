@@ -15,7 +15,7 @@ class ParserTest extends CommonSpec {
         val chld1 = new Node("chld1", Some(expected))
         val chld2 = new Node("chld2", Some(expected))
         val root = Parser.parseText(text, None)
-        root.getText shouldEqual text
+        root.getText("  ") shouldEqual text
         root shouldEqual expected
       }
     }
@@ -26,7 +26,7 @@ class ParserTest extends CommonSpec {
         val chld1 = new Node("chld1", Some(expected))
         val chld2 = new Node("chld2", Some(chld1))
         val root = Parser.parseText(text, None)
-        root.getText shouldEqual text
+        root.getText("  ") shouldEqual text
         root shouldEqual expected
       }
     }

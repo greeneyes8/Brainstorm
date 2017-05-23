@@ -3,6 +3,7 @@ package brainstorm.android
 import scala.util.Try
 import scala.util.Success
 import scala.util.Failure
+import scala.collection.mutable.Publisher
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -23,15 +24,13 @@ import brainstorm.core.Parser
 import brainstorm.core.MindMapModel
 import brainstorm.core.MindMap
 
-class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMap) with TextWatcher {
-  var startLine: Integer = _
-  var oldLines: Seq[String] = _
+class AndroidTextWatcher extends Publisher[Seq[String]] with TextWatcher {
   var newLines: Seq[String] = _
   var processed: Boolean = true
 
   override def afterTextChanged(s: Editable) = {
-    Log.d("Args", startLine.toString ++ " " ++ oldLines.zipWithIndex.toString ++ " " ++ newLines.zipWithIndex.toString)
-    val parseTry = Try(textChange(startLine, oldLines, newLines))
+    Log.d("Args", newLines.zipWithIndex.toString)
+    val parseTry = Try(publish(newLines))
     parseTry match {
       case Success(_) => {
         processed = true
@@ -39,10 +38,6 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
       case Failure(e) => {
         if (processed) {
           processed = false
-          val oldLen = oldLines.length
-          oldLines = mindMap.getText
-          newLines = oldLines.patch(startLine, newLines, oldLen)
-          startLine = 0
         } 
         Log.wtf("Problem", e)
       }
@@ -51,37 +46,37 @@ class AndroidMapModel(override val mindMap: MindMap) extends MindMapModel(mindMa
   }
   override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {
     Log.d("Before", s.toString)
-    lazy val string: String = s.toString
-    val startLine2 = string.take(start).count((x) => x == '\n')
-    val endLine = string.take(start+count).count((x) => x == '\n')
-    lazy val stringSeq: Seq[String] = string.split('\n').toSeq
-    val oldLines2 = stringSeq.slice(startLine2, endLine+1)
-    if (processed) {
-      startLine = startLine2
-      oldLines = oldLines2
-    } else {
-      startLine = oldLines2.length
-    }
+   // lazy val string: String = s.toString
+   // val startLine2 = string.take(start).count((x) => x == '\n')
+   // val endLine = string.take(start+count).count((x) => x == '\n')
+   // lazy val stringSeq: Seq[String] = string.split('\n').toSeq
+   // val oldLines2 = stringSeq.slice(startLine2, endLine+1)
+   // if (processed) {
+   //   oldLines = mindMap.getText(" ")
+   // } else {
+   //   startLine = oldLines2.length
+   // }
   }
   override def onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = {
     Log.d("on", s.toString)
     lazy val string: String = s.toString
-    val endLine = string.take(start+count).count((x) => x == '\n')
+   // val endLine = string.take(start+count).count((x) => x == '\n')
     lazy val stringSeq: Seq[String] = string.split('\n').toSeq
-    val newLines2 = stringSeq.slice(startLine, endLine+1)
-    if (processed) {
-      newLines = newLines2
-    } else {
-      val startLine2 = string.take(start).count((x) => x == '\n')
-      newLines = newLines.patch(startLine, newLines2, startLine)
-      startLine = 0
-    }
+    newLines = stringSeq
+   // if (processed) {
+   //   newLines = stringSeq
+   // } else {
+   //   val startLine2 = string.take(start).count((x) => x == '\n')
+   //   newLines = newLines.patch(startLine2, newLines2, startLine)
+   //   startLine = 0
+   // }
   }
 }
 
 class MapActivity extends DrawerLayoutActivity with TypedFindView {
 
-  var mindMapModel: AndroidMapModel = _
+  var mindMapModel: MindMapModel = _
+  var androidTextWatcher: AndroidTextWatcher = _
   var mindMap : MindMap = _
   var fileOpt: Option[File] = None
   var mapFragment: MapFragment = _
@@ -97,14 +92,16 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     fileOpt = tryFile.toOption
     val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
       .getOrElse(new MindMap("tmp"))
-    mindMapModel = new AndroidMapModel(mindMap)
-    mapFragment = new MapFragment(mindMap.getText)
+    mindMapModel = new MindMapModel(mindMap)
+    androidTextWatcher = new AndroidTextWatcher()
+    androidTextWatcher.subscribe(mindMapModel)
+    mapFragment = new MapFragment(mindMap.getText(" "))
     setFragment(mapFragment)
   }
 
   override def onPostCreate(savedInstanceState: Bundle) {
     super.onPostCreate(savedInstanceState)
-    mapFragment.addListener(mindMapModel)
+    mapFragment.addListener(androidTextWatcher)
   }
 
   override def onCreateOptionsMenu(menu : Menu) : Boolean = {
@@ -116,11 +113,13 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     fileOpt match {
       case Some(file) => {
         val pw = new PrintWriter(file)
-        mindMapModel.mindMap.getText.foreach(pw.println)
+        mindMapModel.mindMap.getText(" ").foreach(pw.println)
         Toast.makeText(context, file.getName ++ " saved", 0).show
         pw.close()
       }
-      case None => {}
+      case None => {
+        // Ask for file name and other stuff
+      }
     }
     return super.onOptionsItemSelected(item)
   }

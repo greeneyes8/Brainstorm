@@ -6,22 +6,32 @@ import scala.collection.immutable.StringOps
 class Node (var line: String, var parent: Option[Node]) extends DfsTraversable[Node] {
   var text = line
   if (parent isDefined) {
-    parent.get.children += this
+    parent.get.appendChild(this)
   }
-  val children: collection.mutable.LinkedHashSet[Node] = collection.mutable.LinkedHashSet()
-  def remove(): Try[Unit] = Try(parent.get.children.-=(this))
-  override def getChildren() = children.toSeq
-  def getText(): Seq[String] = {
-    this.dfs2[String]((x) => x.text, (x) => x.++:("  "))
+  var children: Seq[Node] = Seq()
+  def addChild(node: Node, position: Integer) = {
+    children = (children.take(position) :+ node) ++ children.drop(position) 
+  }
+  def appendChild(node: Node) = {
+    children = children :+ node
+  }
+  def removeChild(node: Node) = {
+    children = children.filter( _ != node)
+  }
+
+  override def getChildren() = children
+  
+  def remove(): Try[Unit] = Try(parent.get.removeChild(this))
+  def getText(separator: String): Seq[String] = {
+    this.dfs2[String]((x) => x.text, (x) => x.++:(separator))
   }
   def getNodes(): Seq[Node] = {
     this.dfs[Node](x => x)
   }
-  def getTextWithNodes(): Seq[(Node, String)] = {
-    getNodes.zip(this.getText)
+  def getTextWithNodes(separator: String): Seq[(Node, String)] = {
+    getNodes.zip(this.getText(separator))
   }
   override def equals(obj: Any): Boolean = {
-    // god how much cleaner it would be with monad
     if (obj.isInstanceOf[Node]) {
       val check: Node = obj.asInstanceOf[Node]
       check.text == text && check.children.sameElements(children)
