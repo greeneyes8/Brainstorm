@@ -36,9 +36,9 @@ class NodeAdapterTest extends CommonSpec {
                 (pending)
             }
         }
-        "changed root" should {
-            ""
-        }
+        //"changed root" should {
+        //        (pending)
+       // }
 
     }
 }
