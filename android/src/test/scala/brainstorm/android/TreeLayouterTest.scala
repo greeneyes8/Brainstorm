@@ -1,6 +1,5 @@
 package brainstorm.android
 
-import brainstorm.core.CommonSpec
 import brainstorm.core.MindMap
 import brainstorm.core.Node
 

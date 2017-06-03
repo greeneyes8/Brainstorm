@@ -1,6 +1,5 @@
 package brainstorm.android
 
-import brainstorm.core.CommonSpec
 
 class NodeAdapterTest extends CommonSpec {
     "A Node Adapter" when {
