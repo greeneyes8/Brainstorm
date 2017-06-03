@@ -75,7 +75,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
 
   def drawLine(viewPosition: (Float, Float), parentPosition: (Float, Float)) = {
     val rootV : View = relativeLayout.findViewById(R.id.rootNode).asInstanceOf[View]
-    var coordsRoot : Array[Int] = Array()
+    var coordsRoot : Array[Int] = Array(0, 0)
     rootV.getLocationOnScreen(coordsRoot)
 
     var endX : Int = math.round(computeX(viewPosition).toFloat)
