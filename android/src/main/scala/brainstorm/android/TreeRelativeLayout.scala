@@ -11,6 +11,7 @@ import scala.math
 class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
   var rootView : View = _
   var rootMap : View = _
+  var relativeLayout : RelativeLayout = _
   var idNodes : Array[Int] = _
 
   def computeX(position: (Float, Float)) = position._1 * math.cos(position._2)
@@ -73,6 +74,10 @@ class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
     var startY : Int = math.round(computeY(parentPosition).toFloat)
     val lineDrawer = new LineDrawer(context)
     lineDrawer.getCoords(startX, startY, endX, endY)
+  }
+
+  def resetLayout() {
+    relativeLayout.removeAllViews()
   }
 
   def paintViews(context: Context, views: Seq[(View, Option[View], (Float, Float))]) = {
