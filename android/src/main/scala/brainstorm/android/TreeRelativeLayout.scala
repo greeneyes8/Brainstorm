@@ -6,15 +6,16 @@ import android.view.LayoutInflater;
 
 import android.view.View
 import android.content.Context
-import scala.math
+import scala.math.{cos, sin, round}
 
-class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
+class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeLayout(context, attr) {
   var rootView : View = _
   var rootMap : View = _
   var idNodes : Array[Int] = _
 
-  def computeX(position: (Float, Float)) = position._1 * math.cos(position._2)
-  def computeY(position: (Float, Float)) = position._1 * math.sin(position._2)
+  def computeX(position: (Float, Float)) = position._1 * java.lang.Math.cos(position._2)
+  def computeY(position: (Float, Float)) = position._1 * java.lang.Math.sin(position._2)
+
   def findParentId(parent : View) = {
     var id = 0
     for (i <- 0 to idNodes.size) {
@@ -33,8 +34,8 @@ class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
   }
 
   def polarView(view: View, position: (Float, Float)) = {
-      var x : Int = math.round(computeX(position).toFloat)
-      var y : Int = math.round(computeY(position).toFloat)
+      var x : Int = round(computeX(position).toFloat)
+      var y : Int = round(computeY(position).toFloat)
 
       var params: RelativeLayout.LayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
