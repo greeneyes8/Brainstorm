@@ -64,6 +64,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
       var nodeId = View.generateViewId()
       view.setId(nodeId)
       idNodes = idNodes :+ nodeId
+      relativeLayout.addView(view, params)
   }
 
   def drawLine(viewPosition: (Float, Float), parentPosition: (Float, Float)) = {
