@@ -78,6 +78,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
   }
 
   def resetLayout() {
+    idNodes = Array()
     relativeLayout.removeAllViews()
   }
 
