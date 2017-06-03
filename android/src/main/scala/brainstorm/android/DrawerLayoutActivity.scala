@@ -118,7 +118,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         case _ => {
             setTitle(position.toString())
             val intent : Intent = new Intent(this, classOf[MainActivity])
-            //intent.putExtra("SETTINGS", "1");
+            intent.putExtra("MAIN", "2");
             startActivity(intent)
             }
     }

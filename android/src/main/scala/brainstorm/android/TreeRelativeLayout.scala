@@ -11,13 +11,25 @@ import scala.math
 class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
   var rootView : View = _
   var rootMap : View = _
+  var idNodes : Array[Int] = _
 
   def computeX(position: (Float, Float)) = position._1 * math.cos(position._2)
   def computeY(position: (Float, Float)) = position._1 * math.sin(position._2)
+  def findParentId(parent : View) = {
+    var id = 0
+    for (i <- 0 to idNodes.size) {
+      if(parent.getId() == idNodes(i)) {
+        id = i
+      }         
+    }
+    id
+  }
 
-  def this(context: Context, views: Seq[(View, Option[View], (Float, Float))]) = {
-      this(context)
-      paintViews(context, views)
+  def getParent(nodeView : Option[View]) = {
+    nodeView match {
+      case Some(vNode) => vNode.asInstanceOf[View]
+      case None => new View(context)
+      }
   }
 
   def polarView(view: View, position: (Float, Float)) = {
@@ -47,10 +59,20 @@ class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
           view.setPadding(x, 0, 0, y)
         }
       }
+      var nodeId = View.generateViewId()
+      view.setId(nodeId)
+      idNodes = idNodes :+ nodeId
   }
 
-  def drawLine(view: View, parentView: View) = {
+  def drawLine(viewPosition: (Float, Float), parentPosition: (Float, Float)) = {
+    var endX : Int = math.round(computeX(viewPosition).toFloat)
+    var endY : Int = math.round(computeY(viewPosition).toFloat)
 
+
+    var startX : Int = math.round(computeX(parentPosition).toFloat)
+    var startY : Int = math.round(computeY(parentPosition).toFloat)
+    val lineDrawer = new LineDrawer(context)
+    lineDrawer.getCoords(startX, startY, endX, endY)
   }
 
   def paintViews(context: Context, views: Seq[(View, Option[View], (Float, Float))]) = {
@@ -64,7 +86,9 @@ class TreeRelativeLayout(context: Context) extends RelativeLayout(context) {
           nodeView._2 match {
             case Some(vNode) => {
               polarView(nodeView._1, nodeView._3)
+              val parentId = findParentId(getParent(nodeView._2))
 
+              drawLine(nodeView._3, views(parentId)._3)
             }
             case None => {
               nodeView._1.setId(R.id.rootNode)
