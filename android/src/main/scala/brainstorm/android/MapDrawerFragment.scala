@@ -30,14 +30,14 @@ class MapDrawerFragment(mindMap: MindMap) extends Fragment with Subscriber[MindM
     val treeLayouter = new TreeLayouter(mindMap)
     coordinator = new Coordinator(treeLayouter)
     val viewsAndPositions = coordinator.getViewsAndPositions()
-    val vAndP = viewsAndPositions.map(x => (x._1, x._2, (x._3._1 * 10, x._3._1)))
+    val vAndP = viewsAndPositions.map(x => (x._1, x._2, (x._3._1 * 100, x._3._2)))
     treeRelativeLayout.paintViews(getActivity, vAndP)
   }
 
   override def notify(pub: Publisher[MindMap], mindMap: MindMap) {
     // redraw
     val viewsAndPositions = coordinator.getViewsAndPositions()
-    val vAndP = viewsAndPositions.map(x => (x._1, x._2, (x._3._1 * 10, x._3._1)))
+    val vAndP = viewsAndPositions.map(x => (x._1, x._2, (x._3._1 * 1, x._3._2)))
     treeRelativeLayout.paintViews(getActivity, vAndP)
   }
 }
