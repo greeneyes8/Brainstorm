@@ -46,9 +46,11 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
         params.addRule(RelativeLayout.ABOVE, R.id.rootNode)
         y = math.abs(y)
         if(x > 0) {
+          params.addRule(RelativeLayout.RIGHT_OF, R.id.rootNode)
           params.setMargins(0, y, x, 0)
         } else {
           x = math.abs(x)
+          params.addRule(RelativeLayout.LEFT_OF, R.id.rootNode)
           params.setMargins(x, y, 0, 0)
         }
       } else {
@@ -56,9 +58,11 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
         y = math.abs(y)
 
         if(x > 0) {
+          params.addRule(RelativeLayout.RIGHT_OF, R.id.rootNode)
           params.setMargins(0, 0, x, y)
         } else {
           x = math.abs(x)
+          params.addRule(RelativeLayout.LEFT_OF, R.id.rootNode)
           params.setMargins(x, 0, 0, y)
         }
       }
