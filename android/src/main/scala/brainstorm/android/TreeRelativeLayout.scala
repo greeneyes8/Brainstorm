@@ -82,6 +82,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
     var startY : Int = math.round(computeY(parentPosition).toFloat)
     val lineDrawer = new LineDrawer(context)
     lineDrawer.getCoords(startX, startY, endX, endY)
+    relativeLayout.addView(lineDrawer)
   }
 
   def resetLayout() {
