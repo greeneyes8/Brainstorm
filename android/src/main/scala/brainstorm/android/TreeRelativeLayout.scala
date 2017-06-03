@@ -45,20 +45,20 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
         params.addRule(RelativeLayout.ABOVE, R.id.rootNode)
         y = math.abs(y)
         if(x > 0) {
-          view.setPadding(0, y, x, 0)
+          params.setMargins(0, y, x, 0)
         } else {
           x = math.abs(x)
-          view.setPadding(x, y, 0, 0)
+          params.setMargins(x, y, 0, 0)
         }
       } else {
         params.addRule(RelativeLayout.BELOW, R.id.rootNode)
         y = math.abs(y)
 
         if(x > 0) {
-          view.setPadding(0, 0, x, y)
+          params.setMargins(0, 0, x, y)
         } else {
           x = math.abs(x)
-          view.setPadding(x, 0, 0, y)
+          params.setMargins(x, 0, 0, y)
         }
       }
       var nodeId = View.generateViewId()
