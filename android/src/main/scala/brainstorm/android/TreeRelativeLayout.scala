@@ -5,6 +5,7 @@ import android.view.ViewGroup.LayoutParams
 import android.view.LayoutInflater;
 
 import android.view.View
+import android.util.Log
 import android.content.Context
 import scala.math.{cos, sin, round}
 
@@ -12,14 +13,14 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
   var rootView : View = _
   var rootMap : View = _
   var relativeLayout : RelativeLayout = _
-  var idNodes : Array[Int] = _
+  var idNodes : Array[Int] = Array()
 
   def computeX(position: (Float, Float)) = position._1 * java.lang.Math.cos(position._2)
   def computeY(position: (Float, Float)) = position._1 * java.lang.Math.sin(position._2)
 
   def findParentId(parent : View) = {
     var id = 0
-    for (i <- 0 to idNodes.size) {
+    for (i <- 0 until idNodes.size) {
       if(parent.getId() == idNodes(i)) {
         id = i
       }         
@@ -84,6 +85,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
   }
 
   def paintViews(context: Context, views: Seq[(View, Option[View], (Float, Float))]) = {
+    Log.d("Lambda", "views len: " ++ views.size.toString)
     rootView = LayoutInflater.from(context).inflate(R.layout.mapdrawer_fragment, this)
     var relativeLayout = rootView.findViewById(R.id.rL).asInstanceOf[RelativeLayout]
 
