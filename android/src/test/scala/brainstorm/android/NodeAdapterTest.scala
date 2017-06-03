@@ -1,5 +1,7 @@
 package brainstorm.android
 
+import brainstorm.core.CommonSpec
+
 class NodeAdapterTest extends CommonSpec {
     "A Node Adapter" when {
         "converting only root in a mind map" should {
