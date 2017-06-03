@@ -38,6 +38,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
   def polarView(view: View, position: (Float, Float)) = {
       var x : Int = round(computeX(position).toFloat)
       var y : Int = round(computeY(position).toFloat)
+      Log.d("X and Y", "X: " ++ x.toString ++ " Y: " ++ y.toString)
 
       var params: RelativeLayout.LayoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
@@ -87,7 +88,7 @@ class TreeRelativeLayout(context: Context, attr: AttributeSet) extends RelativeL
   def paintViews(context: Context, views: Seq[(View, Option[View], (Float, Float))]) = {
     Log.d("Lambda", "views len: " ++ views.size.toString)
     rootView = LayoutInflater.from(context).inflate(R.layout.mapdrawer_fragment, this)
-    var relativeLayout = rootView.findViewById(R.id.rL).asInstanceOf[RelativeLayout]
+    relativeLayout = rootView.findViewById(R.id.rL).asInstanceOf[RelativeLayout]
 
       if(views.length == 0) {
         //get an empty layout
