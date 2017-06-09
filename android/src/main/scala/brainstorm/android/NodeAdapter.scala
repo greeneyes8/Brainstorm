@@ -7,16 +7,28 @@ import android.content.Context
 import android.graphics.drawable.shapes.OvalShape
 import android.graphics.drawable.ShapeDrawable
 
+import java.util.ArrayList
+
 import brainstorm.core.MindMap
 import brainstorm.core.Node
 
-class NodeAdapter(implicit context: Context) {
-  def convertNode(node: Node): View = {
-    val os = new OvalShape()
-    val sd = new ShapeDrawable(new OvalShape())
-    val tv = new TextView(context)
-    tv.setText(node.line)
-    tv.setCompoundDrawables(null, null, null, sd)
-    tv
+object NodeAdapter {
+  def convertNode(node: Node)(implicit context: Context): Nodes.NodePair = {
   }
+  def getEdge(node: Node)(implicit context: Context): Option[Links.LinkPair] = {
+    node.parent.map()
+  }
+}
+
+object MindMapAdapter {
+  def getEdges(mindMap: MindMap)(implicit context: Context): Links = {
+    new ArrayList(mindMap.getNodes.map(NodeAdapter.getEdge(_)))
+  }
+  def getNodes(mindMap: MindMap)(implicit context: Context): Nodes = {
+    val nodePairs = mindMap.getNodes.map(NodeAdapter.convertNode(_))
+    new ArrayList(nodePairs)
+  }
+  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Nodes, Links) =
+    (getNodes(minMap), getEdges(mindMap))
+
 }
