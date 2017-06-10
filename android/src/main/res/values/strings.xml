@@ -10,11 +10,15 @@
     <string name="action_GeneralSettings">General Settings</string>
 
     <!-- Settings Fragment-->
-    <string name="setingsBackgroundColor">Background Color</string>
-    <string name="setingsNodesColor">Nodes color</string>
+    <string name="settingsBackgroundColor">Background Color</string>
+    <string name="settingsTextColor">Text Color</string>
+    <string name="settingsNodesColor">Nodes Color</string>
+    <string name="settingsMenuColor">Menu Color</string>
     <string name="settingsBackgroundSummary">Set the color of the background</string>
     <string name="settingsVisual">Coloring options</string>
     <string name="settingsNodesSummary">Set the color of the nodes</string>
+    <string name="settingsTextSummary">Set the color of the text</string>
+    <string name="settingsMenuSummary">Set the color of the menu</string>
 
     <!-- Color list-->
     <string name="settings_list_blackColor">Black</string>
@@ -22,6 +26,8 @@
     <string name="settings_list_blueColor">Blue</string>
     <string name="settings_list_greyColor">Grey</string>
     <string name="settings_list_default">#404040</string>
+    <string name="settings_list_default_text">#FFFFFF</string>
+    <string name="settings_list_default_menu">#000000</string>
 
     <!-- About Fragment-->
     <string name="authors">Authors:</string>
