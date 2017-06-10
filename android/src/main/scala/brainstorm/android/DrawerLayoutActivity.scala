@@ -102,12 +102,11 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         case 0 => {
             setTitle(R.string.action_AvailableMindMaps)
             val intent : Intent = new Intent(this, classOf[MainActivity])
-            intent.putExtra("MAIN", "1");
             startActivity(intent)
         }
         case 2 => {
             setTitle(R.string.action_GeneralSettings)
-            val intent : Intent = new Intent(this, classOf[MainActivity])
+            val intent : Intent = new Intent(this, classOf[SettingsActivity])
             startActivity(intent)
         }
         case 1 => {
@@ -117,8 +116,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         }
         case _ => {
             setTitle(position.toString())
-            val intent : Intent = new Intent(this, classOf[MainActivity])
-            intent.putExtra("MAIN", "2");
+            val intent : Intent = new Intent(this, classOf[SettingsActivity])
             startActivity(intent)
             }
     }
