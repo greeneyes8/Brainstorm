@@ -12,6 +12,9 @@ import java.util.ArrayList
 import brainstorm.core.MindMap
 import brainstorm.core.Node
 
+import jp.kai.forcelayout.Links
+import jp.kai.forcelayout.Nodes
+
 object NodeAdapter {
   def convertNode(node: Node)(implicit context: Context): Nodes.NodePair = {
   }
@@ -20,7 +23,7 @@ object NodeAdapter {
   }
 }
 
-object MindMapAdapter {
+object MapAdapter {
   def getEdges(mindMap: MindMap)(implicit context: Context): Links = {
     new ArrayList(mindMap.getNodes.map(NodeAdapter.getEdge(_)))
   }
@@ -28,7 +31,8 @@ object MindMapAdapter {
     val nodePairs = mindMap.getNodes.map(NodeAdapter.convertNode(_))
     new ArrayList(nodePairs)
   }
-  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Nodes, Links) =
-    (getNodes(minMap), getEdges(mindMap))
+  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Nodes, Links) = {
+    (getNodes(mindMap), getEdges(mindMap))
+  }
 
 }

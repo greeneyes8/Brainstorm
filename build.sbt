@@ -4,9 +4,9 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.8"
 )
 
-lazy val core = (project in file("core"))
+lazy val core = (project in file("core")).settings(commonSettings)
 
-lazy val android = (project in file("android")).dependsOn(core)
+lazy val android = (project in file("android")).dependsOn(core).settings(commonSettings)
 
 resolvers += Resolver.jcenterRepo
 libraryDependencies += "jp.kai" % "forcelayout" % "1.0.9"
