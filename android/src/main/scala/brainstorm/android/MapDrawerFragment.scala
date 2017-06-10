@@ -19,7 +19,7 @@ import brainstorm.core.MindMap
 class MapDrawerFragment(mindMap: MindMap) extends Fragment with Subscriber[MindMap, Publisher[MindMap]] {
 
   lazy implicit val context: Context = getActivity
-  lazy val layout: Forcelayout = context.findViewById(R.id.rL).asInstanceOf[Forcelayout]
+  lazy val layout: Forcelayout = getActivity.findViewById(R.id.rL).asInstanceOf[Forcelayout]
 
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {

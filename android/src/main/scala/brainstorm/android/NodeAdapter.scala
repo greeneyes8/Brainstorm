@@ -1,5 +1,7 @@
 package brainstorm.android
 
+import scala.collection.JavaConverters._
+
 import android.view.View
 import android.widget.TextView
 import android.content.Context
@@ -17,19 +19,26 @@ import jp.kai.forcelayout.Nodes
 
 object NodeAdapter {
   def convertNode(node: Node)(implicit context: Context): Nodes.NodePair = {
+    null
   }
   def getEdge(node: Node)(implicit context: Context): Option[Links.LinkPair] = {
-    node.parent.map()
+    // node.parent.map()
+    None
   }
 }
 
 object MapAdapter {
   def getEdges(mindMap: MindMap)(implicit context: Context): Links = {
-    new ArrayList(mindMap.getNodes.map(NodeAdapter.getEdge(_)))
+    val edges =  mindMap.getNodes.map(NodeAdapter.getEdge(_))
+    val links = new Links
+    edges.filter(_.isDefined).map(_.get).foreach(links.add(_))
+    links
   }
   def getNodes(mindMap: MindMap)(implicit context: Context): Nodes = {
-    val nodePairs = mindMap.getNodes.map(NodeAdapter.convertNode(_))
-    new ArrayList(nodePairs)
+    val nodePairs: Seq[Nodes.NodePair] = mindMap.getNodes.map(NodeAdapter.convertNode(_))
+    val nodes = new Nodes
+    nodePairs.foreach(nodes.add(_))
+    nodes
   }
   def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Nodes, Links) = {
     (getNodes(mindMap), getEdges(mindMap))
