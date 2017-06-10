@@ -22,5 +22,5 @@ libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.1"  % Test
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1"  % Test
 
 resolvers += Resolver.jcenterRepo
+//libraryDependencies += "org.giwi" % "android-network-graph" % "0.0.1"
 libraryDependencies += "jp.kai" % "forcelayout" % "1.0.9"
-

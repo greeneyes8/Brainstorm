@@ -1,6 +1,5 @@
 package brainstorm.android
 
-import scala.collection.JavaConverters._
 
 import android.view.View
 import android.widget.TextView
@@ -18,12 +17,11 @@ import jp.kai.forcelayout.Links
 import jp.kai.forcelayout.Nodes
 
 object NodeAdapter {
-  def convertNode(node: Node)(implicit context: Context): Nodes.NodePair = {
-    null
+  def convertNode(node: Node)(implicit context: Context): String = {
+    node.text
   }
-  def getEdge(node: Node)(implicit context: Context): Option[Links.LinkPair] = {
-    // node.parent.map()
-    None
+  def getEdge(node: Node)(implicit context: Context): Option[(String, String)] = {
+    node.parent.map(x => (x.text, node.text))
   }
 }
 
@@ -31,17 +29,16 @@ object MapAdapter {
   def getEdges(mindMap: MindMap)(implicit context: Context): Links = {
     val edges =  mindMap.getNodes.map(NodeAdapter.getEdge(_))
     val links = new Links
-    edges.filter(_.isDefined).map(_.get).foreach(links.add(_))
+    edges.filter(_.isDefined).map(_.get).map(x => new Links.LinkPair(x._1, x._2))
+      .foreach(x => links.add(x))
     links
   }
-  def getNodes(mindMap: MindMap)(implicit context: Context): Nodes = {
-    val nodePairs: Seq[Nodes.NodePair] = mindMap.getNodes.map(NodeAdapter.convertNode(_))
-    val nodes = new Nodes
-    nodePairs.foreach(nodes.add(_))
-    nodes
+
+  def getNodes(mindMap: MindMap)(implicit context: Context): Seq[String] = {
+    val nodePairs = mindMap.getNodes.map(NodeAdapter.convertNode(_))
+    nodePairs
   }
-  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Nodes, Links) = {
+  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Seq[String], Links) = {
     (getNodes(mindMap), getEdges(mindMap))
   }
-
 }
