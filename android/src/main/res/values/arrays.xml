@@ -20,7 +20,7 @@
     <string-array name="NodesColor">
         <item>#000000</item>
         <item>#FFFFFF</item>
-        <item>#0080FF</item>
+        <item>#004C99</item>
         <item>#404040</item>
     </string-array>
     <string-array name="MenuColorText">
@@ -32,7 +32,7 @@
     <string-array name="MenuColor">
         <item>#000000</item>
         <item>#FFFFFF</item>
-        <item>#0080FF</item>
+        <item>#004C99</item>
         <item>#404040</item>
     </string-array>
     <string-array name="TextColorText">
@@ -44,7 +44,7 @@
     <string-array name="TextColor">
         <item>BlackTextTheme</item>
         <item>WhiteTextTheme</item>
-        <!--<item>#0080FF</item>
+        <!--<item>#004C99</item>
         <item>#404040</item>-->
     </string-array>
 </resources>

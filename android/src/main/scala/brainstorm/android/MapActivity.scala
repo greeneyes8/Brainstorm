@@ -28,17 +28,17 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
 
   var fileOpt: Option[File] = None
   var mapFragment: MapFragment = _
-  lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+  //lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
-    PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
-        super.onCreate(savedInstanceState)
-        val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
-        prefText match {
-            case "BlackTextTheme" => super.setTheme(R.style.BlackTextTheme)
-            case "WhiteTextTheme" => super.setTheme(R.style.WhiteTextTheme)
-            case _ => super.setTheme(R.style.WhiteTextTheme)
-        }
+    //PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
+    super.onCreate(savedInstanceState)
+    //val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
+    //prefText match {
+    //    case "BlackTextTheme" => super.setTheme(R.style.BlackTextTheme)
+    //    case "WhiteTextTheme" => super.setTheme(R.style.WhiteTextTheme)
+    //    case _ => super.setTheme(R.style.WhiteTextTheme)
+    //}
     setContentView(R.layout.map)
     afterOnCreate(savedInstanceState)
 
@@ -50,15 +50,10 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
       .getOrElse(new MindMap("tmp"))
     mapFragment = new MapFragment(mindMap)
 
-    val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "no selection")
+    //val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "no selection")
 
-    if(prefMenu != "no selection"){
-        Toast.makeText(this, prefMenu, Toast.LENGTH_SHORT).show()
-        val menuLayout = this.findViewById(R.id.navList)
-        menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
-    }else{
-        Toast.makeText(this, "pref", Toast.LENGTH_SHORT).show()
-    }
+    //val menuLayout = this.findViewById(R.id.navList)
+    //menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
 
     setFragment(mapFragment)
   }

@@ -30,13 +30,8 @@ class SettingsActivity extends DrawerLayoutActivity with TypedFindView {
 
         val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "no selection")
 
-        if(prefMenu != "no selection"){
-            Toast.makeText(this, prefMenu, Toast.LENGTH_SHORT).show()
-            val menuLayout = this.findViewById(R.id.navList)
-            menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
-        }else{
-            Toast.makeText(this, "pref", Toast.LENGTH_SHORT).show()
-        }
+        val menuLayout = this.findViewById(R.id.navList)
+        menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
 
         setFragment(new SettingsFragment())
     }
