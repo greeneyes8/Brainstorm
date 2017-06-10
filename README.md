@@ -10,7 +10,6 @@
 **1. Clone the repository**
 ```
 git clone https://github.com/kd226/Brainstorm/
-
 ```
 
 **2. Get the sbt in some way**
