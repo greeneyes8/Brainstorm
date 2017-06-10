@@ -9,14 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import TypedResource._
 
-class MainActivity extends DrawerLayoutActivity with TypedFindView {
+class SettingsActivity extends DrawerLayoutActivity with TypedFindView {
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
         afterOnCreate(savedInstanceState)
 
-        setFragment(new MainFragment())
+        setFragment(new SettingsFragment())
     }
 
 }
