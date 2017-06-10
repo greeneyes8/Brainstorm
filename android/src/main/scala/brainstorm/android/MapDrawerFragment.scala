@@ -31,18 +31,9 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
       return inflater.inflate(R.layout.mapdrawer_fragment, parent, false)
   }
 
-  override def onActivityCreated(bundle: Bundle) {
-    super.onActivityCreated(bundle)
-    val nodes = MapAdapter.getNodes(mindMap).toArray
-    val edges = MapAdapter.getEdges(mindMap)
-    if (nodes.length > 0) {
-      Log.d("Size in notify", ll.getWidth.toString ++ " " ++ ll.getHeight.toString)
-      val layout = new Forcelayout(context)
-      layout.`with`.friction(0.09)
-        .distance(400).size(50)
-        .gravity(0.14).nodes(nodes).links(edges).setDisplay(ll.getWidth, ll.getHeight).start()
-        ll.addView(layout)
-    }
+  override def onViewCreated(view: View, bundle: Bundle) {
+    view.addOnLayoutChangeListener(this)
+
   }
 
   override def onLayoutChange(v: View, left: Int, top: Int, right: Int, 
