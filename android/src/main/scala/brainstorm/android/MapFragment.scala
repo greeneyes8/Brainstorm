@@ -56,6 +56,8 @@ class MapFragment(mindMap: MindMap) extends Fragment {
     androidTextWatcher.subscribe(mindMapModel)
     var mapTextFragment: MapTextFragment = new MapTextFragment(mindMap.getText(" "),
       androidTextWatcher)
+    val mapDrawerFragment: MapDrawerFragment = new MapDrawerFragment(mindMap)
+    mindMapModel.subscribe(mapDrawerFragment)
 
     override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
         savedInstanceState: Bundle): View = {
@@ -64,7 +66,7 @@ class MapFragment(mindMap: MindMap) extends Fragment {
         val fragmentManager = getFragmentManager()
         fragmentManager.beginTransaction()
                        .replace(R.id.mapContent, mapTextFragment)
-                       .replace(R.id.mapDrawer, new MapDrawerFragment(mindMap))
+                       .replace(R.id.mapDrawer, mapDrawerFragment)
                        .commit()
         result
     }
