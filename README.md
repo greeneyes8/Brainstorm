@@ -41,7 +41,9 @@ Structure:
 
 
 ## TODO:
+- [ ] make the app itself workable
 - [ ] refactor
 - [ ] some features
+- [ ] create some badass styles
 - [ ] [Nothing here.](http://www.dailypuppy.com/)
 
