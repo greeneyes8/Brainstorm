@@ -10,11 +10,15 @@
     <string name="action_GeneralSettings">Ogólne ustawienia</string>
 
     <!-- Settings Fragment-->
-    <string name="setingsBackgroundColor">Kolor tła</string>
-    <string name="setingsNodesColor">Kolor węzłów</string>
+    <string name="settingsBackgroundColor">Kolor tła</string>
+    <string name="settingsNodesColor">Kolor węzłów</string>
+    <string name="settingsTextColor">Kolor tekstu</string>
+    <string name="settingsMenuColor">Kolor menu</string>
     <string name="settingsBackgroundSummary">Wybierz kolor tła</string>
     <string name="settingsVisual">Opcje kolorowania</string>
     <string name="settingsNodesSummary">Wybierz kolor węzłów w mapie myśli</string>
+    <string name="settingsTextSummary">Wybierz kolor tekstu</string>
+    <string name="settingsMenuSummary">Wybierz kolor menu</string>
 
     <!-- Color list-->
     <string name="settings_list_blackColor">Czarny</string>

@@ -5,14 +5,28 @@
         android:key="pref_Colors">
         <ListPreference
         android:key="pref_BackgroundColor"
-        android:title="@string/setingsBackgroundColor"
+        android:title="@string/settingsBackgroundColor"
         android:summary="@string/settingsBackgroundSummary"
         android:entries="@array/BackgroundColorText"
         android:entryValues="@array/BackgroundColor"
-        android:defaultValue="@string/settings_list_default"/>/>
+        android:defaultValue="@string/settings_list_default"/>
+        <ListPreference
+        android:key="pref_TextColor"
+        android:title="@string/settingsTextColor"
+        android:summary="@string/settingsTextSummary"
+        android:entries="@array/TextColorText"
+        android:entryValues="@array/TextColor"
+        android:defaultValue="@string/settings_list_default_text"/>
+        <ListPreference
+        android:key="pref_MenuColor"
+        android:title="@string/settingsMenuColor"
+        android:summary="@string/settingsMenuSummary"
+        android:entries="@array/MenuColorText"
+        android:entryValues="@array/MenuColor"
+        android:defaultValue="@string/settings_list_default_menu"/>
         <ListPreference
         android:key="pref_NodesColor"
-        android:title="@string/setingsNodesColor"
+        android:title="@string/settingsNodesColor"
         android:summary="@string/settingsNodesSummary"
         android:entries="@array/NodesColorText"
         android:entryValues="@array/NodesColor"

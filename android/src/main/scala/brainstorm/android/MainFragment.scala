@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.AdapterView
+import android.widget.TextView
 import android.widget.ArrayAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -18,10 +19,10 @@ import android.preference.PreferenceManager
 import android.content.SharedPreferences 
 import android.graphics.Color 
 import android.support.design.widget.CoordinatorLayout 
+import android.support.v4.widget.DrawerLayout
 
 class MainFragment extends Fragment with NewMindMapDialogListener {
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation. 
+    lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity())
     lazy val mapsRootFile: File = new File(getActivity.getFilesDir, "maps/")
     lazy val mmListAdapter: MindMapAdapter = new MindMapAdapter(mapsRootFile, MainFragment.this)
 
@@ -62,12 +63,11 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
         fab.setOnClickListener(new fabClick)
         mmListView.setLayoutManager(new LinearLayoutManager(getActivity()))
         mmListView.setAdapter(mmListAdapter)
-
-        PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, false)
         
-        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity())
-        val prefList : String = sharedPreferences.getString("pref_BackgroundColor", "no selection")
+        val prefBackground : String = sharedPreferences.getString("pref_BackgroundColor", "no selection")
+        val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
 
-        view.setBackgroundColor(Color.parseColor(prefList))
+        view.setBackgroundColor(Color.parseColor(prefBackground))
+        
     }
 }
