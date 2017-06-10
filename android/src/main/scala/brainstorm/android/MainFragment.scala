@@ -14,6 +14,10 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.app.ActionBarDrawerToggle
 import android.widget.Toast
+import android.preference.PreferenceManager 
+import android.content.SharedPreferences 
+import android.graphics.Color 
+import android.support.design.widget.CoordinatorLayout 
 
 class MainFragment extends Fragment with NewMindMapDialogListener {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -58,5 +62,12 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
         fab.setOnClickListener(new fabClick)
         mmListView.setLayoutManager(new LinearLayoutManager(getActivity()))
         mmListView.setAdapter(mmListAdapter)
+
+        PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, false)
+        
+        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity())
+        val prefList : String = sharedPreferences.getString("pref_BackgroundColor", "no selection")
+
+        view.setBackgroundColor(Color.parseColor(prefList))
     }
 }

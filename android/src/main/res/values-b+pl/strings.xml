@@ -10,13 +10,17 @@
     <string name="action_GeneralSettings">Ogólne ustawienia</string>
 
     <!-- Settings Fragment-->
-    <string name="pref_summary_delete_limit">Coś</string>
-    <string name="pref_key_storage_settings">Ustawienia</string>
-    <string name="pref_title_auto_delete">End</string>
-    <string name="pref_title_sms_delete">SMS</string>
-    <string name="pref_title_mms_delete">MMS</string>
-    <string name="pref_sms_storage_title">Schowek</string>
-    <string name="pref_summary_auto_delete">Auto</string>
+    <string name="setingsBackgroundColor">Kolor tła</string>
+    <string name="setingsNodesColor">Kolor węzłów</string>
+    <string name="settingsBackgroundSummary">Wybierz kolor tła</string>
+    <string name="settingsVisual">Opcje kolorowania</string>
+    <string name="settingsNodesSummary">Wybierz kolor węzłów w mapie myśli</string>
+
+    <!-- Color list-->
+    <string name="settings_list_blackColor">Czarny</string>
+    <string name="settings_list_whiteColor">Biały</string>
+    <string name="settings_list_blueColor">Niebieski</string>
+    <string name="settings_list_greyColor">Szary</string>
 
     <!-- Authors Activity-->
     <string name="authors">Autorzy:</string>

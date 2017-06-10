@@ -9,10 +9,16 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.MenuInflater 
+import android.preference.ListPreference
+import android.preference.PreferenceManager 
+import android.content.SharedPreferences 
+import android.graphics.Color 
+import android.preference.Preference
+import android.widget.Toast
+import android.preference.Preference.OnPreferenceChangeListener 
 
 class SettingsFragment extends PreferenceFragment {
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation. 
+
     override def onCreate(savedInstanceState : Bundle) = {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -26,20 +32,12 @@ class SettingsFragment extends PreferenceFragment {
         menu.clear()
         inflater.inflate(R.menu.menu_main, menu)
     }
-
-
-   // override def onCreateView(inflater : LayoutInflater, parent : ViewGroup, savedInstanceState : Bundle) : View = {
-    //    // Defines the xml file for the fragment
-     //   return inflater.inflate(R.layout.settingsfragment, parent, false)
-   // }
-	
-    // This event is triggered soon after onCreateView().
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     
-    override def onViewCreated(view : View, savedInstanceState : Bundle) {
-        // Setup any handles to view objects here
-        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+    override def onViewCreated(view : View, savedInstanceState : Bundle) { 
+        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity())
+        val prefList : String = sharedPreferences.getString("pref_BackgroundColor", "no selection")
 
-        
+        view.setBackgroundColor(Color.parseColor(prefList))
+
     }
 }
