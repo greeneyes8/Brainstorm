@@ -14,5 +14,7 @@
         </activity>
         <activity android:name="MapActivity"
                   android:theme="@style/Theme.AppCompat"/>
+        <activity android:name="SettingsActivity"
+                  android:theme="@style/Theme.AppCompat"/>
     </application>
 </manifest>
