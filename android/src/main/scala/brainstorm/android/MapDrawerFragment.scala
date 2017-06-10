@@ -47,7 +47,7 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
         val layout = new Forcelayout(context)
         layout.`with`.friction(0.09)
           .distance(200).size(50)
-          .gravity(0.14).nodes(nodes).links(edges).setDisplay(right-left, bottom-top).start()
+          .gravity(0.04).nodes(nodes).links(edges).setDisplay(right-left, bottom-top).start()
           ll.addView(layout)
       }
   }
@@ -61,8 +61,8 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
       Log.d("Size in notify", ll.getWidth.toString ++ " " ++ ll.getHeight.toString)
       val layout = new Forcelayout(context)
       layout.`with`.friction(0.09)
-        .distance(400).size(50)
-        .gravity(0.14).nodes(nodes).links(edges).setDisplay(ll.getWidth, ll.getHeight).start()
+        .distance(200000).size(50)
+        .gravity(0.04).nodes(nodes).links(edges).setDisplay(ll.getWidth, ll.getHeight).start()
         ll.addView(layout)
     }
   }
