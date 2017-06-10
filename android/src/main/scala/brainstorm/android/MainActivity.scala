@@ -30,7 +30,7 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
         setContentView(R.layout.main)
         afterOnCreate(savedInstanceState)
 
-        val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "no selection")
+        val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "#FFFFFF")
 
         val menuLayout = this.findViewById(R.id.navList)
         menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
