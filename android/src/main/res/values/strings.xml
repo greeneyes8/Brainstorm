@@ -10,13 +10,18 @@
     <string name="action_GeneralSettings">General Settings</string>
 
     <!-- Settings Fragment-->
-    <string name="pref_summary_delete_limit">Something</string>
-    <string name="pref_key_storage_settings">Settings</string>
-    <string name="pref_title_auto_delete">End</string>
-    <string name="pref_title_sms_delete">SMS</string>
-    <string name="pref_title_mms_delete">MMS</string>
-    <string name="pref_sms_storage_title">Storage</string>
-    <string name="pref_summary_auto_delete">Auto</string>
+    <string name="setingsBackgroundColor">Background Color</string>
+    <string name="setingsNodesColor">Nodes color</string>
+    <string name="settingsBackgroundSummary">Set the color of the background</string>
+    <string name="settingsVisual">Coloring options</string>
+    <string name="settingsNodesSummary">Set the color of the nodes</string>
+
+    <!-- Color list-->
+    <string name="settings_list_blackColor">Black</string>
+    <string name="settings_list_whiteColor">White</string>
+    <string name="settings_list_blueColor">Blue</string>
+    <string name="settings_list_greyColor">Grey</string>
+    <string name="settings_list_default">#404040</string>
 
     <!-- About Fragment-->
     <string name="authors">Authors:</string>
