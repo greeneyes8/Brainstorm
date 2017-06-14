@@ -42,4 +42,10 @@
 
     <!-- MapTextFragment-->
     <string name="realTimeMapBegin">Write your mind map here</string>
+
+	<!-- MapActivity -->
+	<string name="rtsave_t">Save mind map</string>
+	<string name="rtsave_q">Mind map name</string>
+	<string name="rtmap_t">Mind map in RT</string>
+
 </resources>

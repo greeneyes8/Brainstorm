@@ -2,6 +2,7 @@ package brainstorm.core
 
 import io.Source
 import java.net.URI
+import java.io.File
 
 
 /**
@@ -24,12 +25,13 @@ case class WrongSyntax(line: Integer, cause: String) extends Exception {
 */
 object Parser {
   def parseFile(filename: URI): MindMap = {
-    val lines = Source.fromFile(filename).getLines.toSeq
+    val file = new File(filename)
+    val lines = Source.fromFile(file).getLines.toSeq
     if (!lines.isEmpty) {
       val root = parseText(lines, None)
-      new MindMap(filename.toString, Some(root))
+      new MindMap(file.getName, Some(root))
     } else {
-      new MindMap(filename.toString)
+      new MindMap(file.getName)
     }
   }
   def parseTextChecked(text: Seq[String], parent: Option[Node]): Node = {

@@ -40,4 +40,8 @@
     <!-- MaptextFragment-->
     <string name="realTimeMapBegin">Tu wpisz swoją mapę myśli</string>
     
+	<!-- MapActivity -->
+	<string name="rtsave_t">Zapisz mapę myśli</string>
+	<string name="rtsave_q">Nazwa mapy myśli</string>
+	<string name="rtmap_t">Mapa myśli w RT</string>
 </resources>

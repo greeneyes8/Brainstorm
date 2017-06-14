@@ -42,9 +42,14 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
 
     val tryFile: Try[File] = tryUri.flatMap(x => Try(new File(x)))
     fileOpt = tryFile.toOption
-    val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
-      .getOrElse(new MindMap("RT map"))
-    setTitle(mindMap.name)
+    val mindMapOpt = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI))).toOption
+
+    mindMapOpt match {
+      case Some(mindMap) => setTitle(mindMap.name)
+      case None => setTitle(R.string.rtmap_t)
+    }
+
+    val mindMap = mindMapOpt.getOrElse(new MindMap("tmp"))
     mapFragment = new MapFragment(mindMap)
 
     setFragment(mapFragment)
@@ -73,7 +78,6 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
         saveFile(file)
       }
       case None => {
-        // Ask for file name and other stuff
         val dialog = new SaveRealTimeDialog(MapActivity.this)
         dialog.show(getFragmentManager(), "missiles")
       }

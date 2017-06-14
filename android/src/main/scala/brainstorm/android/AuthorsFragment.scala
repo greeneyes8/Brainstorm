@@ -32,6 +32,10 @@ class AuthorsFragment extends Fragment {
     }
 
     override def onViewCreated(view : View, savedInstanceState : Bundle) {
+      val pInfo = getActivity.getPackageManager.getPackageInfo(getActivity.getPackageName(), 0)
+      val versionStr = pInfo.versionName
+      val versionView = getActivity.findViewById(R.id.versioncode).asInstanceOf[TextView]
+      versionView.setText(versionStr)
 
         //val buttonBack : Button = getActivity.findViewById(R.id.buttonBack).asInstanceOf[Button]
         //val textViewAuthors : TextView = getActivity.findViewById(R.id.textViewAuthors).asInstanceOf[TextView]

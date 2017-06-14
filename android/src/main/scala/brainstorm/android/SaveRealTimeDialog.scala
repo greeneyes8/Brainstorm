@@ -22,7 +22,7 @@ class SaveRealTimeDialog(listener: SaveRealTimeDialogListener) extends DialogFra
 
     val builder: AlertDialog.Builder = new AlertDialog.Builder(getActivity)
     builder.setView(inflater)
-      .setTitle("Save rt")
+      .setTitle(R.string.rtsave_t)
       .setPositiveButton(confirm, new DialogInterface.OnClickListener() {
         override def onClick(dialog: DialogInterface, id: Int) = {
           val text: String = inflater.findViewById(R.id.rt_name).asInstanceOf[EditText].getText().toString()
