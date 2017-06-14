@@ -28,6 +28,7 @@
 
     <!-- Authors Activity-->
     <string name="authors">Autorzy:</string>
+    <string name="version">Wersja:</string>
 
     <!-- FloatingButton/Creating MindMap-->
     <string name="MindMapName">Nazwa nowej mapy myśli</string>

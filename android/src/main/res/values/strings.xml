@@ -31,6 +31,7 @@
 
     <!-- About Fragment-->
     <string name="authors">Authors:</string>
+    <string name="version">Version:</string>
 
     <!-- FloatingButton/Creating MindMap-->
     <string name="MindMapName">New mind map name</string>

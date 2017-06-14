@@ -5,12 +5,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import android.app.Fragment 
 import android.support.v7.widget.RecyclerView
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.view.LayoutInflater
 import android.widget.Toast
+import android.app.AlertDialog
 
 class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter[ViewHolder] {
   var files: Array[File] = root.listFiles
@@ -29,18 +31,31 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
     holder.moddate.setText(format.format(date))
     holder.v.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) = {
-        val wasClicked: String = " " ++ context.getResources().getString(R.string.wasClicked)
 
         val intent = new Intent(context.getActivity, classOf[MapActivity]).putExtra("file", file.toURI())
         context.startActivity(intent)
-        Toast.makeText(v.getContext, file.getName ++ wasClicked, 0).show
       }
     })
     holder.clickable.setOnLongClickListener(new View.OnLongClickListener() {
+      var result : Boolean = _
       override def onLongClick(v: View): Boolean = {
-        val wasDeleted : String = " " ++ context.getResources().getString(R.string.wasDeleted)
-        Toast.makeText(v.getContext, file.getName ++ wasDeleted, 0).show
-        val result = file.delete
+        val alertDialogBuilder : AlertDialog.Builder = new AlertDialog.Builder(context.getActivity())
+         alertDialogBuilder
+            .setMessage("Do you want to delete file: " + file.getName + "?")
+            .setCancelable(true)
+            .setPositiveButton("Yes.",new DialogInterface.OnClickListener() {
+                            override def onClick(dialog : DialogInterface,id : Int) {
+                                result = file.delete
+                            }
+                        })
+            .setNegativeButton("No.",new DialogInterface.OnClickListener() {
+                            override def onClick(dialog : DialogInterface,id : Int) {
+                                //
+                            }
+            })
+
+        val alertDialog : AlertDialog = alertDialogBuilder.create();
+        alertDialog.show();
         invalidate
         result
       }

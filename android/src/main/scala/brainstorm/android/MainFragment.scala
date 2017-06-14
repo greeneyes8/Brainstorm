@@ -37,8 +37,6 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
         val mmdialog = new NewMindMapDialog(MainFragment.this)
         if (false) {
           val transaction = getFragmentManager.beginTransaction
-          //transaction.add(android.R.id.content, mmdialog).addToBackStack(null).commit
-          //mmdialog.show(transaction, "missiles")
         } else {
           mmdialog.show(getFragmentManager(), "missiles")
         }
@@ -47,15 +45,10 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
 
     override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
       savedInstanceState: Bundle): View = {
-        // Defines the xml file for the fragment
         return inflater.inflate(R.layout.mainfragment, parent, false)
     }
-	
-    // This event is triggered soon after onCreateView().
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
    
     override def onViewCreated(view : View, savedInstanceState : Bundle) {
-        // Setup any handles to view objects here
         if (!mapsRootFile.exists)
           mapsRootFile.mkdir
         val mmListView: RecyclerView = getActivity.findViewById(R.id.mindMapList).asInstanceOf[RecyclerView]
