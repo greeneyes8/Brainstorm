@@ -8,7 +8,7 @@
 ## Instalation
 ### Getting the code
 **1. Clone the repository**
-```
+``` bash
 git clone https://github.com/kd226/Brainstorm/
 ```
 
@@ -21,29 +21,18 @@ It is open-source so you can look at it, modify and upgrade in any way you need.
 ### Just App
 Well, we could send it on Google Play but we they have too much money anyway. So you have to download the .apk file anyway.
 
-- Android
-	- Git
-	- Pseudo język
-	- Wyświetlanie
-	- Edycja UI
-	- Android permissions: Obsługa plików na androidzie
-	- RT editing
-	- Unit testów
-	- Scaladoc
-
-- Feature
-	- Push notification
-
-Structure:
-- Display
-- Parser
-- Core
 
 
 ## TODO:
+ForceProperty.kt 253rd line
+
 - [ ] make the app itself workable
 - [ ] refactor
+- [ ] documentation
 - [ ] some features
-- [ ] create some badass styles
+- [ ] create some badass styles(+1)
 - [ ] [Nothing here.](http://www.dailypuppy.com/)
+
+
+
 
