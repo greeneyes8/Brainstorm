@@ -26,7 +26,7 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 ## TODO:
 
 - [ ] add about section
-- [ ] make the app itself workable (fix bug)
+- [ ] make the app itself workable (fix bugs)
 - [ ] refactor
 - [ ] documentation
 - [ ] some features
@@ -39,6 +39,8 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 #FIXME:
 - [ ] Text autocompletion
-- [ ] Parser sets mindmap name as whole file address
+	- [ ] Custom input method
+	- [ ] Highlighting lint errors
+- [x] Parser sets mindmap name as whole file address
 - [ ] Refresh mind map list on resume
-- [ ] Automatic version
+- [x] Automatic version

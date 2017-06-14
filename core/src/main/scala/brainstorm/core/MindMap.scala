@@ -21,8 +21,8 @@ class MindMap (var name: String, var root: Option[Node] = None) {
   /**
    * @constructor An auxiliary constructor which needs only a name to create a mind map.
    * @param name A name of the mind map. Type: String
-   * @depreciated
    */
+  @deprecated
   def this(name: String) = this(name, None)
   
   /**
