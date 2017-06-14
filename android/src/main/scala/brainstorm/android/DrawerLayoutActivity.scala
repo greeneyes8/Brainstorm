@@ -60,18 +60,16 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     private def setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
-            /** Called when a drawer has settled in a completely open state. */
             override def onDrawerOpened(drawerView : View) {
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle("Menu");
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                invalidateOptionsMenu();
             }
 
-            /** Called when a drawer has settled in a completely closed state. */
             override def onDrawerClosed(view : View) {
                 super.onDrawerClosed(view);
                 getSupportActionBar().setTitle(getTitle().toString());
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                invalidateOptionsMenu();
             }
         };
 
@@ -124,7 +122,6 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
     override def onPostCreate(savedInstanceState: Bundle) {
         super.onPostCreate(savedInstanceState)
-        //Sync the Toggle and the title faster after the change
         mDrawerToggle.syncState()
     }
 
@@ -134,7 +131,6 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     }
 
      override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-        //Adds items to the ActionBar
         getMenuInflater().inflate(R.menu.menu_main, menu)
         return true
     }
@@ -153,7 +149,6 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
             return true
         }
 
-        // Activate the navigation drawer toggle
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }

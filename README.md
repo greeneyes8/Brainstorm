@@ -31,7 +31,6 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] documentation
 - [ ] some features
 - [ ] create some badass styles(+1)
-- [ ] [Nothing here.](http://www.dailypuppy.com/)
 - [ ] Choose mindmaps folder
 - [ ] Upgrade forcelayout api 
 	- [ ] text inside the circle

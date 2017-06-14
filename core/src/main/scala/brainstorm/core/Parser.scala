@@ -3,11 +3,25 @@ package brainstorm.core
 import io.Source
 import java.net.URI
 
+
+/**
+* A case class used as an Exception when the syntax is incorrect.
+*
+* @version 1.0
+* @see See [[https://github.com/kd226/Brainstorm/]] for more information.
+*/
 case class WrongSyntax(line: Integer, cause: String) extends Exception {
   override def toString() = {
     super.toString() ++ "\n" ++ line.toString ++ " " ++ cause
   }
 }
+
+/**
+* A case class used as an Exception when the syntax is incorrect.
+*
+* @version 1.0
+* @see See [[https://github.com/kd226/Brainstorm/]] for more information.
+*/
 object Parser {
   def parseFile(filename: URI): MindMap = {
     val lines = Source.fromFile(filename).getLines.toSeq

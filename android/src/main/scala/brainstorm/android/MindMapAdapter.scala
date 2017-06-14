@@ -49,9 +49,7 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
                             }
                         })
             .setNegativeButton("No.",new DialogInterface.OnClickListener() {
-                            override def onClick(dialog : DialogInterface,id : Int) {
-                                //
-                            }
+                            override def onClick(dialog : DialogInterface,id : Int) { }
             })
 
         val alertDialog : AlertDialog = alertDialogBuilder.create();
