@@ -42,6 +42,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         super.onCreate(savedInstanceState)
+        super.setTheme(R.style.CustomStyle1)
     }
 
     def afterOnCreate(savedInstanceState: Bundle): Unit = {
