@@ -19,21 +19,22 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
     override def onCreate(savedInstanceState: Bundle): Unit = {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
         super.onCreate(savedInstanceState)
-        val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
+        super.setTheme(R.style.CustomStyle1)
+        //val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
         
-        prefText match {
-            case "BlackTextTheme" => super.setTheme(R.style.BlackTextTheme)
-            case "WhiteTextTheme" => super.setTheme(R.style.WhiteTextTheme)
-            case _ => super.setTheme(R.style.WhiteTextTheme)
-        }
+        //prefText match {
+       //     case "BlackTextTheme" => super.setTheme(R.style.BlackTextTheme)
+       //     case "WhiteTextTheme" => super.setTheme(R.style.WhiteTextTheme)
+       //     case _ => super.setTheme(R.style.WhiteTextTheme)
+      //  }
         
         setContentView(R.layout.main)
         afterOnCreate(savedInstanceState)
 
-        val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "#FFFFFF")
+     //   val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "#FFFFFF")
 
         val menuLayout = this.findViewById(R.id.navList)
-        menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
+       // menuLayout.setBackgroundColor(Color.parseColor(prefMenu))
 
         setFragment(new MainFragment())
     }
