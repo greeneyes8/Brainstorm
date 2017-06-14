@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.content.res.Configuration
 import android.content.Intent
 import java.io.File
+import java.io.FileWriter
 import java.io.PrintWriter
 import java.net.URI
 import android.view.Menu
@@ -24,7 +25,8 @@ import brainstorm.core.Parser
 import brainstorm.core.MindMap
 
 
-class MapActivity extends DrawerLayoutActivity with TypedFindView {
+class MapActivity extends DrawerLayoutActivity with TypedFindView with
+  SaveRealTimeDialogListener {
 
   var fileOpt: Option[File] = None
   var mapFragment: MapFragment = _
@@ -41,7 +43,8 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     val tryFile: Try[File] = tryUri.flatMap(x => Try(new File(x)))
     fileOpt = tryFile.toOption
     val mindMap = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI)))
-      .getOrElse(new MindMap("tmp"))
+      .getOrElse(new MindMap("RT map"))
+    setTitle(mindMap.name)
     mapFragment = new MapFragment(mindMap)
 
     setFragment(mapFragment)
@@ -56,18 +59,34 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
     getMenuInflater().inflate(R.menu.menu_map, menu)
     return true
   }
-  override def onOptionsItemSelected(item: MenuItem): Boolean = {
-    fileOpt match {
-      case Some(file) => {
+
+  def saveFile(file: File) {
         val pw = new PrintWriter(file)
         mapFragment.mindMapModel.mindMap.getText(" ").foreach(pw.println)
         Toast.makeText(context, file.getName ++ " saved", 0).show
         pw.close()
+  }
+
+  override def onOptionsItemSelected(item: MenuItem): Boolean = {
+    fileOpt match {
+      case Some(file) => {
+        saveFile(file)
       }
       case None => {
         // Ask for file name and other stuff
+        val dialog = new SaveRealTimeDialog(MapActivity.this)
+        dialog.show(getFragmentManager(), "missiles")
       }
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  override def onPositive(name: String) = {
+    val mapsRootFile: File = new File(getFilesDir, "maps/")
+    val file = new File(mapsRootFile, name)
+    fileOpt = Some(file)
+    saveFile(file)
+    mapFragment.mindMapModel.mindMap.name = name
+    setTitle(name)
   }
 }

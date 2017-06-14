@@ -101,7 +101,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
     def getFragmentClass(position: Int) =  position match {
         case 0 => {
-            setTitle(R.string.action_AvailableMindMaps)
+            //setTitle(R.string.action_AvailableMindMaps)
             val intent : Intent = new Intent(this, classOf[MainActivity])
             startActivity(intent)
         }
@@ -148,6 +148,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
             val fragmentManager = getFragmentManager()
                 fragmentManager.beginTransaction()
                                .replace(R.id.flContent, new AuthorsFragment())
+                               .addToBackStack(null)
                                .commit()
             return true
         }

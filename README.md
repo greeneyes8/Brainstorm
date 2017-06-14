@@ -41,3 +41,6 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 #FIXME:
 - [ ] Text autocompletion
 - [ ] Back button stack
+- [ ] Parser sets mindmap name as whole file address
+- [x] Add saving realtime maps
+- [ ] Refresh mind map list on resume
