@@ -13,7 +13,7 @@
     <ListView
         android:id="@+id/navList"
         android:layout_width="240dp"
-		android:background="#FFFFFF"
+		android:background="?attr/android:colorBackground"
 
         android:layout_height="match_parent"
         android:layout_gravity="left|start"/>

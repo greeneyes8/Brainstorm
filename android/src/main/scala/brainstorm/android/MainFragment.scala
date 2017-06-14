@@ -57,10 +57,5 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
         mmListView.setLayoutManager(new LinearLayoutManager(getActivity()))
         mmListView.setAdapter(mmListAdapter)
         
-        val prefBackground : String = sharedPreferences.getString("pref_BackgroundColor", "no selection")
-        val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
-
-        view.setBackgroundColor(Color.parseColor(prefBackground))
-        
     }
 }

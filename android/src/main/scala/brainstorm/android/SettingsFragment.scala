@@ -34,10 +34,6 @@ class SettingsFragment extends PreferenceFragment {
     }
     
     override def onViewCreated(view : View, savedInstanceState : Bundle) { 
-        val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity())
-        val prefList : String = sharedPreferences.getString("pref_BackgroundColor", "#000000")
-
-        view.setBackgroundColor(Color.parseColor(prefList))
 
         val appPath : String = getActivity().getApplicationContext().getFilesDir().getAbsolutePath()
         Toast.makeText(getActivity(), appPath, Toast.LENGTH_LONG).show()
