@@ -24,7 +24,6 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 
 ## TODO:
-ForceProperty.kt 253rd line
 
 - [ ] make the app itself workable
 - [ ] refactor
@@ -32,7 +31,7 @@ ForceProperty.kt 253rd line
 - [ ] some features
 - [ ] create some badass styles(+1)
 - [ ] [Nothing here.](http://www.dailypuppy.com/)
+- [ ] Change forcelayout api (text inside the circle, circle colors, pass drawables)
 
-
-
-
+#FIXME:
+- [ ] Text autocompletion
