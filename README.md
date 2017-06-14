@@ -25,13 +25,19 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 ## TODO:
 
-- [ ] make the app itself workable
+- [ ] add about section
+- [ ] make the app itself workable (fix bug)
 - [ ] refactor
 - [ ] documentation
 - [ ] some features
 - [ ] create some badass styles(+1)
 - [ ] [Nothing here.](http://www.dailypuppy.com/)
-- [ ] Change forcelayout api (text inside the circle, circle colors, pass drawables)
+- [ ] Choose mindmaps folder
+- [ ] Upgrade forcelayout api 
+	- [ ] text inside the circle
+	- [ ] circle colors
+	- [ ] pass drawables
 
 #FIXME:
 - [ ] Text autocompletion
+- [ ] Back button stack
