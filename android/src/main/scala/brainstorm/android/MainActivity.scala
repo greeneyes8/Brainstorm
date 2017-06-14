@@ -19,7 +19,6 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
     override def onCreate(savedInstanceState: Bundle): Unit = {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
         super.onCreate(savedInstanceState)
-        super.setTheme(R.style.CustomStyle1)
         //val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
         
         //prefText match {

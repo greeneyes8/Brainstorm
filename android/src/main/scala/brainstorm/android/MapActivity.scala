@@ -32,7 +32,6 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView {
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
-    super.setTheme(R.style.CustomStyle1)
 
     setContentView(R.layout.map)
     afterOnCreate(savedInstanceState)
