@@ -13,7 +13,7 @@ import java.io.File
 */
 case class WrongSyntax(line: Integer, cause: String) extends Exception {
   override def toString() = {
-    super.toString() ++ "\n" ++ line.toString ++ " " ++ cause
+    super.toString() ++ "\n" ++ line.toString ++ ": " ++ cause
   }
 }
 
@@ -38,13 +38,14 @@ object Parser {
     if (!text.isEmpty) {
       val rootIndent = text.head.prefixLength((c) => c == ' ')
       var considered: Seq[String] = text.tail
-      val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' ')).zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
+      val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' '))
+        .zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
       syntaxCheck match {
-        case Some(x) => throw new WrongSyntax(x._2 + 1, "Only one root allowed\n" ++ text.toString)
+        case Some(x) => throw new WrongSyntax(x._2 + 1, "Only one root allowed")
         case None => parseText(text, parent)
       }
     } else {
-      throw new WrongSyntax(0, "Write somethin")
+      throw new WrongSyntax(0, "Write something")
     }
   }
 

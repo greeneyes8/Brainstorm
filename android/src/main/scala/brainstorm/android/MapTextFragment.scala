@@ -30,7 +30,5 @@ class MapTextFragment(startText: Seq[String], textWatcher: TextWatcher) extends 
 
   def addListener(textWatcher: TextWatcher) =
     text.addTextChangedListener(textWatcher)
-  
-
 
 }

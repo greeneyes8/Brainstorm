@@ -39,6 +39,8 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 	- [ ] pass drawables
 - [ ] Add option to have mind map and text switchable
 - [ ] Add help section
+- [ ] Add node colors
+- [ ] Add node emojis
 
 ##FIXME:
 
