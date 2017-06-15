@@ -24,7 +24,7 @@ import android.support.v4.widget.DrawerLayout
 class MainFragment extends Fragment with NewMindMapDialogListener {
     lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity())
     lazy val mapsRootFile: File = new File(getActivity.getFilesDir, "maps/")
-    lazy val mmListAdapter: MindMapAdapter = new MindMapAdapter(mapsRootFile, MainFragment.this)
+    lazy val mmListAdapter: MindMapAdapter = new MindMapAdapter(mapsRootFile, this)
 
     override def onPositive(name: String): Unit = {
       val fw: FileWriter = new FileWriter(new File(mapsRootFile, name))
@@ -56,6 +56,10 @@ class MainFragment extends Fragment with NewMindMapDialogListener {
         fab.setOnClickListener(new fabClick)
         mmListView.setLayoutManager(new LinearLayoutManager(getActivity()))
         mmListView.setAdapter(mmListAdapter)
-        
+    }
+
+    override def onResume() {
+      super.onResume()
+      mmListAdapter.invalidate
     }
 }

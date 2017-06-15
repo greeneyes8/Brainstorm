@@ -46,10 +46,11 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 - [ ] Text autocompletion
 	- [ ] Custom input method
-	- [ ] Highlighting lint errors
+	- [~] Highlighting lint errors (show error cause)
 - [x] Parser sets mindmap name as whole file address
-- [ ] Refresh mind map list on resume
+- [x] Refresh mind map list on resume
 - [x] Automatic version
 - [ ] Dividers between mind maps
 - [ ] Opening side menu in map view saves?!
 - [ ] Side menu in map view is transparent 
+- [ ] Internationalize mind map deletion

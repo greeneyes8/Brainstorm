@@ -17,15 +17,19 @@ import android.text.Editable
 import android.text.Spanned 
 import android.graphics.Color 
 import android.text.style.BackgroundColorSpan 
+import android.support.design.widget.Snackbar 
 
 import brainstorm.core.MindMapModel
 import brainstorm.core.MindMap
 import brainstorm.core.WrongSyntax
 
-class AndroidTextWatcher extends Publisher[Seq[String]] with TextWatcher {
+class AndroidTextWatcher(parent: => View) extends Publisher[Seq[String]] with TextWatcher {
   var newLines: Seq[String] = _
   var processed: Boolean = true
   val errorSpan = new BackgroundColorSpan(Color.RED)
+  lazy val snackError: Snackbar = Snackbar.make(parent, "", Snackbar.LENGTH_INDEFINITE)
+  snack.getView().getLayoutParams().gravity = Gravity.TOP;
+  //view.setLayoutParams(params);
 
   override def afterTextChanged(s: Editable) = {
     Log.d("Args", newLines.zipWithIndex.toString)
@@ -34,6 +38,7 @@ class AndroidTextWatcher extends Publisher[Seq[String]] with TextWatcher {
       case Success(_) => {
         processed = true
         s.removeSpan(errorSpan)
+        snackError.dismiss
       }
       case Failure(e) => {
         if (processed) {
@@ -49,7 +54,7 @@ class AndroidTextWatcher extends Publisher[Seq[String]] with TextWatcher {
             val end = start + lines(line).length
             s.setSpan(errorSpan, start, end,
               Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
+            snackError.setText(cause).show()
           }
           case _ => {
             Log.wtf("Text parsing", e)
@@ -73,7 +78,7 @@ class AndroidTextWatcher extends Publisher[Seq[String]] with TextWatcher {
 class MapFragment(mindMap: MindMap) extends Fragment {
 
     val mindMapModel = new MindMapModel(mindMap)
-    val androidTextWatcher: AndroidTextWatcher = new AndroidTextWatcher()
+    val androidTextWatcher: AndroidTextWatcher = new AndroidTextWatcher(getView())
     androidTextWatcher.subscribe(mindMapModel)
     var mapTextFragment: MapTextFragment = new MapTextFragment(mindMap.getText(" "),
       androidTextWatcher)
