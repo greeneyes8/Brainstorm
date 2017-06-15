@@ -99,17 +99,14 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
     def getFragmentClass(position: Int) =  position match {
         case 0 => {
-            //setTitle(R.string.action_AvailableMindMaps)
             val intent : Intent = new Intent(this, classOf[MainActivity])
             startActivity(intent)
         }
         case 2 => {
-            setTitle(R.string.action_GeneralSettings)
             val intent : Intent = new Intent(this, classOf[SettingsActivity])
             startActivity(intent)
         }
         case 1 => {
-            setTitle(R.string.action_AddMapinRealTime)
             val intent : Intent = new Intent(this, classOf[MapActivity])
             startActivity(intent)
         }

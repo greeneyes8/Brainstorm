@@ -19,17 +19,9 @@ class SettingsActivity extends DrawerLayoutActivity with TypedFindView {
     override def onCreate(savedInstanceState: Bundle): Unit = {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
         super.onCreate(savedInstanceState)
-        val prefText : String = sharedPreferences.getString("pref_TextColor", "no selection")
-       // prefText match {
-       ////     case "BlackTextTheme" => super.setTheme(R.style.BlackTextTheme)
-       ////     case "WhiteTextTheme" => super.setTheme(R.style.WhiteTextTheme)
-       //     case _ => super.setTheme(R.style.WhiteTextTheme)
-       // }
         setContentView(R.layout.main)
         afterOnCreate(savedInstanceState)
-
-        //val prefMenu : String = sharedPreferences.getString("pref_MenuColor", "no selection")
-
+        setTitle(R.string.action_GeneralSettings)
 
         setFragment(new SettingsFragment())
     }

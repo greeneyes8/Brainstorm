@@ -33,14 +33,20 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] create some badass styles(+1)
 - [ ] Choose mindmaps folder
 - [ ] Upgrade forcelayout api 
+	- [ ] correct distances between nodes
 	- [ ] text inside the circle
 	- [ ] circle colors
 	- [ ] pass drawables
+- [ ] Add option to have mind map and text switchable
+- [ ] Add help section
 
-#FIXME:
+##FIXME:
+
 - [ ] Text autocompletion
 	- [ ] Custom input method
 	- [ ] Highlighting lint errors
 - [x] Parser sets mindmap name as whole file address
 - [ ] Refresh mind map list on resume
 - [x] Automatic version
+- [ ] Dividers between mind maps
+
