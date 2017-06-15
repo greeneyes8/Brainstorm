@@ -46,7 +46,7 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 - [ ] Text autocompletion
 	- [ ] Custom input method
-	- [~] Highlighting lint errors (show error cause)
+	- [~] Highlighting lint errors (arguable)
 - [x] Parser sets mindmap name as whole file address
 - [x] Refresh mind map list on resume
 - [x] Automatic version
@@ -54,3 +54,5 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] Opening side menu in map view saves?!
 - [ ] Side menu in map view is transparent 
 - [ ] Internationalize mind map deletion
+- [ ] Internationalize lint errors
+- [ ] Drawn mind map behaves weirdly when center node moved

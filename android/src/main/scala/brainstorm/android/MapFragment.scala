@@ -28,42 +28,39 @@ class AndroidTextWatcher(parent: => View) extends Publisher[Seq[String]] with Te
   var processed: Boolean = true
   val errorSpan = new BackgroundColorSpan(Color.RED)
   lazy val snackError: Snackbar = Snackbar.make(parent, "", Snackbar.LENGTH_INDEFINITE)
-  snack.getView().getLayoutParams().gravity = Gravity.TOP;
-  //view.setLayoutParams(params);
+
+  def processFailure(e: Throwable): Editable => Unit = e match {
+    case WrongSyntax(line, cause) => s => {
+      processed = false
+      val lines = s.toString.split('\n').toSeq
+      val lengths = lines.take(line).map(_.length)
+      val start = lengths.sum + lengths.length
+      val end = start + lines(line).length
+      s.setSpan(errorSpan, start, end,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+      snackError.setText(cause).show()
+    }
+    case _ => s => {
+      processed = false
+      Log.wtf("Text parsing", e)
+    }
+  }
+
+  def processSuccess(i: Unit): Editable => Unit = s => {
+      s.removeSpan(errorSpan)
+      snackError.dismiss
+  }
 
   override def afterTextChanged(s: Editable) = {
     Log.d("Args", newLines.zipWithIndex.toString)
     val parseTry = Try(publish(newLines))
-    parseTry match {
-      case Success(_) => {
-        processed = true
-        s.removeSpan(errorSpan)
-        snackError.dismiss
-      }
-      case Failure(e) => {
-        if (processed) {
-          processed = false
-        } 
-        e match {
-          case WrongSyntax(line, cause) => {
-
-            // TODO: Highlight the line that's causing problem
-            val lines = s.toString.split('\n').toSeq
-            val lengths = lines.take(line).map(_.length)
-            val start = lengths.sum + lengths.length
-            val end = start + lines(line).length
-            s.setSpan(errorSpan, start, end,
-              Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            snackError.setText(cause).show()
-          }
-          case _ => {
-            Log.wtf("Text parsing", e)
-          }
-        }
-      }
-    }
+    processed = parseTry.isSuccess
+    parseTry.transform(s => Try(processSuccess(s)),
+                       t => Try(processFailure(t)))
+             .map(_(s))
 
   }
+
   override def beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = {
     Log.d("Before", s.toString)
   }
