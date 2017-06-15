@@ -51,4 +51,5 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] Refresh mind map list on resume
 - [x] Automatic version
 - [ ] Dividers between mind maps
-
+- [ ] Opening side menu in map view saves?!
+- [ ] Side menu in map view is transparent 
