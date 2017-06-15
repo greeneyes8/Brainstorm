@@ -13,6 +13,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MapActivity"
+				  android:windowSoftInputMode="adjustResize"
                   android:theme="@style/Theme.AppCompat"/>
         <activity android:name=".SettingsActivity"
                   android:theme="@style/Theme.AppCompat"/>

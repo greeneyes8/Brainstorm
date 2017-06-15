@@ -42,7 +42,7 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] Add node colors
 - [ ] Add node emojis
 
-##FIXME:
+## FIXME:
 
 - [ ] Text autocompletion
 	- [ ] Custom input method
