@@ -37,6 +37,9 @@
     <string name="confirm">Confirm</string>
     <string name="wasClicked"> was clicked</string>
     <string name="wasDeleted"> was deleted</string>
+    <string name="deleteMM">Do you want to delete file: </string>
+    <string name="yes">Yes.</string>
+    <string name="no">No.</string>
 
     <!-- MapTextFragment-->
     <string name="realTimeMapBegin">Write your mind map here</string>

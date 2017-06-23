@@ -41,14 +41,14 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
       override def onLongClick(v: View): Boolean = {
         val alertDialogBuilder : AlertDialog.Builder = new AlertDialog.Builder(context.getActivity())
          alertDialogBuilder
-            .setMessage("Do you want to delete file: " + file.getName + "?")
+            .setMessage(context.getResources().getString(R.string.deleteMM) + file.getName + "?")
             .setCancelable(true)
-            .setPositiveButton("Yes.",new DialogInterface.OnClickListener() {
+            .setPositiveButton(context.getResources().getString(R.string.yes),new DialogInterface.OnClickListener() {
                             override def onClick(dialog : DialogInterface,id : Int) {
                                 result = file.delete
                             }
                         })
-            .setNegativeButton("No.",new DialogInterface.OnClickListener() {
+            .setNegativeButton(context.getResources().getString(R.string.no),new DialogInterface.OnClickListener() {
                             override def onClick(dialog : DialogInterface,id : Int) { }
             })
 

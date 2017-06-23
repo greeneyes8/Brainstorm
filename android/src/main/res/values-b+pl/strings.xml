@@ -33,6 +33,9 @@
     <string name="confirm">Potwierdź</string>
     <string name="wasClicked"> zostało kliknięte</string>
     <string name="wasDeleted"> zostało usunięte</string>
+    <string name="deleteMM">Czy chcesz usunąć plik: </string>
+    <string name="yes">Tak.</string>
+    <string name="no">Nie.</string>
 
     <!-- MaptextFragment-->
     <string name="realTimeMapBegin">Tu wpisz swoją mapę myśli</string>
