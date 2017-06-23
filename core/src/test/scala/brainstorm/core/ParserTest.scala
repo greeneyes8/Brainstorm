@@ -56,7 +56,7 @@ class ParserTest extends CommonSpec {
         val parent = new Node("parent", None)
         val node = Parser.parseLine("  someText", Some(parent))
         "has right text" in {
-          node should have ('text ("someText"))
+          node should have ('line ("someText"))
         }
         "has right line" in {
            node should have ('line ("someText"))

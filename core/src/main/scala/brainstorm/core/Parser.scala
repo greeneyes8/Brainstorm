@@ -14,9 +14,8 @@ import java.io.File
 * @see See [[https://github.com/kd226/Brainstorm/]] for more information.
 */
 case class WrongSyntax(val line: Integer, val cause: String) extends Exception {
-  override def toString() = {
+  override def toString() =
     super.toString() ++ "\n" ++ line.toString ++ ": " ++ cause
-  }
 }
 
 /**
@@ -34,12 +33,13 @@ object Parser {
     val file = new File(filename)
     val lines = Source.fromFile(file).getLines.toSeq
     if (!lines.isEmpty) {
-      val root = parseText(lines, None)
+      val root = parseTextChecked(lines, None)
       new MindMap(file.getName, Some(root))
     } else {
       new MindMap(file.getName)
     }
   }
+
   /**
   * @return Parses a text into a mind map. This one throws an exception.
   * @param text A sequence of strings to parse.
@@ -47,10 +47,10 @@ object Parser {
   **/
   def parseTextChecked(text: Seq[String], parent: Option[Node]): Node = {
     if (!text.isEmpty) {
-      val rootIndent = text.head.prefixLength((c) => c == ' ')
+      val rootIndent = text.head.prefixLength(_ == ' ')
       var considered: Seq[String] = text.tail
-      val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' '))
-        .zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
+      val syntaxCheck: Option[(Int, Int)] = considered.map(_.prefixLength(_ == ' '))
+        .zipWithIndex.find(_._1 <= rootIndent)
       syntaxCheck match {
         case Some(x) => throw new WrongSyntax(x._2 + 1, "Only one root allowed")
         case None => parseText(text, parent)
@@ -66,12 +66,13 @@ object Parser {
   * @param parent A parent where we want to add the node.
   **/
   def parseText(text: Seq[String], parent: Option[Node]): Node = {
-    var root:Node = parseLine(text(0), parent)
-    var considered = text.tail
+    val root: Node = parseLine(text(0), parent)
+    var considered: Seq[String] = text.tail
     if (!considered.isEmpty) {
-      val indentation = considered.head.prefixLength(y => y == ' ')
+      val indentation = considered.head.prefixLength(_ == ' ')
       while (!considered.isEmpty) {
-        val spanned = considered.tail.span((x) => x.prefixLength(y => y == ' ') > indentation)
+        val spanned: (Seq[String], Seq[String]) = considered.tail
+          .span(_.prefixLength(_ == ' ') > indentation)
         parseText(spanned._1.+:(considered.head), Some(root))
         considered = spanned._2
       }
@@ -85,7 +86,7 @@ object Parser {
   * @param parent A parent where we want to add the node.
   **/
   def parseLine(line: String, parent: Option[Node]): Node = {
-    val cutLine = line.dropWhile(x => x == ' ')
+    val cutLine = line.dropWhile(_ == ' ')
     new Node(cutLine, parent)
   }
 }

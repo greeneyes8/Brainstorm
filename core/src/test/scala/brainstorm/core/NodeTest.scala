@@ -16,7 +16,7 @@ class NodeTest extends CommonSpec {
       }
       "have text from a line it was created with" in {
         val node = new Node("line", None)
-        node.text shouldEqual "line"
+        node.line shouldEqual "line"
       }
       "return right structure of children text" in {
         val root = new Node("root", None)

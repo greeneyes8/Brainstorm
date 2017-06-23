@@ -18,10 +18,10 @@ import jp.kai.forcelayout.Nodes
 
 object NodeAdapter {
   def convertNode(node: Node)(implicit context: Context): String = {
-    node.text
+    node.line
   }
   def getEdge(node: Node)(implicit context: Context): Option[(String, String)] = {
-    node.parent.map(x => (x.text, node.text))
+    node.parent.map(x => (x.line, node.line))
   }
 }
 

@@ -10,10 +10,9 @@ import scala.collection.mutable.Publisher
 * @version 1.0
 * @see See [[https://github.com/kd226/Brainstorm/]] for more information.
 */
-
 class MindMapModel(val mindMap: MindMap) extends 
   Publisher[MindMap] with Subscriber[Seq[String], Publisher[Seq[String]]] {
-  override def notify(publisher: Publisher[Seq[String]], newLines: Seq[String]) = {
+  override def notify(publisher: Publisher[Seq[String]], newLines: Seq[String]) {
     val root: Node = Parser.parseTextChecked(newLines, None)
     mindMap.root = Some(root)
     publish(mindMap)

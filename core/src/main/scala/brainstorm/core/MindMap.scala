@@ -29,22 +29,20 @@ class MindMap (var name: String, var root: Option[Node] = None) {
    * @return Returns a sequence of lines of every node in mind map.
    * @param separator A separator which separates the lines.
    */
-  def getText(separator: String): Seq[String] = {
-    root.map((x) => x.getText(separator)).getOrElse(Seq())
-  }
+  def getText(separator: String): Seq[String] =
+    root.map(_.getText(separator)).getOrElse(Seq())
 
   /**
    * @return Returns a sequence of nodes in mind map.
    */
-  def getNodes(): Seq[Node] = {
-    root.map((x) => x.getNodes).getOrElse(Seq())
-  }
+  def getNodes(): Seq[Node] = 
+    root.map(_.getNodes).getOrElse(Seq())
+  
 
   /**
    * @return Returns a sequence of nodes and line from mind map.
    * @param separator A separator which separates the lines.
    */
-  def getTextWithNodes(separator: String): Seq[(Node, String)] = {
-    root.map((x) => x.getTextWithNodes(separator)).getOrElse(Seq())
-  }
+  def getTextWithNodes(separator: String): Seq[(Node, String)] =
+    root.map(_.getTextWithNodes(separator)).getOrElse(Seq())
 }
