@@ -25,12 +25,12 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 ## TODO:
 
-- [ ] add about section
+- [x] add about section
 - [ ] make the app itself workable (fix bugs)
 - [ ] refactor
-- [ ] documentation
+- [x] documentation
 - [ ] some features
-- [ ] create some badass styles(+1)
+- [x] create some badass styles(+1)
 - [ ] Choose mindmaps folder
 - [ ] Upgrade forcelayout api 
 	- [ ] correct distances between nodes
@@ -53,7 +53,7 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] Dividers between mind maps
 - [ ] Opening side menu in map view saves?!
 - [ ] Side menu in map view is transparent 
-- [ ] Internationalize mind map deletion
-- [ ] Internationalize lint errors
+- [x] Internationalize mind map deletion
+- [x] Internationalize lint errors
 - [ ] Drawn mind map behaves weirdly when center node moved (at least 7 child nodes)
 - [ ] Ask if discarding changes when leaving unsaved mind map
