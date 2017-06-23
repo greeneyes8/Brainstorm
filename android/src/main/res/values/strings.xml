@@ -10,15 +10,13 @@
     <string name="action_GeneralSettings">General Settings</string>
 
     <!-- Settings Fragment-->
-    <string name="settingsBackgroundColor">Background Color</string>
-    <string name="settingsTextColor">Text Color</string>
-    <string name="settingsNodesColor">Nodes Color</string>
-    <string name="settingsMenuColor">Menu Color</string>
-    <string name="settingsBackgroundSummary">Set the color of the background</string>
     <string name="settingsVisual">Coloring options</string>
-    <string name="settingsNodesSummary">Set the color of the nodes</string>
-    <string name="settingsTextSummary">Set the color of the text</string>
-    <string name="settingsMenuSummary">Set the color of the menu</string>
+
+	<string name="blackStyleName">Dark style</string>
+	<string name="whiteStyleName">Light style</string>
+	<string name="settingsStyleDefault">Light style</string>
+    <string name="settingsStyleTitle">Applications style</string>
+    <string name="settingsStyleSummary">Pick applications style</string>
 
     <!-- Color list-->
     <string name="settings_list_blackColor">Black</string>

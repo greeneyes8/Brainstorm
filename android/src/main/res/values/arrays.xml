@@ -1,50 +1,15 @@
 <resources>
-    <string-array name="BackgroundColor">
-        <item>#000000</item>
-        <item>#FFFFFF</item>
-        <item>#0080FF</item>
-        <item>#404040</item>
-    </string-array>
-    <string-array name="BackgroundColorText">
-        <item>@string/settings_list_blackColor</item>
-        <item>@string/settings_list_whiteColor</item>
-        <item>@string/settings_list_blueColor</item>
-        <item>@string/settings_list_greyColor</item>
-    </string-array>
-    <string-array name="NodesColorText">
-        <item>@string/settings_list_blackColor</item>
-        <item>@string/settings_list_whiteColor</item>
-        <item>@string/settings_list_blueColor</item>
-        <item>@string/settings_list_greyColor</item>
-    </string-array>
-    <string-array name="NodesColor">
-        <item>#000000</item>
-        <item>#FFFFFF</item>
-        <item>#004C99</item>
-        <item>#404040</item>
-    </string-array>
-    <string-array name="MenuColorText">
-        <item>@string/settings_list_blackColor</item>
-        <item>@string/settings_list_whiteColor</item>
-        <item>@string/settings_list_blueColor</item>
-        <item>@string/settings_list_greyColor</item>
-    </string-array>
-    <string-array name="MenuColor">
-        <item>#000000</item>
-        <item>#FFFFFF</item>
-        <item>#004C99</item>
-        <item>#404040</item>
-    </string-array>
-    <string-array name="TextColorText">
-        <item>@string/settings_list_blackColor</item>
-        <item>@string/settings_list_whiteColor</item>
+    <string-array name="StyleNames">
+        <item>@string/blackStyleName</item>
+        <item>@string/whiteStyleName</item>
         <!--<item>@string/settings_list_blueColor</item>
         <item>@string/settings_list_greyColor</item>-->
     </string-array>
-    <string-array name="TextColor">
-        <item>BlackTextTheme</item>
-        <item>WhiteTextTheme</item>
+    <string-array name="Styles">
+        <item>BlackStyle</item>
+        <item>WhiteStyle</item>
         <!--<item>#004C99</item>
         <item>#404040</item>-->
     </string-array>
+
 </resources>
