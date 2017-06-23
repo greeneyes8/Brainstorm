@@ -57,3 +57,4 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [x] Internationalize lint errors
 - [ ] Drawn mind map behaves weirdly when center node moved (at least 7 child nodes)
 - [ ] Ask if discarding changes when leaving unsaved mind map
+- [ ] Add an exception that the mind map has to start from zero level
