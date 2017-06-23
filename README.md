@@ -55,4 +55,5 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [ ] Side menu in map view is transparent 
 - [ ] Internationalize mind map deletion
 - [ ] Internationalize lint errors
-- [ ] Drawn mind map behaves weirdly when center node moved
+- [ ] Drawn mind map behaves weirdly when center node moved (at least 7 child nodes)
+- [ ] Ask if discarding changes when leaving unsaved mind map
