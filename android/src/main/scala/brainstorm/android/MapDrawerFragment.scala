@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.content.Context
 import android.widget.LinearLayout
 import android.util.Log
+import android.util.TypedValue 
+///import android.content.res.Resources.Theme 
 
 import scala.collection.mutable.Subscriber
 import scala.collection.mutable.Publisher
@@ -24,6 +26,10 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
 
   lazy implicit val context: Context = getActivity
   lazy val ll: LinearLayout = getActivity.findViewById(R.id.rL).asInstanceOf[LinearLayout]
+  var typedValue: TypedValue = new TypedValue();
+  lazy val theme = context.getTheme();
+  // @ColorInt
+  lazy val nodeColor: Int = typedValue.data;
 
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
@@ -33,6 +39,7 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
 
   override def onViewCreated(view: View, bundle: Bundle) {
     view.addOnLayoutChangeListener(this)
+    theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
 
   }
 
@@ -45,6 +52,7 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
       if (nodes.length > 0) {
         Log.d("Size in change", (right - left).toString ++ " " ++ (bottom - top).toString)
         val layout = new Forcelayout(context)
+        layout.node().style(nodeColor)
         layout.`with`.friction(0.09)
           .distance(200).size(50)
           .gravity(0.04).nodes(nodes).links(edges).setDisplay(right-left, bottom-top).start()
@@ -60,6 +68,7 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
     if (nodes.length > 0) {
       Log.d("Size in notify", ll.getWidth.toString ++ " " ++ ll.getHeight.toString)
       val layout = new Forcelayout(context)
+      layout.node().style(nodeColor)
       layout.`with`.friction(0.09)
         .distance(200000).size(50)
         .gravity(0.04).nodes(nodes).links(edges).setDisplay(ll.getWidth, ll.getHeight).start()

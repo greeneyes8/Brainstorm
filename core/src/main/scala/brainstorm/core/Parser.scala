@@ -8,10 +8,12 @@ import java.io.File
 /**
 * A case class used as an Exception when the syntax is incorrect.
 *
+* @param line Number of line where exception occured (as counted from 0)
+* @param cause Cause of exception
 * @version 1.0
 * @see See [[https://github.com/kd226/Brainstorm/]] for more information.
 */
-case class WrongSyntax(line: Integer, cause: String) extends Exception {
+case class WrongSyntax(val line: Integer, val cause: String) extends Exception {
   override def toString() = {
     super.toString() ++ "\n" ++ line.toString ++ ": " ++ cause
   }
