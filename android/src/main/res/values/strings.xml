@@ -14,7 +14,7 @@
 
 	<string name="blackStyleName">Dark style</string>
 	<string name="whiteStyleName">Light style</string>
-	<string name="settingsStyleDefault">Light style</string>
+	<string name="settingsStyleDefault">BlackStyle</string>
     <string name="settingsStyleTitle">Applications style</string>
     <string name="settingsStyleSummary">Pick applications style</string>
 

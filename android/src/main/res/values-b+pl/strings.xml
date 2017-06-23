@@ -16,7 +16,6 @@
     <string name="settingsStyleSummary">Wybierz styl aplikacji</string>
 	<string name="blackStyleName">Ciemny</string>
 	<string name="whiteStyleName">Jasny</string>
-	<string name="settingsStyleDefault">Jasny</string>
 
     <!-- Color list-->
     <string name="settings_list_blackColor">Czarny</string>

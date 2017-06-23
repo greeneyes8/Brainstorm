@@ -20,12 +20,15 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.ListView
 import android.widget.Toast
+import android.preference.PreferenceManager 
+import android.content.SharedPreferences 
 import android.content.Intent
 import TypedResource._
 
 import brainstorm.core.MindMap
 
 class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
+    lazy val sharedPreferences2 : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     implicit val context = this
     var mDrawerToggle: ActionBarDrawerToggle = _
     var myArray : Array[String] = _
@@ -41,8 +44,16 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     }
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
         super.onCreate(savedInstanceState)
-        super.setTheme(R.style.CustomStyle1)
+
+        val prefStyle : String = sharedPreferences2.getString("pref_Style", "no selection")
+        
+        prefStyle match {
+            case "BlackStyle" => super.setTheme(R.style.CustomStyle2)
+            case "WhiteStyle" => super.setTheme(R.style.CustomStyle1)
+            case _ => super.setTheme(R.style.CustomStyle2)
+        }
     }
 
     def afterOnCreate(savedInstanceState: Bundle): Unit = {
