@@ -43,6 +43,7 @@
 
     <!-- MapTextFragment-->
     <string name="realTimeMapBegin">Write your mind map here</string>
+	<string name="errorText">Only one root allowed</string>
 
 	<!-- MapActivity -->
 	<string name="rtsave_t">Save mind map</string>

@@ -40,7 +40,6 @@ with Subscriber[MindMap, Publisher[MindMap]] with View.OnLayoutChangeListener {
   override def onViewCreated(view: View, bundle: Bundle) {
     view.addOnLayoutChangeListener(this)
     theme.resolveAttribute(R.attr.colorAccent, typedValue, true);
-
   }
 
   override def onLayoutChange(v: View, left: Int, top: Int, right: Int, 

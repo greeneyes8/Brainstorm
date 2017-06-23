@@ -56,6 +56,12 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
         }
     }
 
+    override def onRestart() {
+      super.onRestart()
+      recreate()
+    }
+
+
     def afterOnCreate(savedInstanceState: Bundle): Unit = {
         myListView = findView(TR.navList)
         drawerLayout = findView(TR.drawer_layout)

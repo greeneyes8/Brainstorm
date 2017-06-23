@@ -23,11 +23,11 @@ import brainstorm.core.MindMapModel
 import brainstorm.core.MindMap
 import brainstorm.core.WrongSyntax
 
-class AndroidTextWatcher(parent: => View) extends Publisher[Seq[String]] with TextWatcher {
+class AndroidTextWatcher(parent: => Fragment) extends Publisher[Seq[String]] with TextWatcher {
   var newLines: Seq[String] = _
   var processed: Boolean = true
   val errorSpan = new BackgroundColorSpan(Color.RED)
-  lazy val snackError: Snackbar = Snackbar.make(parent, "", Snackbar.LENGTH_INDEFINITE)
+  lazy val snackError: Snackbar = Snackbar.make(parent.getView(), "", Snackbar.LENGTH_INDEFINITE)
 
   def processFailure(e: Throwable): Editable => Unit = e match {
     case WrongSyntax(line, cause) => s => {
@@ -38,7 +38,8 @@ class AndroidTextWatcher(parent: => View) extends Publisher[Seq[String]] with Te
       val end = start + lines(line).length
       s.setSpan(errorSpan, start, end,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-      snackError.setText(cause).show()
+      val errorText = parent.getText(R.string.errorText)
+      snackError.setText(errorText).show()
     }
     case _ => s => {
       processed = false
@@ -75,7 +76,7 @@ class AndroidTextWatcher(parent: => View) extends Publisher[Seq[String]] with Te
 class MapFragment(mindMap: MindMap) extends Fragment {
 
     val mindMapModel = new MindMapModel(mindMap)
-    val androidTextWatcher: AndroidTextWatcher = new AndroidTextWatcher(getView())
+    val androidTextWatcher: AndroidTextWatcher = new AndroidTextWatcher(this)
     androidTextWatcher.subscribe(mindMapModel)
     var mapTextFragment: MapTextFragment = new MapTextFragment(mindMap.getText(" "),
       androidTextWatcher)

@@ -39,6 +39,7 @@
 
     <!-- MaptextFragment-->
     <string name="realTimeMapBegin">Tu wpisz swoją mapę myśli</string>
+	<string name="errorText">Tylko jedna wartość dozwolona na najniższym poziomie</string>
     
 	<!-- MapActivity -->
 	<string name="rtsave_t">Zapisz mapę myśli</string>
