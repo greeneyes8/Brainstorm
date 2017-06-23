@@ -18,12 +18,16 @@ case class WrongSyntax(line: Integer, cause: String) extends Exception {
 }
 
 /**
-* A case class used as an Exception when the syntax is incorrect.
+* A object used to parse files, lines and texts into a mindMap.
 *
 * @version 1.0
 * @see See [[https://github.com/kd226/Brainstorm/]] for more information.
 */
 object Parser {
+  /**
+  * @return Parses a file into a mind map.
+  * @param filename Name of a file where is the text to parse.
+  **/
   def parseFile(filename: URI): MindMap = {
     val file = new File(filename)
     val lines = Source.fromFile(file).getLines.toSeq
@@ -34,6 +38,11 @@ object Parser {
       new MindMap(file.getName)
     }
   }
+  /**
+  * @return Parses a text into a mind map. This one throws an exception.
+  * @param text A sequence of strings to parse.
+  * @param parent A parent where we want to add the node.
+  **/
   def parseTextChecked(text: Seq[String], parent: Option[Node]): Node = {
     if (!text.isEmpty) {
       val rootIndent = text.head.prefixLength((c) => c == ' ')
@@ -49,6 +58,11 @@ object Parser {
     }
   }
 
+  /**
+  * @return Parses a text into a mind map.
+  * @param text A sequence of strings to parse.
+  * @param parent A parent where we want to add the node.
+  **/
   def parseText(text: Seq[String], parent: Option[Node]): Node = {
     var root:Node = parseLine(text(0), parent)
     var considered = text.tail
@@ -62,6 +76,12 @@ object Parser {
     }
     root
   }
+
+  /**
+  * @return Parses a line into a node in a mind map
+  * @param line A string to parse.
+  * @param parent A parent where we want to add the node.
+  **/
   def parseLine(line: String, parent: Option[Node]): Node = {
     val cutLine = line.dropWhile(x => x == ' ')
     new Node(cutLine, parent)
