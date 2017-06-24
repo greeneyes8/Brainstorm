@@ -1,11 +1,11 @@
 <resources>
-    <style name="CustomStyle1" parent="Theme.AppCompat.Light">
+    <style name="LightStyle" parent="Theme.AppCompat.Light">
 		<item name="colorPrimary">#03A9F4</item>
 		<item name="colorPrimaryDark">#0288D1</item>
         <item name="colorAccent">#607D8B</item>
     </style>
 
-    <style name="CustomStyle2" parent="Theme.AppCompat">
+    <style name="DarkStyle" parent="Theme.AppCompat">
         <item name="colorPrimary">#CD0000</item>
         <item name="colorPrimaryDark">#8F0000</item>
         <item name="colorAccent">#FF4D4D</item>

@@ -5,7 +5,6 @@ import scala.util.Success
 import scala.util.Failure
 import scala.collection.mutable.Publisher
 
-import java.io.File
 import android.app.Fragment 
 import android.os.Bundle
 import android.view.View
@@ -74,7 +73,6 @@ class AndroidTextWatcher(parent: => Fragment) extends Publisher[Seq[String]] wit
 }
 
 class MapFragment(mindMap: MindMap) extends Fragment {
-
     val mindMapModel = new MindMapModel(mindMap)
     val androidTextWatcher: AndroidTextWatcher = new AndroidTextWatcher(this)
     androidTextWatcher.subscribe(mindMapModel)
@@ -85,7 +83,6 @@ class MapFragment(mindMap: MindMap) extends Fragment {
 
     override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
         savedInstanceState: Bundle): View = {
-        // Defines the xml file for the fragment
         val result: View = inflater.inflate(R.layout.mapfragment, parent, false)
         val fragmentManager = getFragmentManager()
         fragmentManager.beginTransaction()
@@ -95,14 +92,10 @@ class MapFragment(mindMap: MindMap) extends Fragment {
         result
     }
 
-    override def onViewCreated(view : View, savedInstanceState : Bundle) {
-    }
-
     override def onActivityCreated(bundle: Bundle) {
       super.onActivityCreated(bundle)
     }
 
     def addListener(textWatcher: TextWatcher) =
         mapTextFragment.addListener(textWatcher)
-
 }

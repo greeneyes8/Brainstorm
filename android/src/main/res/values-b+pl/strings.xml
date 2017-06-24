@@ -17,12 +17,6 @@
 	<string name="blackStyleName">Ciemny</string>
 	<string name="whiteStyleName">Jasny</string>
 
-    <!-- Color list-->
-    <string name="settings_list_blackColor">Czarny</string>
-    <string name="settings_list_whiteColor">Biały</string>
-    <string name="settings_list_blueColor">Niebieski</string>
-    <string name="settings_list_greyColor">Szary</string>
-
     <!-- Authors Activity-->
     <string name="authors">Autorzy:</string>
     <string name="version">Wersja:</string>
@@ -31,8 +25,6 @@
     <string name="MindMapName">Nazwa nowej mapy myśli</string>
     <string name="createMM">Utwórz nową mapę myśli</string>
     <string name="confirm">Potwierdź</string>
-    <string name="wasClicked"> zostało kliknięte</string>
-    <string name="wasDeleted"> zostało usunięte</string>
     <string name="deleteMM">Czy chcesz usunąć plik: </string>
     <string name="yes">Tak.</string>
     <string name="no">Nie.</string>
@@ -44,5 +36,5 @@
 	<!-- MapActivity -->
 	<string name="rtsave_t">Zapisz mapę myśli</string>
 	<string name="rtsave_q">Nazwa mapy myśli</string>
-	<string name="rtmap_t">Mapa myśli w RT</string>
+	<string name="rtmap_t">Stwórz mapę myśli</string>
 </resources>

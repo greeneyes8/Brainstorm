@@ -18,15 +18,6 @@
     <string name="settingsStyleTitle">Applications style</string>
     <string name="settingsStyleSummary">Pick applications style</string>
 
-    <!-- Color list-->
-    <string name="settings_list_blackColor">Black</string>
-    <string name="settings_list_whiteColor">White</string>
-    <string name="settings_list_blueColor">Blue</string>
-    <string name="settings_list_greyColor">Grey</string>
-    <string name="settings_list_default">#404040</string>
-    <string name="settings_list_default_text">#FFFFFF</string>
-    <string name="settings_list_default_menu">#000000</string>
-
     <!-- About Fragment-->
     <string name="authors">Authors:</string>
     <string name="version">Version:</string>
@@ -35,8 +26,6 @@
     <string name="MindMapName">New mind map name</string>
     <string name="createMM">Create a new mind map</string>
     <string name="confirm">Confirm</string>
-    <string name="wasClicked"> was clicked</string>
-    <string name="wasDeleted"> was deleted</string>
     <string name="deleteMM">Do you want to delete file: </string>
     <string name="yes">Yes.</string>
     <string name="no">No.</string>
@@ -48,6 +37,6 @@
 	<!-- MapActivity -->
 	<string name="rtsave_t">Save mind map</string>
 	<string name="rtsave_q">Mind map name</string>
-	<string name="rtmap_t">Mind map in RT</string>
+	<string name="rtmap_t">Create a mind map</string>
 
 </resources>

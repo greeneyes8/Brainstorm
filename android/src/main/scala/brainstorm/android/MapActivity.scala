@@ -16,23 +16,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.app.FragmentTransaction 
 import android.widget.Toast
-import android.util.Log
 import android.preference.PreferenceManager 
 import android.content.SharedPreferences 
-import android.graphics.Color
 
 import brainstorm.core.Parser
 import brainstorm.core.MindMap
-
 
 class MapActivity extends DrawerLayoutActivity with TypedFindView with
   SaveRealTimeDialogListener {
 
   var fileOpt: Option[File] = None
   var mapFragment: MapFragment = _
-  //lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-  override def onCreate(savedInstanceState: Bundle): Unit = {
+  override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
     setContentView(R.layout.map)
@@ -60,16 +56,22 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
   }
 
   override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-    //Adds items to the ActionBar
-    getMenuInflater().inflate(R.menu.menu_map, menu)
-    return true
+    val prefStyle : String = mySharedPreferences.getString("pref_Style", "no selection")
+        
+    prefStyle match {
+        case "BlackStyle" => getMenuInflater().inflate(R.menu.menu_map, menu)
+        case "WhiteStyle" => getMenuInflater().inflate(R.menu.menu_map_black, menu)
+        case _ => getMenuInflater().inflate(R.menu.menu_map, menu)
+    }
+    
+    true
   }
 
   def saveFile(file: File) {
-        val pw = new PrintWriter(file)
-        mapFragment.mindMapModel.mindMap.getText(" ").foreach(pw.println)
-        Toast.makeText(context, file.getName ++ " saved", 0).show
-        pw.close()
+    val pw = new PrintWriter(file)
+    mapFragment.mindMapModel.mindMap.getText(" ").foreach(pw.println)
+    Toast.makeText(context, file.getName ++ " saved", 0).show
+    pw.close()
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
@@ -82,10 +84,10 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
         dialog.show(getFragmentManager(), "missiles")
       }
     }
-    return super.onOptionsItemSelected(item)
+    super.onOptionsItemSelected(item)
   }
 
-  override def onPositive(name: String) = {
+  override def onPositive(name: String) {
     val mapsRootFile: File = new File(getFilesDir, "maps/")
     val file = new File(mapsRootFile, name)
     fileOpt = Some(file)

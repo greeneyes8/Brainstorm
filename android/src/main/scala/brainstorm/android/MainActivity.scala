@@ -4,20 +4,16 @@ import android.app.Activity
 import android.os.Bundle
 import android.content.res.Configuration
 import android.content.Context
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.preference.PreferenceManager 
 import android.content.SharedPreferences 
-import android.graphics.Color 
-import android.widget.Toast
 import android.content.pm.ApplicationInfo 
 import TypedResource._
 
 class MainActivity extends DrawerLayoutActivity with TypedFindView {
 
-    def getApplicationName(context: Context) = {
+    def getApplicationName(context: Context): String = {
       val applicationInfo = context.getApplicationInfo();
       val stringId = applicationInfo.labelRes;
       if (stringId == 0) {
@@ -27,7 +23,7 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
       }
     }
 
-    override def onCreate(savedInstanceState: Bundle): Unit = {
+    override def onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
         
         setContentView(R.layout.main)
