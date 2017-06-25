@@ -19,6 +19,7 @@ import android.app.FragmentTransaction
 import android.widget.Toast
 import android.preference.PreferenceManager 
 import android.content.SharedPreferences 
+import android.util.Log
 
 import brainstorm.core.Parser
 import brainstorm.core.MindMap
@@ -56,10 +57,8 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
     prefStyle match {
       case "BlackStyle" => getMenuInflater().inflate(R.menu.menu_map, menu)
       case "WhiteStyle" => getMenuInflater().inflate(R.menu.menu_map_black, menu)
-      case _ => getMenuInflater().inflate(R.menu.menu_map, menu)
+      case i => Log.d("onCreateOptionsMenu", "incorrect" ++ i.toString)
     }
-
-    getMenuInflater.inflate(R.menu.menu_map, menu)
     true
   }
 
