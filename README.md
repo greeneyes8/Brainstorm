@@ -52,7 +52,7 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 - [x] Automatic version
 - [ ] Dividers between mind maps
 - [ ] Opening side menu in map view saves?!
-- [ ] Side menu in map view is transparent 
+- [x] Side menu in map view is transparent 
 - [x] Internationalize mind map deletion
 - [x] Internationalize lint errors
 - [ ] Drawn mind map behaves weirdly when center node moved (at least 7 child nodes)

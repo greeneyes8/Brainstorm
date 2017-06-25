@@ -68,8 +68,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
   }
 
   override def onCreate(savedInstanceState: Bundle) {
-    PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     super.onCreate(savedInstanceState)
+    PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
+
 
     val prefStyle : String = mySharedPreferences.getString("pref_Style", "no selection")
 
@@ -78,6 +79,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
       case "WhiteStyle" => super.setTheme(R.style.LightStyle)
       case _ => super.setTheme(R.style.DarkStyle)
     }
+    setContentView(R.layout.main)
   }
 
   override def onRestart() {

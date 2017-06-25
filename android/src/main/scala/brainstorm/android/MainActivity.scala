@@ -26,7 +26,6 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
     override def onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
         
-        setContentView(R.layout.main)
         setTitle(getApplicationName(this))
 
         setFragment(new MainFragment())

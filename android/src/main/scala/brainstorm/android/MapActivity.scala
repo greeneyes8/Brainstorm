@@ -33,7 +33,6 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
-    setContentView(R.layout.map)
 
     val tryUri: Try[URI] = Try(getIntent.getExtras.get("file").asInstanceOf[URI]) 
     val tryFile: Try[File] = tryUri.flatMap(x => Try(new File(x)))

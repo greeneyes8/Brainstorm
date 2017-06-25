@@ -16,7 +16,6 @@ class SettingsActivity extends DrawerLayoutActivity
     PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     mySharedPreferences.registerOnSharedPreferenceChangeListener(this)
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.main)
     setTitle(R.string.action_GeneralSettings)
     setFragment(new SettingsFragment())
   }
