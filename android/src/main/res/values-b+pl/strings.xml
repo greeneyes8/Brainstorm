@@ -24,7 +24,9 @@
     <!-- FloatingButton/Creating MindMap-->
     <string name="MindMapName">Nazwa nowej mapy myśli</string>
     <string name="createMM">Utwórz nową mapę myśli</string>
+    <string name="mmName">Nazwa mapy myśli</string>
     <string name="confirm">Potwierdź</string>
+    <string name="cancel">Anuluj</string>
     <string name="deleteMM">Czy chcesz usunąć plik: </string>
     <string name="yes">Tak.</string>
     <string name="no">Nie.</string>
@@ -34,7 +36,6 @@
 	<string name="errorText">Tylko jedna wartość dozwolona na najniższym poziomie</string>
     
 	<!-- MapActivity -->
-	<string name="rtsave_t">Zapisz mapę myśli</string>
-	<string name="rtsave_q">Nazwa mapy myśli</string>
 	<string name="rtmap_t">Stwórz mapę myśli</string>
+	<string name="rtsaveTitle">Zapisz mapę myśli</string>
 </resources>

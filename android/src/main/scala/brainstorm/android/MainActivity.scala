@@ -13,13 +13,13 @@ import TypedResource._
 
 class MainActivity extends DrawerLayoutActivity with TypedFindView {
 
-    def getApplicationName(context: Context): String = {
-      val applicationInfo = context.getApplicationInfo();
-      val stringId = applicationInfo.labelRes;
+    private def getApplicationName(context: Context): String = {
+      val applicationInfo = context.getApplicationInfo()
+      val stringId = applicationInfo.labelRes
       if (stringId == 0) {
-        applicationInfo.nonLocalizedLabel.toString()
+        applicationInfo.nonLocalizedLabel.toString
       } else {
-        context.getString(stringId);
+        context.getString(stringId)
       }
     }
 
@@ -27,12 +27,8 @@ class MainActivity extends DrawerLayoutActivity with TypedFindView {
         super.onCreate(savedInstanceState)
         
         setContentView(R.layout.main)
-        afterOnCreate(savedInstanceState)
         setTitle(getApplicationName(this))
-
-        val menuLayout = this.findViewById(R.id.navList)
 
         setFragment(new MainFragment())
     }
-
 }

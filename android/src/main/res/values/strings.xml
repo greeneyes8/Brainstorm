@@ -25,7 +25,9 @@
     <!-- FloatingButton/Creating MindMap-->
     <string name="MindMapName">New mind map name</string>
     <string name="createMM">Create a new mind map</string>
+    <string name="mmName">Mind map name</string>
     <string name="confirm">Confirm</string>
+	<string name="cancel">Cancel</string>
     <string name="deleteMM">Do you want to delete file: </string>
     <string name="yes">Yes.</string>
     <string name="no">No.</string>
@@ -35,8 +37,7 @@
 	<string name="errorText">Only one root allowed</string>
 
 	<!-- MapActivity -->
-	<string name="rtsave_t">Save mind map</string>
 	<string name="rtsave_q">Mind map name</string>
 	<string name="rtmap_t">Create a mind map</string>
-
+	<string name="rtsaveTitle">Save mind map</string>
 </resources>

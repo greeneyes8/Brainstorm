@@ -4,14 +4,15 @@ import scala.util.Try
 import scala.util.Success
 import scala.util.Failure
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.content.res.Configuration
-import android.content.Intent
 import java.io.File
 import java.io.FileWriter
 import java.io.PrintWriter
 import java.net.URI
+
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.content.res.Configuration
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.app.FragmentTransaction 
@@ -22,9 +23,9 @@ import android.content.SharedPreferences
 import brainstorm.core.Parser
 import brainstorm.core.MindMap
 
-class MapActivity extends DrawerLayoutActivity with TypedFindView with
-  SaveRealTimeDialogListener {
 
+class MapActivity extends DrawerLayoutActivity with TypedFindView with
+  TextDialogListener {
   var fileOpt: Option[File] = None
   var mapFragment: MapFragment = _
 
@@ -32,13 +33,11 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
     super.onCreate(savedInstanceState)
 
     setContentView(R.layout.map)
-    afterOnCreate(savedInstanceState)
 
     val tryUri: Try[URI] = Try(getIntent.getExtras.get("file").asInstanceOf[URI]) 
-
     val tryFile: Try[File] = tryUri.flatMap(x => Try(new File(x)))
     fileOpt = tryFile.toOption
-    val mindMapOpt = tryFile.flatMap(x => Try(Parser.parseFile(x.toURI))).toOption
+    val mindMapOpt = fileOpt.map(x => Parser.parseFile(x.toURI))
 
     mindMapOpt match {
       case Some(mindMap) => setTitle(mindMap.name)
@@ -51,19 +50,16 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
     setFragment(mapFragment)
   }
 
-  override def onPostCreate(savedInstanceState: Bundle) {
-    super.onPostCreate(savedInstanceState)
-  }
-
   override def onCreateOptionsMenu(menu : Menu) : Boolean = {
     val prefStyle : String = mySharedPreferences.getString("pref_Style", "no selection")
-        
+
     prefStyle match {
-        case "BlackStyle" => getMenuInflater().inflate(R.menu.menu_map, menu)
-        case "WhiteStyle" => getMenuInflater().inflate(R.menu.menu_map_black, menu)
-        case _ => getMenuInflater().inflate(R.menu.menu_map, menu)
+      case "BlackStyle" => getMenuInflater().inflate(R.menu.menu_map, menu)
+      case "WhiteStyle" => getMenuInflater().inflate(R.menu.menu_map_black, menu)
+      case _ => getMenuInflater().inflate(R.menu.menu_map, menu)
     }
-    
+
+    getMenuInflater.inflate(R.menu.menu_map, menu)
     true
   }
 
@@ -71,16 +67,14 @@ class MapActivity extends DrawerLayoutActivity with TypedFindView with
     val pw = new PrintWriter(file)
     mapFragment.mindMapModel.mindMap.getText(" ").foreach(pw.println)
     Toast.makeText(context, file.getName ++ " saved", 0).show
-    pw.close()
+    pw.close
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
     fileOpt match {
-      case Some(file) => {
-        saveFile(file)
-      }
+      case Some(file) => saveFile(file)
       case None => {
-        val dialog = new SaveRealTimeDialog(MapActivity.this)
+        val dialog = new TextDialog(MapActivity.this, R.string.rtsaveTitle, R.string.mmName)
         dialog.show(getFragmentManager(), "missiles")
       }
     }
