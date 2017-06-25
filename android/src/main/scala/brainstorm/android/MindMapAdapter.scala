@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.view.LayoutInflater
-import android.widget.Toast
 import android.app.AlertDialog
 
 class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter[ViewHolder] {
@@ -19,18 +18,18 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
 
   override def onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = {
         val v: View = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.mindmap_list_row, parent, false);
-        new ViewHolder(v);
+                .inflate(R.layout.mindmap_list_row, parent, false)
+        new ViewHolder(v)
   }
 
-  override def onBindViewHolder(holder: ViewHolder, position: Int) = {
+  override def onBindViewHolder(holder: ViewHolder, position: Int) {
     val file = files(position)
     holder.filename.setText(file.getName)
     val format = new SimpleDateFormat("dd-MM-yyyy HH:mm")
     val date = new Date(file.lastModified)
     holder.moddate.setText(format.format(date))
     holder.v.setOnClickListener(new View.OnClickListener() {
-      override def onClick(v: View) = {
+      override def onClick(v: View) {
 
         val intent = new Intent(context.getActivity, classOf[MapActivity]).putExtra("file", file.toURI())
         context.startActivity(intent)
@@ -52,8 +51,8 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
                             override def onClick(dialog : DialogInterface,id : Int) { }
             })
 
-        val alertDialog : AlertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        val alertDialog : AlertDialog = alertDialogBuilder.create()
+        alertDialog.show()
         invalidate
         result
       }
@@ -62,7 +61,7 @@ class MindMapAdapter (root: File, context:Fragment) extends RecyclerView.Adapter
 
   override def getItemCount(): Int = files.size
 
-  def invalidate(): Unit = {
+  def invalidate() {
     files = root.listFiles
     notifyDataSetChanged()
   }

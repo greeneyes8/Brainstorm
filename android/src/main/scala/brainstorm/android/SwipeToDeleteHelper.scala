@@ -9,7 +9,7 @@ class SwipeToDeleteHelper(adapter: SwipeAdapter) extends ItemTouchHelper.SimpleC
   override def onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
     target: RecyclerView.ViewHolder): Boolean = false
 
-  override def onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int): Unit = {
+  override def onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
     val position: Int = viewHolder.getAdapterPosition
     adapter.remove(position)
   }
@@ -27,7 +27,7 @@ class SwipeToDeleteHelper(adapter: SwipeAdapter) extends ItemTouchHelper.SimpleC
   }
   override def onChildDraw(canvas: Canvas, recyclerView: RecyclerView,
     viewHolder: RecyclerView.ViewHolder, dx: Float, dy: Float,
-    actionState: Int, isActive: Boolean): Unit = {
+    actionState: Int, isActive: Boolean) {
   }
 }
 
@@ -40,7 +40,7 @@ trait SwipeAdapter {
 
 class rr extends RecyclerView.ItemDecoration {
   override def onDraw(canvas: Canvas, recyclerView: RecyclerView,
-    recyclerState: RecyclerView.State): Unit = {
+    recyclerState: RecyclerView.State) {
     super.onDraw(canvas, recyclerView, recyclerState)
   }
 }

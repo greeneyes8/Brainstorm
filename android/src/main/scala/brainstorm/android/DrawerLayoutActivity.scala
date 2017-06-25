@@ -2,8 +2,8 @@ package brainstorm.android
 
 import android.app.Activity
 import android.os.Bundle
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.Fragment
+import android.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.content.res.Configuration
 import android.support.v4.widget.DrawerLayout
@@ -17,9 +17,7 @@ import android.view.LayoutInflater
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.ListView
-import android.widget.Toast
 import android.preference.PreferenceManager 
 import android.content.SharedPreferences 
 import android.content.Intent
@@ -28,13 +26,11 @@ import TypedResource._
 import brainstorm.core.MindMap
 
 class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
-    lazy val sharedPreferences2 : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+    lazy val mySharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     implicit val context = this
     var mDrawerToggle: ActionBarDrawerToggle = _
-    var myArray : Array[String] = _
     var myListView : ListView = _ 
     var drawerLayout : DrawerLayout = _ 
-    var mActivityTitle : String = _
 
     def setFragment(fragment: Fragment) {
         val fragmentManager = getFragmentManager()
@@ -43,16 +39,16 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
                        .commit()
     }
 
-    override def onCreate(savedInstanceState: Bundle): Unit = {
+    override def onCreate(savedInstanceState: Bundle) {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
         super.onCreate(savedInstanceState)
 
-        val prefStyle : String = sharedPreferences2.getString("pref_Style", "no selection")
+        val prefStyle : String = mySharedPreferences.getString("pref_Style", "no selection")
         
         prefStyle match {
-            case "BlackStyle" => super.setTheme(R.style.CustomStyle2)
-            case "WhiteStyle" => super.setTheme(R.style.CustomStyle1)
-            case _ => super.setTheme(R.style.CustomStyle2)
+            case "BlackStyle" => super.setTheme(R.style.DarkStyle)
+            case "WhiteStyle" => super.setTheme(R.style.LightStyle)
+            case _ => super.setTheme(R.style.DarkStyle)
         }
     }
 
@@ -61,11 +57,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
       recreate()
     }
 
-
-    def afterOnCreate(savedInstanceState: Bundle): Unit = {
+    def afterOnCreate(savedInstanceState: Bundle) {
         myListView = findView(TR.navList)
         drawerLayout = findView(TR.drawer_layout)
-        mActivityTitle = getTitle.toString()
 
         addDrawerItems()
         setupDrawer()
@@ -79,7 +73,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
             override def onDrawerOpened(drawerView : View) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Menu");
+                getSupportActionBar().setTitle("Brainstorm Menu");
                 invalidateOptionsMenu();
             }
 
@@ -95,9 +89,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
     }
 
     private def addDrawerItems() {
-        myArray = Array(context.getResources().getString(R.string.action_AvailableMindMaps), 
-                        context.getResources().getString(R.string.action_AddMapinRealTime), 
-                        context.getResources().getString(R.string.action_GeneralSettings))
+        val myArray = Array(context.getResources().getString(R.string.action_AvailableMindMaps), 
+                            context.getResources().getString(R.string.action_AddMapinRealTime), 
+                            context.getResources().getString(R.string.action_GeneralSettings))
         val adapter = new ArrayAdapter[String](context, android.R.layout.simple_list_item_1, myArray)
         myListView.setAdapter(adapter)
         myListView.setItemChecked(1, true)
@@ -119,12 +113,12 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
             val intent : Intent = new Intent(this, classOf[MainActivity])
             startActivity(intent)
         }
-        case 2 => {
-            val intent : Intent = new Intent(this, classOf[SettingsActivity])
-            startActivity(intent)
-        }
         case 1 => {
             val intent : Intent = new Intent(this, classOf[MapActivity])
+            startActivity(intent)
+        }
+        case 2 => {
+            val intent : Intent = new Intent(this, classOf[SettingsActivity])
             startActivity(intent)
         }
         case _ => {
@@ -146,7 +140,7 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
 
      override def onCreateOptionsMenu(menu : Menu) : Boolean = {
         getMenuInflater().inflate(R.menu.menu_main, menu)
-        return true
+        true
     }
 
     override def onOptionsItemSelected(item : MenuItem) : Boolean = {
@@ -160,13 +154,9 @@ class DrawerLayoutActivity extends AppCompatActivity with TypedFindView {
                                .replace(R.id.flContent, new AuthorsFragment())
                                .addToBackStack(null)
                                .commit()
-            return true
+            true
         }
 
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
+        true
     }
 }
