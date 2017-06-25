@@ -1,14 +1,6 @@
 package brainstorm.android
 
-
-import android.view.View
-import android.widget.TextView
 import android.content.Context
-
-import android.graphics.drawable.shapes.OvalShape
-import android.graphics.drawable.ShapeDrawable
-
-import java.util.ArrayList
 
 import brainstorm.core.MindMap
 import brainstorm.core.Node
@@ -17,12 +9,11 @@ import jp.kai.forcelayout.Links
 import jp.kai.forcelayout.Nodes
 
 object NodeAdapter {
-  def convertNode(node: Node)(implicit context: Context): String = {
-    node.text
-  }
-  def getEdge(node: Node)(implicit context: Context): Option[(String, String)] = {
-    node.parent.map(x => (x.text, node.text))
-  }
+  def convertNode(node: Node)(implicit context: Context): String =
+    node.line
+  
+  def getEdge(node: Node)(implicit context: Context): Option[(String, String)] = 
+    node.parent.map(x => (x.line, node.line))
 }
 
 object MapAdapter {
@@ -34,11 +25,9 @@ object MapAdapter {
     links
   }
 
-  def getNodes(mindMap: MindMap)(implicit context: Context): Seq[String] = {
-    val nodePairs = mindMap.getNodes.map(NodeAdapter.convertNode(_))
-    nodePairs
-  }
-  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Seq[String], Links) = {
+  def getNodes(mindMap: MindMap)(implicit context: Context): Seq[String] =
+    mindMap.getNodes.map(NodeAdapter.convertNode(_))
+
+  def getNodesAndEdges(mindMap: MindMap)(implicit context: Context): (Seq[String], Links) =
     (getNodes(mindMap), getEdges(mindMap))
-  }
 }

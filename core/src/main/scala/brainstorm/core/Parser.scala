@@ -2,51 +2,91 @@ package brainstorm.core
 
 import io.Source
 import java.net.URI
+import java.io.File
 
-case class WrongSyntax(line: Integer, cause: String) extends Exception {
-  override def toString() = {
-    super.toString() ++ "\n" ++ line.toString ++ " " ++ cause
-  }
+
+/**
+* A case class used as an Exception when the syntax is incorrect.
+*
+* @param line Number of line where exception occured (as counted from 0)
+* @param cause Cause of exception
+* @version 1.0
+* @see See [[https://github.com/kd226/Brainstorm/]] for more information.
+*/
+case class WrongSyntax(val line: Integer, val cause: String) extends Exception {
+  override def toString() =
+    super.toString() ++ "\n" ++ line.toString ++ ": " ++ cause
 }
+
+/**
+* A object used to parse files, lines and texts into a mindMap.
+*
+* @version 1.0
+* @see See [[https://github.com/kd226/Brainstorm/]] for more information.
+*/
 object Parser {
+  /**
+  * @return Parses a file into a mind map.
+  * @param filename Name of a file where is the text to parse.
+  **/
   def parseFile(filename: URI): MindMap = {
-    val lines = Source.fromFile(filename).getLines.toSeq
+    val file = new File(filename)
+    val lines = Source.fromFile(file).getLines.toSeq
     if (!lines.isEmpty) {
-      val root = parseText(lines, None)
-      new MindMap(filename.toString, Some(root))
+      val root = parseTextChecked(lines, None)
+      new MindMap(file.getName, Some(root))
     } else {
-      new MindMap(filename.toString)
+      new MindMap(file.getName)
     }
   }
+
+  /**
+  * @return Parses a text into a mind map. This one throws an exception.
+  * @param text A sequence of strings to parse.
+  * @param parent A parent where we want to add the node.
+  **/
   def parseTextChecked(text: Seq[String], parent: Option[Node]): Node = {
     if (!text.isEmpty) {
-      val rootIndent = text.head.prefixLength((c) => c == ' ')
+      val rootIndent = text.head.prefixLength(_ == ' ')
       var considered: Seq[String] = text.tail
-      val syntaxCheck: Option[(Int, Int)] = considered.map((s) => s.prefixLength(c => c == ' ')).zipWithIndex.asInstanceOf[Seq[(Int, Int)]].find(x => x._1 <= rootIndent)
+      val syntaxCheck: Option[(Int, Int)] = considered.map(_.prefixLength(_ == ' '))
+        .zipWithIndex.find(_._1 <= rootIndent)
       syntaxCheck match {
-        case Some(x) => throw new WrongSyntax(x._2 + 1, "Only one root allowed\n" ++ text.toString)
+        case Some(x) => throw new WrongSyntax(x._2 + 1, "Only one root allowed")
         case None => parseText(text, parent)
       }
     } else {
-      throw new WrongSyntax(0, "Write somethin")
+      throw new WrongSyntax(0, "Write something")
     }
   }
 
+  /**
+  * @return Parses a text into a mind map.
+  * @param text A sequence of strings to parse.
+  * @param parent A parent where we want to add the node.
+  **/
   def parseText(text: Seq[String], parent: Option[Node]): Node = {
-    var root:Node = parseLine(text(0), parent)
-    var considered = text.tail
+    val root: Node = parseLine(text(0), parent)
+    var considered: Seq[String] = text.tail
     if (!considered.isEmpty) {
-      val indentation = considered.head.prefixLength(y => y == ' ')
+      val indentation = considered.head.prefixLength(_ == ' ')
       while (!considered.isEmpty) {
-        val spanned = considered.tail.span((x) => x.prefixLength(y => y == ' ') > indentation)
+        val spanned: (Seq[String], Seq[String]) = considered.tail
+          .span(_.prefixLength(_ == ' ') > indentation)
         parseText(spanned._1.+:(considered.head), Some(root))
         considered = spanned._2
       }
     }
     root
   }
+
+  /**
+  * @return Parses a line into a node in a mind map
+  * @param line A string to parse.
+  * @param parent A parent where we want to add the node.
+  **/
   def parseLine(line: String, parent: Option[Node]): Node = {
-    val cutLine = line.dropWhile(x => x == ' ')
+    val cutLine = line.dropWhile(_ == ' ')
     new Node(cutLine, parent)
   }
 }

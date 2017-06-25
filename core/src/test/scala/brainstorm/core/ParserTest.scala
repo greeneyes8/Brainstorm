@@ -32,16 +32,31 @@ class ParserTest extends CommonSpec {
     }
   }
 
-  "Result of parsing line" when {
-    "is empty" should {
-      "throw an Exeption" in (pending)
+  "Result of check-parsing text" when {
+    "is incorrect" should {
+      val text = Seq("root", "  chld1", "  chld2", "wrong line")
+      "throw an exception with number of incorrect line" in {
+        the [WrongSyntax] thrownBy {
+          Parser.parseTextChecked(text, None)
+        } should have ('line (3))
+      }
     }
+    "is correct" should {
+      "return same result as parsing without checking" in {
+      val text = Seq("root", "  chld1", "  chld2")
+      Parser.parseTextChecked(text, None) shouldEqual Parser.parseText(text, None)
+
+      }
+    }
+  }
+
+  "Result of parsing line" when {
     "has text" should {
       "return Node" which {
         val parent = new Node("parent", None)
         val node = Parser.parseLine("  someText", Some(parent))
         "has right text" in {
-          node should have ('text ("someText"))
+          node should have ('line ("someText"))
         }
         "has right line" in {
            node should have ('line ("someText"))

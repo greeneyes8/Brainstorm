@@ -25,19 +25,37 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 ## TODO:
 
-- [ ] add about section
-- [ ] make the app itself workable (fix bug)
+- [x] add about section
+- [ ] make the app itself workable (fix bugs)
 - [ ] refactor
-- [ ] documentation
+- [x] documentation
 - [ ] some features
-- [ ] create some badass styles(+1)
-- [ ] [Nothing here.](http://www.dailypuppy.com/)
+- [x] create some badass styles(+1)
 - [ ] Choose mindmaps folder
 - [ ] Upgrade forcelayout api 
+	- [ ] correct distances between nodes
 	- [ ] text inside the circle
 	- [ ] circle colors
 	- [ ] pass drawables
+- [ ] Add option to have mind map and text switchable
+- [ ] Add help section
+- [ ] Add node colors
+- [ ] Add node emojis
 
-#FIXME:
+## FIXME:
+
 - [ ] Text autocompletion
-- [ ] Back button stack
+	- [ ] Custom input method
+	- [~] Highlighting lint errors (arguable)
+- [x] Parser sets mindmap name as whole file address
+- [x] Refresh mind map list on resume
+- [x] Automatic version
+- [ ] Dividers between mind maps
+- [ ] Opening side menu in map view saves?!
+- [ ] Side menu in map view is transparent 
+- [x] Internationalize mind map deletion
+- [x] Internationalize lint errors
+- [ ] Drawn mind map behaves weirdly when center node moved (at least 7 child nodes)
+- [ ] Ask if discarding changes when leaving unsaved mind map
+- [ ] Add an exception that the mind map has to start from zero level
+- [ ] choosing the size of indentation

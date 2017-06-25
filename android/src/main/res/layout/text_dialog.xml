@@ -7,13 +7,20 @@
 	android:paddingLeft="20dp" 
 	android:paddingTop="20dp" 
 	android:paddingRight="20dp" >
+
+	<!-- For text field not to get focus immidiately" -->
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:focusable="true"
+		android:focusableInTouchMode="true" />
  
 	<android.support.design.widget.TextInputLayout
+		android:id="@+id/text_parent"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 		<EditText
 			android:id="@+id/name"
-			android:hint="@string/MindMapName"
 			android:inputType="text"
 			android:singleLine="true"
 			android:layout_width="match_parent"

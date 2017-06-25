@@ -10,35 +10,34 @@
     <string name="action_GeneralSettings">General Settings</string>
 
     <!-- Settings Fragment-->
-    <string name="settingsBackgroundColor">Background Color</string>
-    <string name="settingsTextColor">Text Color</string>
-    <string name="settingsNodesColor">Nodes Color</string>
-    <string name="settingsMenuColor">Menu Color</string>
-    <string name="settingsBackgroundSummary">Set the color of the background</string>
     <string name="settingsVisual">Coloring options</string>
-    <string name="settingsNodesSummary">Set the color of the nodes</string>
-    <string name="settingsTextSummary">Set the color of the text</string>
-    <string name="settingsMenuSummary">Set the color of the menu</string>
 
-    <!-- Color list-->
-    <string name="settings_list_blackColor">Black</string>
-    <string name="settings_list_whiteColor">White</string>
-    <string name="settings_list_blueColor">Blue</string>
-    <string name="settings_list_greyColor">Grey</string>
-    <string name="settings_list_default">#404040</string>
-    <string name="settings_list_default_text">#FFFFFF</string>
-    <string name="settings_list_default_menu">#000000</string>
+	<string name="blackStyleName">Dark style</string>
+	<string name="whiteStyleName">Light style</string>
+	<string name="settingsStyleDefault">BlackStyle</string>
+    <string name="settingsStyleTitle">Applications style</string>
+    <string name="settingsStyleSummary">Pick applications style</string>
 
     <!-- About Fragment-->
     <string name="authors">Authors:</string>
+    <string name="version">Version:</string>
 
     <!-- FloatingButton/Creating MindMap-->
     <string name="MindMapName">New mind map name</string>
     <string name="createMM">Create a new mind map</string>
+    <string name="mmName">Mind map name</string>
     <string name="confirm">Confirm</string>
-    <string name="wasClicked"> was clicked</string>
-    <string name="wasDeleted"> was deleted</string>
+	<string name="cancel">Cancel</string>
+    <string name="deleteMM">Do you want to delete file: </string>
+    <string name="yes">Yes.</string>
+    <string name="no">No.</string>
 
     <!-- MapTextFragment-->
     <string name="realTimeMapBegin">Write your mind map here</string>
+	<string name="errorText">Only one root allowed</string>
+
+	<!-- MapActivity -->
+	<string name="rtsave_q">Mind map name</string>
+	<string name="rtmap_t">Create a mind map</string>
+	<string name="rtsaveTitle">Save mind map</string>
 </resources>
