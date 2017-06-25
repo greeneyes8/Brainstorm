@@ -1,6 +1,7 @@
 package brainstorm.android
 
 import java.io.File
+
 import android.app.Fragment 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +12,7 @@ import android.widget.EditText
 
 class MapTextFragment(startText: Seq[String], textWatcher: TextWatcher) extends Fragment {
 
-  var text: EditText = _
+  lazy val text: EditText = getView.findViewById(R.id.mapEditText).asInstanceOf[EditText]
 
   override def onCreateView(inflater: LayoutInflater, parent: ViewGroup,
     savedInstanceState: Bundle): View = {
@@ -22,7 +23,7 @@ class MapTextFragment(startText: Seq[String], textWatcher: TextWatcher) extends 
 
   override def onViewCreated(view : View, savedInstanceState : Bundle) {
       // Setup any handles to view objects here
-      text = view.findViewById(R.id.mapEditText).asInstanceOf[EditText]
+      //text = view.findViewById(R.id.mapEditText).asInstanceOf[EditText]
       if (!startText.isEmpty)
         text.setText(startText.tail.foldLeft(startText.head)((prev, now) => prev ++ "\n" ++ now))
       addListener(textWatcher)
@@ -30,5 +31,4 @@ class MapTextFragment(startText: Seq[String], textWatcher: TextWatcher) extends 
 
   def addListener(textWatcher: TextWatcher) =
     text.addTextChangedListener(textWatcher)
-
 }

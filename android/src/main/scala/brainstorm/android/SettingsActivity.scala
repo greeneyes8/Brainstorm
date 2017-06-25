@@ -16,14 +16,14 @@ import TypedResource._
 
 class SettingsActivity extends DrawerLayoutActivity 
   with TypedFindView with OnSharedPreferenceChangeListener {
-    lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+ //   lazy val sharedPreferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
     override def onCreate(savedInstanceState: Bundle): Unit = {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
-        afterOnCreate(savedInstanceState)
+        //afterOnCreate(savedInstanceState)
         setTitle(R.string.action_GeneralSettings)
         setFragment(new SettingsFragment())
     }
