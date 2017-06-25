@@ -15,7 +15,8 @@ Brainstorm
 Co to jest?
 ===========
 
-.. .. Miejsce na screena
+.. 
+    Miejsce na screena
 
 .. note::
     Mapy myśli
@@ -25,15 +26,40 @@ Co to jest?
 Android w Scali
 ===============
 
+To zły pomysł!!
+
 ----
 
-Użyte narzędzia:
-================
+Funkcyjność
+===========
 
+----
+
+Testy
+=====
+
+----
+
+Użyte narzędzia i biblioteki:
+=============================
+
+* Android Studio
+
+* Forcelayout
+ 
 * sbt
 
 * git
 
-* Android Studio
+----
 
-* Vim
+Live
+====
+
+Repozytorium:
+
+https://www.github.com/kd226/Brainstorm
+
+Apk:
+
+http://bit.ly/2u3pQqe

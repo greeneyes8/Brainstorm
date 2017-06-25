@@ -1,6 +1,3 @@
-#### UWAGA: od teraz trzeba dodawać każdy string do strings.xml, do obydwu folderów tzw. values i values-b+pl
-
-
 # Brainstorm
 
 **Description:** An app ready to help you create your own mind map in an easy way on almost any device.
