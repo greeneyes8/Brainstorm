@@ -8,3 +8,4 @@ lazy val core = (project in file("core")).settings(commonSettings)
 
 lazy val android = (project in file("android")).dependsOn(core).settings(commonSettings)
 
+scalacOptions in (Compile,doc) := Seq("-groups", "-implicits", "-diagrams")
