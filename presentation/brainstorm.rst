@@ -15,8 +15,14 @@ Brainstorm
 Co to jest?
 ===========
 
-.. 
-    Miejsce na screena
+.. image:: MindMapDark.png
+    :width: 333px
+    :height: 592px
+
+
+.. image:: MindMapLight.png
+    :width: 333px
+    :height: 592px
 
 .. note::
     Mapy myśli
