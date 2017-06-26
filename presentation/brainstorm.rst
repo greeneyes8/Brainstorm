@@ -67,6 +67,12 @@ Testy
 =====
 
 .. image:: Test1.jpg
+    :width: 564px
+    :height: 276px
+
+.. image:: Test2.jpg
+    :width: 418px
+    :height: 360px
 
 ----
 
