@@ -27,6 +27,7 @@ Co to jest?
 
 .. note::
     Mapy myśli
+    Guzik tu widać
     
 ----
 
@@ -49,6 +50,7 @@ Android w Scali
 ===============
 
 .. image:: AndroidInScala.jpg
+
 
 ----
 
@@ -76,6 +78,10 @@ Użyte narzędzia i biblioteki:
 * sbt
 
 * git
+
+----
+
+.. image:: gifed.gif
 
 ----
 
