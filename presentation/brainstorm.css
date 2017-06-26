@@ -23,6 +23,10 @@ pre {
     text-align: left;
 }
 
-img {
+#what_id > img {
+    padding: 25px;
+}
+
+#what_id2 > img {
     padding: 25px;
 }

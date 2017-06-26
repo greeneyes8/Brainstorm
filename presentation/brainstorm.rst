@@ -12,6 +12,8 @@ Brainstorm
 
 ----
 
+:id: what_id
+
 Co to jest?
 ===========
 
@@ -19,8 +21,22 @@ Co to jest?
     :width: 333px
     :height: 592px
 
-
 .. image:: MindMapLight.png
+    :width: 333px
+    :height: 592px
+
+.. note::
+    Mapy myśli
+    
+----
+
+:id: what_id2
+
+.. image:: ListDark.png
+    :width: 333px
+    :height: 592px
+
+.. image:: ListLight.png
     :width: 333px
     :height: 592px
 
@@ -32,12 +48,16 @@ Co to jest?
 Android w Scali
 ===============
 
-To zły pomysł!!
+.. image:: AndroidInScala.jpg
 
 ----
 
 Funkcyjność
 ===========
+
+.. image:: Function1.jpg
+
+.. image:: Function2.jpg
 
 ----
 
