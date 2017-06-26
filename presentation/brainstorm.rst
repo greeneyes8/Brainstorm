@@ -66,6 +66,8 @@ Funkcyjność
 Testy
 =====
 
+.. image:: Test1.jpg
+
 ----
 
 Użyte narzędzia i biblioteki:
