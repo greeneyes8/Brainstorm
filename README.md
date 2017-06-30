@@ -20,13 +20,20 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 
 ### How to use it:
 **1. Open the app**
-When you open the app, you will see splash screen and after this almost blank activity like this:\n
+When you open the app, you will see splash screen and after this almost blank activity like this:
+
 <img src="screenshots/Screenshot_20170630-114211.png" width="333" height="592"/>
 
+**2. Create Mind Map**
 Just click the plus button and you will be able to create a mind map.
+
 <img src="screenshots/Screenshot_20170630-114223.png" width="333" height="592"/>
 
+**3. Modify Mind Map**
+The file you've created is empty. To create mind map just click on the details of the file.
 
+<img src="screenshots/Screenshot_20170630-114227.png" width="333" height="592"/>
+<img src="screenshots/Screenshot_20170630-114233.png" width="333" height="592"/>
 
 
 ## TODO:
