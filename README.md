@@ -53,6 +53,10 @@ Remember to save your mind map by clicking on floppy disk.
 
 <img src="screenshots/Screenshot_20170630-114312.png" width="333" height="592"/>
 
+For now you have also possibility to add a mind map in real time: firstly creating a mind map an then creating a file and change style in settings.
+
+<img src="screenshots/Screenshot_20170630-114317.png" width="333" height="592"/>
+
 ## TODO:
 
 - [x] add about section
