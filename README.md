@@ -36,12 +36,14 @@ The file you've created is empty. To create mind map just click on the details o
 
 Creating a mind map is really simple. The example code is shown here:
 
+'''
 root
  Child1
  Child2
   ChildOfChild1
   ChildOfChild2
  Child3
+ '''
  
 The idea is based on spaces and indentations. 
 
