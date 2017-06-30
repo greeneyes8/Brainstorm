@@ -18,6 +18,14 @@ It is open-source so you can look at it, modify and upgrade in any way you need.
 ### Just App
 Well, we could send it on Google Play but we they have too much money anyway. So you have to download the .apk file anyway.
 
+### How to use it:
+**1. Open the app**
+When you open the app, you will see splash screen and after this almost blank activity like this:
+![Screenshot1](screenshots/Screenshot_20170630-114211.png)
+Just click the plus button and you will be able to create a mind map.
+![Screenshot1](screenshots/Screenshot_20170630-114223.png)
+
+
 
 
 ## TODO:
