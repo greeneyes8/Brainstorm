@@ -21,9 +21,9 @@ Well, we could send it on Google Play but we they have too much money anyway. So
 ### How to use it:
 **1. Open the app**
 When you open the app, you will see splash screen and after this almost blank activity like this:
-<img src="screenshots/Screenshot_20170630-114211.png" style="height: 592px;"/>
+<img src="screenshots/Screenshot_20170630-114211.png" style="width: 333px;"/>
 Just click the plus button and you will be able to create a mind map.
-![](screenshots/Screenshot_20170630-114223.png)
+<img src="screenshots/Screenshot_20170630-114223.png" style="width: 333px;"/>
 
 
 
