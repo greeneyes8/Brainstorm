@@ -36,15 +36,22 @@ The file you've created is empty. To create mind map just click on the details o
 
 Creating a mind map is really simple. The example code is shown here:
 
->root
-> Child1
-> Child2
->  ChildOfChild1
->  ChildOfChild2
-> Child3
+```
+root
+ Child1
+ Child2
+  ChildOfChild1
+  ChildOfChild2
+ Child3
+ ```
  
-The idea is based on spaces and indentations. 
+The idea is based on spaces and indentations. In app it looks like this:
 
+<img src="screenshots/Screenshot_20170630-114307.png" width="333" height="592"/>
+
+Remember to save your mind map by clicking on floppy disk.
+
+<img src="screenshots/Screenshot_20170630-114312.png" width="333" height="592"/>
 
 ## TODO:
 
